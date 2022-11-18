@@ -1,0 +1,156 @@
+.dish-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  width: 245px;
+  height: 388px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.dish-image {
+  width: 245px;
+  height: 152px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 16px;
+
+  width: 245px;
+  height: 236px;
+
+  background: #f9f4ea;
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.card-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding-left: 16px;
+  gap: 8px;
+
+  width: 209px;
+  height: 129px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.dish-name {
+  width: 118px;
+  height: 21px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 2.4px;
+
+  padding-top: 16px;
+  color: #000000;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0;
+}
+
+.dish-ingredients {
+  width: 209px;
+  height: 100px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 20px;
+  /* or 125% */
+  letter-spacing: 1.8px;
+
+  margin-top: 8px;
+  margin-bottom: 0;
+
+  color: #000000;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.ingredient-icon {
+  width: 30px;
+  height: 24px;
+
+  padding-left: 16px;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.dish-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 16px;
+  padding-left: 16px;
+
+  gap: 4px;
+
+  width: 32.11px;
+  height: 19px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.currency-icon {
+  width: 8px;
+  height: 8px;
+  left: 0%;
+  right: 10.4%;
+  top: 5.15%;
+  bottom: 34.21%;
+}
+.price {
+  width: 20px;
+  height: 19px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height, or 119% */
+  text-align: center;
+  letter-spacing: 1.97px;
+
+  color: #000000;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}

@@ -1,0 +1,47 @@
+/* ------ Cart style ------ */
+
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 24px;
+  gap: 20px;
+
+  position: absolute;
+  width: 375px;
+  height: 218px;
+  left: 0px;
+  top: 46px;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  background: #ffffff;
+  box-shadow: 2px 4px 10px rgba(175, 175, 175, 0.25);
+}
+
+.cart-icon {
+  width: 45px;
+  height: 45px;
+  margin-top: 63px;
+}
+
+.cart-description {
+  width: 145px;
+  height: 19px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 20px;
+
+  text-align: center;
+  letter-spacing: 1.97px;
+  text-transform: uppercase;
+
+  color: #000000;
+
+  
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}

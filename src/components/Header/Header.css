@@ -52,7 +52,6 @@
   margin-right: 14px;
 }
 
-/* ------ Hamburger style ------ */
 .close-navbar {
   position: absolute;
   display: grid;
@@ -72,39 +71,6 @@
   padding-top: 15px;
   cursor: pointer;
 }
-
-.hamburger-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 40px 12px 24px 20px;
-  gap: 24px;
-
-  position: absolute;
-  width: 375px;
-  height: 367px;
-  left: -1px;
-  top: 46px;
-  z-index: 1;
-  background: #ffffff;
-  box-shadow: 2px 4px 10px rgba(175, 175, 175, 0.25);
-}
-
-.hamburger-link {
-  text-decoration: none;
-  color: #000;
-}
-
-.space-line {
-  width: 375px;
-  height: 0px;
-  left: -1px;
-  top: 194px;
-
-  border: 1px solid #f2f2f2;
-}
-
-/* ------ Search style ------ */
 
 .close-navbar-title {
   width: 63px;
@@ -127,72 +93,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 40px 12px 24px 20px;
+  padding: 40px 0 0 30px;
   gap: 24px;
 
-  position: absolute;
-  width: 377px;
-  height: 367px;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  width: 347px;
+  height: 327px;
   left: -1px;
   top: 46px;
 
   background: #ffffff;
   box-shadow: 2px 4px 10px rgba(175, 175, 175, 0.25);
 }
-
-.search-filed {
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 6px 12px;
-  gap: 8px;
-
-  position: absolute;
-  width: 334px;
-  height: 30px;
-  left: 30px;
-
-  border: 0.5px solid #000000;
-  border-radius: 4px;
-  /* transform: matrix(1, 0, 0, -1, 0, 0); */
-}
-
-.search-icon-input {
-  width: 20px;
-  height: 20px;
-  margin-right: 28px;
-  padding-top: 5px;
-}
-
-.input-line {
-  height: 14px;
-  border: 0.5px solid #000000;
-}
-
-.search-input {
-  width: 241px;
-  height: 15px;
-
-  border: none;
-  font-family: "Helvetica Neue";
-  font-style: normal;
-  font-weight: 200;
-  font-size: 12px;
-  line-height: 15px;
-
-  letter-spacing: 1.29px;
-
-  color: #000000;
-
-  opacity: 0.2;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 2;
-  flex-grow: 1;
-  margin-right: 12px;
-}
-
-/* ------ Cart style ------ */
