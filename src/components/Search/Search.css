@@ -30,7 +30,7 @@
   position: absolute;
   width: 315px;
   height: 30px;
-  /* left: 30px; */
+  
 
   border: 0.5px solid #000000;
   border-radius: 4px;
@@ -55,9 +55,6 @@
 
   border: none;
   background-color: transparent;
-  font-family: "Helvetica Neue";
-  font-style: normal;
-  font-weight: 200;
   font-size: 12px;
   line-height: 15px;
   letter-spacing: 1.29px;

@@ -1,0 +1,43 @@
+.chef-card-content {
+  width: 335px;
+  height: 262px;
+
+  background: #000000;
+
+  background-image: url("../../assets/yossi-img.png");
+  background-repeat: no-repeat;
+  margin: 0 20px 24px 20px;
+}
+
+.chef-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  height: 51px;
+ 
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(215px);
+}
+
+.chef-name {
+  width: 335px;
+  height: 47px;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 47px;
+  /* identical to box height, or 261% */
+  text-align: center;
+  letter-spacing: 2.67px;
+
+  color: #000000;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}

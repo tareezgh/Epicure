@@ -27,7 +27,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbar sticky">
         <div className="navbar-hamburger" onClick={toggleHamburger}>
           <div className="hamburger-line" />
           <div className="hamburger-line hamburger-middle-line" />

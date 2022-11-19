@@ -1,3 +1,10 @@
+* {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+}
+
 .hero-container {
   width: 375px;
   /* 564.83 */
@@ -30,9 +37,6 @@
   width: 315px;
   height: 64px;
 
-  font-family: "Helvetica Neue";
-  font-style: normal;
-  font-weight: 200;
   font-size: 24px;
   line-height: 133%;
   /* or 32px */
@@ -56,10 +60,6 @@
   height: 24px;
   margin: 48px 0 17px 20px;
 
-  font-family: "Helvetica Neue";
-  font-style: normal;
-  font-weight: 200;
-  font-size: 18px;
   line-height: 24px;
   /* identical to box height, or 133% */
   letter-spacing: 1.21px;
@@ -83,7 +83,7 @@
   overflow-x: scroll;
 }
 
-.all-link {
+.all-link-restaurants{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -98,16 +98,47 @@
   margin-top: 18px;
 }
 
-.all-link-dishes {
-  margin-bottom: 48px;
-}
 
-.link-title {
+
+.link-title-restaurants {
   width: 136px;
   height: 35px;
 
-  font-family: "Helvetica Neue";
-  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 35px;
+  /* identical to box height, or 219% */
+  text-align: right;
+  letter-spacing: 1.85px;
+  text-transform: capitalize;
+
+  color: #000000;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.all-link-dishes {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px;
+  gap: 12px;
+
+  /* position: absolute; */
+  width: 126px;
+  height: 35px;
+  margin: 18px 0 48px 20px;
+  
+}
+
+.link-title-dishes{
+  width: 136px;
+  height: 35px;
+
   font-weight: 400;
   font-size: 16px;
   line-height: 35px;
@@ -125,7 +156,7 @@
 }
 
 .go-icon {
-  /* position: absolute; */
+ 
   left: 0%;
   right: 0%;
   top: 12.5%;
@@ -142,10 +173,6 @@
   height: 35px;
   margin: 48px 0 17px 20px;
 
-  font-family: "Helvetica Neue";
-  font-style: normal;
-  font-weight: 200;
-  font-size: 18px;
   line-height: 35px;
   /* identical to box height, or 194% */
   letter-spacing: 1.2px;
@@ -175,14 +202,9 @@
   /* position: absolute; */
   width: 190px;
   height: 35px;
-  left: 96px;
-  /* top: 1294px; */
-  margin: 0;
-  margin-top: 24px;
-  font-family: "Helvetica Neue";
-  font-style: normal;
-  font-weight: 200;
-  font-size: 18px;
+
+  margin: 24px 0 0 0;
+
   line-height: 35px;
   /* identical to box height, or 194% */
   letter-spacing: 1.2px;
@@ -221,7 +243,6 @@
   background: #fafafa;
 }
 
-
 .spicy-icon {
   width: 46.42px;
   height: 35.98px;
@@ -246,10 +267,6 @@
   width: 136px;
   height: 35px;
 
-  font-family: "Helvetica Neue";
-  font-style: normal;
-  font-weight: 200;
-  font-size: 18px;
   line-height: 30px;
   /* or 167% */
   text-align: center;
@@ -270,12 +287,195 @@
 .first-ingredient {
   margin-top: 0;
 }
+
 /* Chefs */
 
 .chef-container {
+  padding-top: 16px;
+  padding-bottom: 48px;
+}
+
+.chef-title {
+  width: 186px;
+  height: 35px;
+  margin: 32px 0 16px 20px;
+
+  line-height: 35px;
+  /* identical to box height, or 194% */
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+
+  color: #000000;
+}
+
+.chef-description{
+  width: 335px;
+height: 252px;
+
+margin: 24px 0 0 20px;
+line-height: 28px;
+/* or 156% */
+text-align: justify;
+letter-spacing: 1.25px;
+
+color: #000000;
+
 }
 
 /* About Us */
 
 .about-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  /* padding: 39px 476px; */
+  /* gap: 32px; */
+
+  /* position: absolute; */
+  width: 375px;
+  height: 867px;
+  left: -1px;
+  /* top: 2896px; */
+  /* padding: 20px 0px 0px 19px; */
+  background: #fafafa;
+}
+
+.epicure-logo {
+  width: 102px;
+  height: 95px;
+
+  margin-bottom: 32px;
+  margin-left: 20px;
+}
+
+.download-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+
+  /* position: absolute; */
+  width: 180px;
+  height: 120px;
+  margin-bottom: 48px;
+  margin-left: 20px;
+}
+
+.frame {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 7px 12px;
+  gap: 7px;
+
+  width: 180px;
+  height: 52px;
+
+  border: 0.5px solid #000000;
+  border-radius: 10px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.frame2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+
+  width: 130px;
+  height: 38px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.first {
+  width: 130px;
+  height: 18px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height, or 129% */
+  text-align: center;
+  letter-spacing: 1.29px;
+
+  color: #000000;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.second {
+  width: 130px;
+  height: 20px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height, or 125% */
+  text-align: center;
+  letter-spacing: 1.29px;
+
+  color: #000000;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.about-title {
+  /* position: absolute; */
+  width: 101px;
+  height: 35px;
+
+  line-height: 35px;
+  /* identical to box height, or 194% */
+  letter-spacing: 1.18px;
+  text-transform: uppercase;
+
+  color: #000000;
+  margin: 20px 0 16px 20px;
+}
+
+.first-paragraph {
+  /* position: absolute; */
+  width: 331px;
+  height: 280px;
+
+  line-height: 28px;
+  /* or 156% */
+  letter-spacing: 2.14px;
+
+  color: #000000;
+
+  margin: 0 0 1px 20px;
+}
+
+.second-paragraph {
+  /* position: absolute; */
+  width: 306px;
+  height: 168px;
+
+  line-height: 28px;
+  /* or 156% */
+  letter-spacing: 2.14px;
+
+  color: #000000;
+  margin: 0 0 0 20px;
 }

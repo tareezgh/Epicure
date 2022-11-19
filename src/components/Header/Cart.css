@@ -28,9 +28,6 @@
   width: 145px;
   height: 19px;
 
-  font-family: "Helvetica Neue";
-  font-style: normal;
-  font-weight: 200;
   font-size: 16px;
   line-height: 20px;
 
@@ -40,7 +37,6 @@
 
   color: #000000;
 
-  
   flex: none;
   order: 0;
   flex-grow: 0;

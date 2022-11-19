@@ -11,8 +11,8 @@ const DishCard = () => {
           alt="dish"
           src={require("../../assets/claro-img-mobile.png")}
         />
-        <div className="card-info">
-          <div className="card-frame">
+        <div className="dish-card-info">
+          <div className="dish-card-frame">
             <h3 className="dish-name">Pad Ki Mao</h3>
             <p className="dish-ingredients">
               Shrimps, Glass Noodles, Kemiri Nuts, Shallots, Lemon Grass, Magic
