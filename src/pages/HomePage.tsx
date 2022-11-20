@@ -1,6 +1,9 @@
 import React from "react";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import "./HomePage.css";
+import "swiper/css";
 
 import Search from "../components/Search/Search";
 import RestaurantCard from "../components/Cards/RestaurantCard";
@@ -9,6 +12,7 @@ import ChefCard from "../components/Cards/ChefCard";
 
 import { Counter } from "../components/counter/Counter";
 import DisplayCounter from "../components/DisplayCounter";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -24,12 +28,24 @@ const HomePage = () => {
 
       <section className="restaurants-container">
         <h2 className="restaurants-title">popular restaurant in epicure:</h2>
-        <div className="slide-row-restaurants">
-          <RestaurantCard />
-          <RestaurantCard />
-        </div>
+        <Swiper spaceBetween={24} slidesPerView={1.5}>
+          <div className="slide-row-restaurants">
+            <SwiperSlide>
+              <RestaurantCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RestaurantCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RestaurantCard />
+            </SwiperSlide>
+          </div>
+        </Swiper>
         <div className="all-link-restaurants">
-          <a className="link-title-restaurants">All Restaurants</a>
+          <a className="link-title-restaurants" href="/AllRestaurants">
+            All Restaurants
+          </a>
+
           <img
             className="go-icon"
             alt="go"
@@ -40,13 +56,25 @@ const HomePage = () => {
 
       <section className="dishes-container">
         <h2 className="dishes-title">Signature Dish Of:</h2>
-        <div className="slide-row-dishes">
-          <DishCard />
-          <DishCard />
-        </div>
+        <Swiper spaceBetween={24} slidesPerView={1.5}>
+          <div className="slide-row-dishes">
+            <SwiperSlide>
+              <DishCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <DishCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <DishCard />
+            </SwiperSlide>
+          </div>
+        </Swiper>
 
         <div className="all-link-dishes">
-          <a className="link-title-dishes">All Dishes</a>
+          <a className="link-title-dishes" href="#">
+            All Dishes
+          </a> 
+          {/* TO CHANGE */}
           <img
             className="go-icon"
             alt="go"
@@ -97,12 +125,23 @@ const HomePage = () => {
           expressed in the every detail of each and every dish.
         </p>
         <h2 className="chef-title">Chef of the week:</h2>
-        <div className="slide-row-restaurants">
-          <RestaurantCard />
-          <RestaurantCard />
-        </div>
+        <Swiper spaceBetween={24} slidesPerView={1.5}>
+          <div className="slide-row-restaurants">
+            <SwiperSlide>
+              <RestaurantCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RestaurantCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RestaurantCard />
+            </SwiperSlide>
+          </div>
+        </Swiper>
         <div className="all-link-restaurants">
-          <a className="link-title-restaurants">All Restaurants</a>
+          <a className="link-title-restaurants" href="/AllRestaurants">
+            All Restaurants
+          </a>
           <img
             className="go-icon"
             alt="go"

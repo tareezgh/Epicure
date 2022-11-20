@@ -25,13 +25,11 @@
   flex-direction: row;
   align-items: center;
   padding: 6px 12px;
-  gap: 8px;
+  /* gap: 8px; */
 
-  position: absolute;
   width: 315px;
   height: 30px;
   
-
   border: 0.5px solid #000000;
   border-radius: 4px;
   
@@ -58,24 +56,28 @@
   font-size: 12px;
   line-height: 15px;
   letter-spacing: 1.29px;
-
   color: #000000;
-  /* opacity: 1; */
   flex: none;
   order: 2;
   flex-grow: 1;
-  margin-right: 12px;
+  margin: 0 12px 0 4px;
 
   padding: 0;
 }
 
-/* .search-input:focus {
+.search-input::placeholder { 
+  color: black;
+  opacity: 1; 
+}
+
+.search-input:focus {
   opacity: 0.2;
 }
 
 .search-input:active {
   opacity: 1;
-} */
+  color: black;
+}
 
 
 

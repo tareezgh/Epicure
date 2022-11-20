@@ -20,12 +20,13 @@ const Hamburger = (props: Props) => {
       </div>
 
       <div className="hamburger-content">
-        <a className="hamburger-link" href="#">
+        <a className="hamburger-link" href="/AllRestaurants">
           Restaurants
         </a>
         <a className="hamburger-link" href="#">
           Chefs
         </a>
+        {/* TO CHANGE */}
         <div className="space-line" />
         <Footer />
       </div>

@@ -5,6 +5,7 @@
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0);
   display: flex;
   justify-content: space-between;
+  z-index: 1000;
 }
 
 .sticky {
@@ -99,7 +100,7 @@
   gap: 24px;
 
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  /* z-index: 1; Sit on top */
   width: 347px;
   height: 327px;
   left: -1px;

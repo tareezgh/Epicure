@@ -5,6 +5,10 @@
   font-size: 18px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .hero-container {
   width: 375px;
   /* 564.83 */
@@ -22,14 +26,11 @@
   align-items: center;
 
   gap: 18px;
-
-  position: absolute;
   width: 335px;
   height: 144px;
-  left: 20px;
-  top: 111px;
+  margin-left: 20px;
   padding-left: 10px;
-
+  transform: translateY(111px);
   background: rgba(255, 255, 255, 0.88);
 }
 
@@ -43,7 +44,7 @@
   letter-spacing: 1.9px;
 
   color: #000000;
-
+  padding-top: 16px;
   /* Inside auto layout */
   flex: none;
   order: 0;
@@ -75,15 +76,13 @@
   padding: 0px;
   gap: 24px;
 
-  /* position: absolute; */
   width: 354px;
   height: 232.8px;
-  left: 20px;
-  top: 408px;
-  overflow-x: scroll;
+
+  overflow: hidden;
 }
 
-.all-link-restaurants{
+.all-link-restaurants {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -91,14 +90,11 @@
   padding: 0px;
   gap: 12px;
 
-  /* position: absolute; */
   width: 172px;
   height: 35px;
   margin-left: 20px;
   margin-top: 18px;
 }
-
-
 
 .link-title-restaurants {
   width: 136px;
@@ -128,14 +124,12 @@
   padding: 0px;
   gap: 12px;
 
-  /* position: absolute; */
   width: 126px;
   height: 35px;
   margin: 18px 0 48px 20px;
-  
 }
 
-.link-title-dishes{
+.link-title-dishes {
   width: 136px;
   height: 35px;
 
@@ -156,7 +150,6 @@
 }
 
 .go-icon {
- 
   left: 0%;
   right: 0%;
   top: 12.5%;
@@ -188,18 +181,16 @@
   padding: 0px;
   gap: 24px;
 
-  /* position: absolute; */
   width: 354px;
   height: 388px;
   margin-left: 20px;
-  top: 785px;
-  overflow-x: scroll;
+
+  overflow: hidden;
 }
 
 /* ingredients */
 
 .ingredients-title {
-  /* position: absolute; */
   width: 190px;
   height: 35px;
 
@@ -308,18 +299,17 @@
   color: #000000;
 }
 
-.chef-description{
+.chef-description {
   width: 335px;
-height: 252px;
+  height: 252px;
 
-margin: 24px 0 0 20px;
-line-height: 28px;
-/* or 156% */
-text-align: justify;
-letter-spacing: 1.25px;
+  margin: 24px 0 0 20px;
+  line-height: 28px;
+  /* or 156% */
+  text-align: justify;
+  letter-spacing: 1.25px;
 
-color: #000000;
-
+  color: #000000;
 }
 
 /* About Us */
@@ -328,16 +318,9 @@ color: #000000;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
-  /* padding: 39px 476px; */
-  /* gap: 32px; */
-
-  /* position: absolute; */
   width: 375px;
   height: 867px;
   left: -1px;
-  /* top: 2896px; */
-  /* padding: 20px 0px 0px 19px; */
   background: #fafafa;
 }
 
@@ -356,7 +339,6 @@ color: #000000;
   padding: 0px;
   gap: 16px;
 
-  /* position: absolute; */
   width: 180px;
   height: 120px;
   margin-bottom: 48px;
@@ -440,7 +422,6 @@ color: #000000;
 }
 
 .about-title {
-  /* position: absolute; */
   width: 101px;
   height: 35px;
 
@@ -454,7 +435,6 @@ color: #000000;
 }
 
 .first-paragraph {
-  /* position: absolute; */
   width: 331px;
   height: 280px;
 
@@ -468,7 +448,6 @@ color: #000000;
 }
 
 .second-paragraph {
-  /* position: absolute; */
   width: 306px;
   height: 168px;
 
