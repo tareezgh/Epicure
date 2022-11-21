@@ -1,10 +1,23 @@
 import React, { useState } from "react";
+import {
+  NavbarContainer,
+  NavbarLeftSideContainer,
+  HamburgerLine,
+  EpicureLogoContainer,
+  EpicureLogo,
+  NavbarRightSideContainer,
+  SearchIcon,
+  UserIcon,
+  CartIcon,
+  CloseIcon,
+  CloseNavbar,
+  CloseNavbarTitle,
+  SearchContainer,
+} from "./stylesHeader";
 
-import "./Header.css";
-
-import Hamburger from "./Hamburger";
+import Hamburger from "./Hamburger/Hamburger";
 import Search from "../Search/Search";
-import Cart from "./Cart";
+import Cart from "./Cart/Cart";
 
 const Header = () => {
   const [hamburgerOpen, setHamburgerOpen] = useState<boolean>(false);
@@ -27,63 +40,41 @@ const Header = () => {
 
   return (
     <>
-      <nav className="navbar sticky">
-        <div className="navbar-hamburger" onClick={toggleHamburger}>
-          <div className="hamburger-line" />
-          <div className="hamburger-line hamburger-middle-line" />
-          <div className="hamburger-line" />
-        </div>
+      <NavbarContainer>
+        <NavbarLeftSideContainer onClick={toggleHamburger}>
+          <HamburgerLine />
+          <HamburgerLine />
+          <HamburgerLine />
+        </NavbarLeftSideContainer>
 
-        <div>
-          <img
-            className="navbar-logo"
-            src={require("../../assets/Epicure-logo.png")}
-          />
-        </div>
+        <EpicureLogoContainer>
+          <EpicureLogo />
+        </EpicureLogoContainer>
 
-        <div>
-          <img
-            className="navbar-search-icon"
-            src={require("../../assets/search-icon.png")}
-            alt="search"
-            onClick={toggleSearch}
-          />
-          <img
-            className="navbar-user-icon"
-            src={require("../../assets/user-icon.png")}
-            alt="user"
-          />
-          <img
-            className="navbar-cart-icon"
-            src={require("../../assets/cart-icon.png")}
-            alt="cart"
-            onClick={toggleCart}
-          />
-        </div>
+        <NavbarRightSideContainer>
+          <SearchIcon onClick={toggleSearch} />
+          <UserIcon />
+          <CartIcon onClick={toggleCart} />
+        </NavbarRightSideContainer>
 
         {/* Pop Ups */}
 
         {hamburgerOpen && <Hamburger toggleHamburger={toggleHamburger} />}
+        {cartOpen && <Cart />}
 
         {searchOpen && (
           <>
-            <div className="close-navbar">
-              <img
-                className="close-icon"
-                alt="close"
-                src={require("../../assets/close-black-icon.png")}
-                onClick={toggleSearch}
-              />
-              <h3 className="close-navbar-title">Search</h3>
-            </div>
-            <div className="search-content">
+            <CloseNavbar>
+              <CloseIcon onClick={toggleSearch} />
+              <CloseNavbarTitle>Search</CloseNavbarTitle>
+            </CloseNavbar>
+
+            <SearchContainer>
               <Search />
-            </div>
+            </SearchContainer>
           </>
         )}
-
-        {cartOpen && <Cart />}
-      </nav>
+      </NavbarContainer>
     </>
   );
 };

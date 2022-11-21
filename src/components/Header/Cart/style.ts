@@ -1,30 +1,34 @@
-/* ------ Cart style ------ */
+import styled from "styled-components";
 
-.cart-content {
+import cartIcon from "../../../assets/cart-icon.svg";
+
+const FlexContainerColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px 0 24px;
-  gap: 20px;
+`;
 
-  position: absolute;
-  width: 375px;
+export const CartContainer = styled(FlexContainerColumn)`
+  width: 100%;
   height: 218px;
+  gap: 20px;
   left: 0px;
   top: 46px;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: fixed;
+  z-index: 1;
   background: #ffffff;
   box-shadow: 2px 4px 10px rgba(175, 175, 175, 0.25);
-}
+`;
 
-.cart-icon {
+export const CartIcon = styled.img.attrs({
+  src: cartIcon,
+})`
   width: 45px;
   height: 45px;
   margin-top: 63px;
-}
+`;
 
-.cart-description {
+export const CartStatus = styled.h3`
   width: 145px;
   height: 19px;
 
@@ -36,8 +40,4 @@
   text-transform: uppercase;
 
   color: #000000;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
+`;

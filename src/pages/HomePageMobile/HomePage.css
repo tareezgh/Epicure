@@ -15,7 +15,7 @@ a {
   height: 273px;
   left: -140px;
   top: 46px;
-  background-image: url("../assets/hero-img-mobile.png");
+  background-image: url("../../assets/hero-img-mobile.png");
   background-repeat: no-repeat;
 }
 
@@ -53,8 +53,8 @@ a {
 
 /* Restaurants */
 
-.restaurants-container {
-}
+/* .restaurants-container {
+} */
 
 .restaurants-title {
   width: 326px;
@@ -158,8 +158,8 @@ a {
 
 /* Dishes */
 
-.dishes-container {
-}
+/* .dishes-container {
+} */
 
 .dishes-title {
   width: 190px;

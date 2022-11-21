@@ -1,29 +1,19 @@
 import React from "react";
 
-import "./Footer.css";
+
+import { FooterContainer, FooterList, FooterLink } from "./style";
 
 const Footer = () => {
   return (
     <>
-      <div className="footer-content">
-        <ul >
-          <li className="footer-list">
-            <a href="#" className="footer-link">
-              Contact Us
-            </a>
-          </li>
-          <li className="footer-list">
-            <a href="#" className="footer-link">
-              Term of Use
-            </a>
-          </li>
-          <li className="footer-list">
-            <a href="#" className="footer-link">
-              Privacy Policy
-            </a>
-          </li>
-        </ul>
-      </div>
+      <FooterContainer>
+        <FooterList>
+          <FooterLink>Contact Us</FooterLink>
+          <FooterLink>Term of Use</FooterLink>
+          <FooterLink>Privacy Policy</FooterLink>
+        </FooterList>
+      </FooterContainer>
+
     </>
   );
 };

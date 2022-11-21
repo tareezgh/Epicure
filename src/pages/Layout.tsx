@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import SetWindowSize from "../helpers/SetWindowSize";
+import HomePage from "./HomePageMobile/HomePage";
 
 const Layout = () => {
-  return <></>;
+  const windowSize = SetWindowSize();
+  return <>{windowSize < 600 ? <HomePage /> : <div></div>}</>;
 };
 
 export default Layout;

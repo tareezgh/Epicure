@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Layout from "./pages/Layout";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePageMobile/HomePage";
 import AllRestaurants from "./pages/AllRestaurants";
 
 function App() {
@@ -17,7 +17,8 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Layout />} />
+          <Route path="/HomePage" element={<HomePage />} />
           <Route path="/AllRestaurants" element={<AllRestaurants />} />
         </Routes>
       </BrowserRouter>
