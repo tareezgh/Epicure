@@ -2,24 +2,48 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import {} from "./style";
-
-import "./HomePage.css";
-
-import epicureLogo from "../../assets/Epicure-logo.png";
-import arrowIcon from "../../assets/arrow-icon.svg";
-import googleIcon from "../../assets/google-icon.svg";
-import appleIcon from "../../assets/apple-icon.svg";
-
-import spicyIcon from "../../assets/spicy-icon-small.svg";
-import vegetarianIcon from "../../assets/vegetarian-icon-small.svg";
-import veganIcon from "../../assets/vegan-icon-small.svg";
+import {
+  AboutUsContainer,
+  AboutUsTitle,
+  AppleIcon,
+  ArrowImage,
+  ChefsContainer,
+  ChefsDescription,
+  ChefsTitle,
+  DishesContainer,
+  DishesTitle,
+  DownloadFrame,
+  EpicureLogo,
+  First,
+  FirstParagraph,
+  Frame,
+  GoogleIcon,
+  HeroContainer,
+  HeroContent,
+  HeroTitle,
+  IngredientName,
+  IngredientsContainer,
+  IngredientsFrame,
+  IngredientsTitle,
+  InsideFrame,
+  LinkAllContainer,
+  LinkAllDishes,
+  LinkAllRestaurants,
+  Platform,
+  RestaurantsContainer,
+  RestaurantsTitle,
+  SecondParagraph,
+  SlideRow,
+  SpicyIcon,
+  VeganIcon,
+  VegetarianIcon,
+} from "./style";
 
 // Components
 import Search from "../../components/Search/Search";
-import RestaurantCard from "../../components/Cards/RestaurantCard";
-import DishCard from "../../components/Cards/DishCard";
-import ChefCard from "../../components/Cards/ChefCard";
+import RestaurantCard from "../../components/Cards/RestaurantCard/RestaurantCard";
+import DishCard from "../../components/Cards/DishCard/DishCard";
+import ChefCard from "../../components/Cards/ChefCard/ChefCard";
 
 import { Counter } from "../../components/counter/Counter";
 import DisplayCounter from "../../components/DisplayCounter";
@@ -27,152 +51,150 @@ import DisplayCounter from "../../components/DisplayCounter";
 const HomePage = () => {
   return (
     <>
-      <section className="hero-container">
-        <div className="hero-content">
-          <h1 className="hero-title">
+      <HeroContainer>
+        <HeroContent>
+          <HeroTitle>
             Epicure works with the top chef restaurants in Tel Aviv
-          </h1>
+          </HeroTitle>
           <Search />
-        </div>
-      </section>
+        </HeroContent>
+      </HeroContainer>
 
-      <section className="restaurants-container">
-        <h2 className="restaurants-title">popular restaurant in epicure:</h2>
+      <RestaurantsContainer>
+        {/* <Counter />
+        <DisplayCounter /> */}
+
+        <RestaurantsTitle>popular restaurant in epicure:</RestaurantsTitle>
         <Swiper spaceBetween={24} slidesPerView={1.5}>
-          <div className="slide-row-restaurants">
+          <SlideRow type="Restaurants">
             <SwiperSlide>
-              <RestaurantCard />
+              <RestaurantCard Size="Small" />
             </SwiperSlide>
             <SwiperSlide>
-              <RestaurantCard />
+              <RestaurantCard Size="Small" />
             </SwiperSlide>
             <SwiperSlide>
-              <RestaurantCard />
+              <RestaurantCard Size="Small" />
             </SwiperSlide>
-          </div>
-        </Swiper>
-        <div className="all-link-restaurants">
-          <a className="link-title-restaurants" href="/AllRestaurants">
-            All Restaurants
-          </a>
-
-          <img className="go-icon" alt="go" src={arrowIcon} />
-        </div>
-      </section>
-
-      <section className="dishes-container">
-        <h2 className="dishes-title">Signature Dish Of:</h2>
-        <Swiper spaceBetween={24} slidesPerView={1.5}>
-          <div className="slide-row-dishes">
-            <SwiperSlide>
-              <DishCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <DishCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <DishCard />
-            </SwiperSlide>
-          </div>
+          </SlideRow>
         </Swiper>
 
-        <div className="all-link-dishes">
-          <a className="link-title-dishes" href="#">
-            All Dishes
-          </a>
+        <LinkAllContainer type="Restaurants">
+          <LinkAllRestaurants>All Restaurants</LinkAllRestaurants>
+          <ArrowImage />
+        </LinkAllContainer>
+      </RestaurantsContainer>
 
-          <img className="go-icon" alt="go" src={arrowIcon} />
-        </div>
+      <DishesContainer>
+        <DishesTitle>Signature Dish Of:</DishesTitle>
+        <Swiper spaceBetween={24} slidesPerView={1.5}>
+          <SlideRow type="Dishes">
+            <SwiperSlide>
+              <DishCard Size="Small" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <DishCard Size="Small" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <DishCard Size="Small" />
+            </SwiperSlide>
+          </SlideRow>
+        </Swiper>
 
-        <div className="ingredients-icons">
-          <h2 className="ingredients-title">Signature Dish Of:</h2>
-          <div className="ingredient-frame first-ingredient">
-            <img className="spicy-icon" alt="spicy" src={spicyIcon} />
-            <h4 className="ingredient-title">Spicy</h4>
-          </div>
+        <LinkAllContainer type="Dishes">
+          <LinkAllDishes> All Dishes</LinkAllDishes>
+          <ArrowImage />
+        </LinkAllContainer>
+      </DishesContainer>
 
-          <div className="ingredient-frame">
-            <img className="vegetarian-icon" alt="spicy" src={vegetarianIcon} />
-            <h4 className="ingredient-title">Vegetarian</h4>
-          </div>
+      <IngredientsContainer>
+        <IngredientsTitle>Signature Dish Of:</IngredientsTitle>
 
-          <div className="ingredient-frame last-ingredient">
-            <img className="vegan-icon" alt="spicy" src={veganIcon} />
-            <h4 className="ingredient-title">Vegan</h4>
-          </div>
-        </div>
-      </section>
+        <IngredientsFrame type="Spicy">
+          <SpicyIcon />
+          <IngredientName>Spicy</IngredientName>
+        </IngredientsFrame>
 
-      <section className="chef-container">
-        <h2 className="chef-title">Chef of the week:</h2>
+        <IngredientsFrame type="Vegetarian">
+          <VegetarianIcon />
+          <IngredientName>Vegetarian</IngredientName>
+        </IngredientsFrame>
+
+        <IngredientsFrame type="Vegan">
+          <VeganIcon />
+          <IngredientName>Vegan</IngredientName>
+        </IngredientsFrame>
+      </IngredientsContainer>
+
+      <ChefsContainer>
+        <ChefsTitle>Chef of the week:</ChefsTitle>
 
         <ChefCard />
-        <p className="chef-description">
+
+        <ChefsDescription>
           Chef Yossi Shitrit has been living and breathing his culinary dreams
           for more than two decades, including running the kitchen in his first
           restaurant, the fondly-remembered Violet, located in Moshav Udim.
           Shitrit's creativity and culinary acumen born of long experience are
           expressed in the every detail of each and every dish.
-        </p>
-        <h2 className="chef-title">Chef of the week:</h2>
+        </ChefsDescription>
+
+        <ChefsTitle>Chef of the week:</ChefsTitle>
+
         <Swiper spaceBetween={24} slidesPerView={1.5}>
-          <div className="slide-row-restaurants">
+          <SlideRow type="Restaurants">
             <SwiperSlide>
-              <RestaurantCard />
+              <RestaurantCard Size="Small" />
             </SwiperSlide>
             <SwiperSlide>
-              <RestaurantCard />
+              <RestaurantCard Size="Small" />
             </SwiperSlide>
             <SwiperSlide>
-              <RestaurantCard />
+              <RestaurantCard Size="Small" />
             </SwiperSlide>
-          </div>
+          </SlideRow>
         </Swiper>
-        <div className="all-link-restaurants">
-          <a className="link-title-restaurants" href="/AllRestaurants">
-            All Restaurants
-          </a>
-          <img className="go-icon" alt="go" src={arrowIcon} />
-        </div>
-      </section>
+        <LinkAllContainer type="Restaurants">
+          <LinkAllRestaurants> All Restaurants</LinkAllRestaurants>
+          <ArrowImage />
+        </LinkAllContainer>
+      </ChefsContainer>
 
-      <section className="about-container">
-        <div className="logo">
-          <img className="epicure-logo" alt="Epicure" src={epicureLogo} />
-        </div>
+      <AboutUsContainer>
+        <EpicureLogo />
 
-        <div className="download-frame">
-          <div className="frame">
-            <img className="google-img" alt="Google" src={googleIcon} />
-            <div className="frame2">
-              <div className="first">Get it on</div>
-              <div className="second">Google Play</div>
-            </div>
-          </div>
+        <DownloadFrame>
+          <Frame>
+            <GoogleIcon />
+            <InsideFrame>
+              <First>Get it on</First>
+              <Platform>Google Play</Platform>
+            </InsideFrame>
+          </Frame>
 
-          <div className="frame">
-            <img className="apple-img" alt="Google" src={appleIcon} />
-            <div className="frame2">
-              <div className="first">Download on the</div>
-              <div className="second">App Store</div>
-            </div>
-          </div>
-        </div>
+          <Frame>
+            <AppleIcon />
+            <InsideFrame>
+              <First>Download on the</First>
+              <Platform>App Store</Platform>
+            </InsideFrame>
+          </Frame>
+        </DownloadFrame>
 
-        <h2 className="about-title">about us:</h2>
+        <AboutUsTitle>about us:</AboutUsTitle>
 
-        <p className="first-paragraph">
+        <FirstParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus
           vel justo fermentum bibendum non eu ipsum. Cras porta malesuada eros,
           eget blandit turpis suscipit at. Vestibulum sed massa in magna sodales
           porta. Vivamus elit urna, dignissim a vestibulum.
-        </p>
+        </FirstParagraph>
 
-        <p className="second-paragraph">
+        <SecondParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus
           vel justo fermentum bibendum no eu ipsum. Cras porta malesuada eros.
-        </p>
-      </section>
+        </SecondParagraph>
+      </AboutUsContainer>
     </>
   );
 };

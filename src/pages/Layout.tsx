@@ -4,7 +4,7 @@ import HomePage from "./HomePageMobile/HomePage";
 
 const Layout = () => {
   const windowSize = SetWindowSize();
-  return <>{windowSize < 600 ? <HomePage /> : <div></div>}</>;
+  return <>{windowSize < 600 ? <HomePage /> : <HomePage />}</>;
 };
 
 export default Layout;

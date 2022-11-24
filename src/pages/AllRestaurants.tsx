@@ -1,5 +1,5 @@
 import React from "react";
-import RestaurantCard from "../components/Cards/RestaurantCard";
+import RestaurantCard from "../components/Cards/RestaurantCard/RestaurantCard";
 import "./AllRestaurants.css";
 const AllRestaurants = () => {
   const filters = document.querySelectorAll(".filters");
@@ -24,7 +24,9 @@ const AllRestaurants = () => {
         <div className="filters filter-open ">Open Now</div>
       </section>
 
-      <section className="renderRestaurants"></section>
+      <section className="renderRestaurants">
+        <RestaurantCard Size="Default"/>
+      </section>
     </>
   );
 };

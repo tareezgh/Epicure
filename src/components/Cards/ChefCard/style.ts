@@ -1,43 +1,47 @@
-.chef-card-content {
+import styled from "styled-components";
+
+import chefImg from "../../../assets/yossi-img.png";
+
+const FlexContainerColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const CardContent = styled.div`
   width: 335px;
   height: 262px;
 
   background: #000000;
 
-  background-image: url("../../assets/yossi-img.png");
+  background-image: url(${chefImg});
   background-repeat: no-repeat;
   margin: 0 20px 24px 20px;
-}
+`;
 
-.chef-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+export const CardInfo = styled(FlexContainerColumn)`
   align-items: center;
   padding: 0px;
 
   height: 51px;
- 
+
   background: rgba(255, 255, 255, 0.8);
   transform: translateY(215px);
-}
+`;
 
-.chef-name {
+export const ChefName = styled.h3`
   width: 335px;
   height: 47px;
 
   font-weight: 400;
-  font-size: 18px;
+
   line-height: 47px;
   /* identical to box height, or 261% */
   text-align: center;
   letter-spacing: 2.67px;
-
-  color: #000000;
-
-  /* Inside auto layout */
+  margin: 0;
   flex: none;
   order: 0;
   align-self: stretch;
   flex-grow: 0;
-}
+`;
