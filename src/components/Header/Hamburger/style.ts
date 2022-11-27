@@ -33,7 +33,7 @@ export const RestaurantsLink = styled(HamburgerLink).attrs({
 `;
 
 export const ChefsLink = styled(HamburgerLink).attrs({
-  href: "#",
+  href: "/Chefs",
 })`
   margin-bottom: 40px;
 `;

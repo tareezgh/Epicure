@@ -16,7 +16,17 @@ const FlexContainerColumn = styled.div`
 const FlexContainerRow = styled.div`
   display: flex;
   flex-direction: row;
-  
+`;
+
+export const SlideRow = styled(FlexContainerRow)<{
+  type?: string;
+}>`
+  width: 354px;
+  height: ${(props) => (props.type === "Restaurants" ? "232.8px" : "388px")};
+  padding: 0px;
+  gap: 24px;
+  align-items: flex-start;
+  // overflow: hidden;
 `;
 
 export const CardContent = styled(FlexContainerColumn)<{
@@ -62,7 +72,6 @@ export const CardFrame = styled(FlexContainerColumn)<{
 
 export const CardInfo = styled(FlexContainerColumn)`
   width: 209px;
-  height: 129px;
 
   padding-left: 16px;
   gap: 8px;
@@ -72,7 +81,6 @@ export const CardInfo = styled(FlexContainerColumn)`
 `;
 
 export const DishName = styled.h3`
-  width: 118px;
   height: 21px;
 
   font-weight: 400;
@@ -112,10 +120,10 @@ export const SpicyIcon = styled.img.attrs({
   width: 30px;
   height: 24px;
 
-  padding-left: 16px;
+  // padding-left: 16px;
 
   flex: none;
-  order: 1;
+  order: 2;
   flex-grow: 0;
 `;
 
@@ -137,8 +145,8 @@ gap: 4px;
 
 /* Inside auto layout */
 flex: none;
-order: 2
-flex-grow: 0;
+order: 1
+// flex-grow: 0;
 
 `;
 

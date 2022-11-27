@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import chefImg from "../../../assets/yossi-img.png";
+import chefImg from "../../../assets/chefs/Yossi_Shitrit.png";
 
 const FlexContainerColumn = styled.div`
   display: flex;
@@ -8,16 +8,22 @@ const FlexContainerColumn = styled.div`
   align-items: center;
 `;
 
-export const CardContent = styled.div`
+export const CardContent = styled.div<{
+  imgUrl: string;
+}>`
   width: 335px;
   height: 262px;
 
   background: #000000;
 
+  
   background-image: url(${chefImg});
   background-repeat: no-repeat;
   margin: 0 20px 24px 20px;
 `;
+
+// background-image:url(${require(`${(props)=> props.imgUrl}`)});
+
 
 export const CardInfo = styled(FlexContainerColumn)`
   align-items: center;

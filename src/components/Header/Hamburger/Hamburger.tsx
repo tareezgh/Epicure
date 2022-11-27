@@ -1,10 +1,13 @@
 import React from "react";
 import Footer from "../../Footer/Footer";
 
-
-
-import { CloseNavbar, CloseIcon } from "../stylesHeader";
-import { HamburgerContainer, RestaurantsLink, ChefsLink, SpaceLine } from "./style";
+import { CloseNavbar, CloseIcon } from "../style";
+import {
+  HamburgerContainer,
+  RestaurantsLink,
+  ChefsLink,
+  SpaceLine,
+} from "./style";
 
 type Props = {
   toggleHamburger: () => void;
@@ -20,8 +23,8 @@ const Hamburger = (props: Props) => {
       <HamburgerContainer>
         <RestaurantsLink>Restaurants</RestaurantsLink>
         <ChefsLink>Chefs</ChefsLink>
-        <SpaceLine/>
-        <Footer/>
+        <SpaceLine />
+        <Footer />
       </HamburgerContainer>
     </>
   );

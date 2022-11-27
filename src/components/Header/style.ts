@@ -112,7 +112,7 @@ export const SearchContainer = styled(FlexContainerColumn)`
   position: fixed;
   width: 100%;
   height: 327px;
-  
+
   top: 46px;
 
   background: #ffffff;

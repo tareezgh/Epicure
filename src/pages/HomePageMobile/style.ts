@@ -95,17 +95,6 @@ export const AboutUsTitle = styled(GeneralTitle)`
 
 export const RestaurantsContainer = styled.section``;
 
-export const SlideRow = styled(FlexContainerRow)<{
-  type?: string;
-}>`
-  width: 354px;
-  height: ${(props) => (props.type === "Restaurants" ? "232.8px" : "388px")};
-  padding: 0px;
-  gap: 24px;
-  align-items: flex-start;
-  overflow: hidden;
-`;
-
 export const LinkAllContainer = styled(FlexContainerRow)<{
   type?: string;
 }>`
@@ -222,7 +211,6 @@ export const IngredientName = styled.h4`
   text-align: center;
   letter-spacing: 1.97px;
 
-
   margin: 0;
   flex: none;
   order: 1;
@@ -244,7 +232,6 @@ export const ChefsDescription = styled.p`
   /* or 156% */
   text-align: justify;
   letter-spacing: 1.25px;
-
 `;
 
 export const AboutUsContainer = styled(FlexContainerColumn)`

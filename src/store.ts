@@ -1,9 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from './components/counter/counterSlicer'
+import { configureStore } from "@reduxjs/toolkit";
 
+import { restaurantSlice, dishSlice, chefSlice } from "./helpers/Slicers";
 
 export default configureStore({
   reducer: {
-      counter: counterReducer,
-  }
-})
+    restaurants: restaurantSlice.reducer,
+    dishes: dishSlice.reducer,
+    chefs: chefSlice.reducer,
+  },
+});

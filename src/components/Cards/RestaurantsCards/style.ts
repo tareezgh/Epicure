@@ -8,6 +8,19 @@ const FlexContainerColumn = styled.div`
   align-items: flex-start;
 `;
 
+export const SlideRow = styled.div<{
+  type?: string;
+}>`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 354px;
+  height: ${(props) => (props.type === "Restaurants" ? "232.8px" : "388px")};
+  padding: 0px;
+  gap: 24px;
+  // overflow: hidden;
+`;
+
 export const CardContent = styled(FlexContainerColumn)<{
   size?: string;
 }>`
@@ -60,7 +73,7 @@ export const CardInfo = styled(FlexContainerColumn)`
 `;
 
 export const RestaurantName = styled.h3`
-  width: 54px;
+  // width: 54px;
   height: 21px;
 
   font-weight: 400;

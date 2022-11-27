@@ -1,6 +1,8 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 import {
   AboutUsContainer,
@@ -33,7 +35,6 @@ import {
   RestaurantsContainer,
   RestaurantsTitle,
   SecondParagraph,
-  SlideRow,
   SpicyIcon,
   VeganIcon,
   VegetarianIcon,
@@ -41,12 +42,9 @@ import {
 
 // Components
 import Search from "../../components/Search/Search";
-import RestaurantCard from "../../components/Cards/RestaurantCard/RestaurantCard";
-import DishCard from "../../components/Cards/DishCard/DishCard";
+import RestaurantsCards from "../../components/Cards/RestaurantsCards/RestaurantCard";
+import DishesCards from "../../components/Cards/DishCard/DishCard";
 import ChefCard from "../../components/Cards/ChefCard/ChefCard";
-
-import { Counter } from "../../components/counter/Counter";
-import DisplayCounter from "../../components/DisplayCounter";
 
 const HomePage = () => {
   return (
@@ -61,23 +59,9 @@ const HomePage = () => {
       </HeroContainer>
 
       <RestaurantsContainer>
-        {/* <Counter />
-        <DisplayCounter /> */}
-
         <RestaurantsTitle>popular restaurant in epicure:</RestaurantsTitle>
-        <Swiper spaceBetween={24} slidesPerView={1.5}>
-          <SlideRow type="Restaurants">
-            <SwiperSlide>
-              <RestaurantCard Size="Small" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RestaurantCard Size="Small" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RestaurantCard Size="Small" />
-            </SwiperSlide>
-          </SlideRow>
-        </Swiper>
+
+        <RestaurantsCards Size="Small" />
 
         <LinkAllContainer type="Restaurants">
           <LinkAllRestaurants>All Restaurants</LinkAllRestaurants>
@@ -87,19 +71,7 @@ const HomePage = () => {
 
       <DishesContainer>
         <DishesTitle>Signature Dish Of:</DishesTitle>
-        <Swiper spaceBetween={24} slidesPerView={1.5}>
-          <SlideRow type="Dishes">
-            <SwiperSlide>
-              <DishCard Size="Small" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <DishCard Size="Small" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <DishCard Size="Small" />
-            </SwiperSlide>
-          </SlideRow>
-        </Swiper>
+        <DishesCards Size="Small" />
 
         <LinkAllContainer type="Dishes">
           <LinkAllDishes> All Dishes</LinkAllDishes>
@@ -129,7 +101,7 @@ const HomePage = () => {
       <ChefsContainer>
         <ChefsTitle>Chef of the week:</ChefsTitle>
 
-        <ChefCard />
+        <ChefCard chefOfTheWeek={true}/>
 
         <ChefsDescription>
           Chef Yossi Shitrit has been living and breathing his culinary dreams
@@ -141,19 +113,8 @@ const HomePage = () => {
 
         <ChefsTitle>Chef of the week:</ChefsTitle>
 
-        <Swiper spaceBetween={24} slidesPerView={1.5}>
-          <SlideRow type="Restaurants">
-            <SwiperSlide>
-              <RestaurantCard Size="Small" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RestaurantCard Size="Small" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RestaurantCard Size="Small" />
-            </SwiperSlide>
-          </SlideRow>
-        </Swiper>
+        <RestaurantsCards Size="Small" />
+
         <LinkAllContainer type="Restaurants">
           <LinkAllRestaurants> All Restaurants</LinkAllRestaurants>
           <ArrowImage />

@@ -13,7 +13,7 @@ import {
   CloseNavbar,
   CloseNavbarTitle,
   SearchContainer,
-} from "./stylesHeader";
+} from "./style";
 
 import Hamburger from "./Hamburger/Hamburger";
 import Search from "../Search/Search";
