@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../../Footer/Footer";
 
-import { CloseNavbar, CloseIcon } from "../style";
+import { CloseNavbar, CloseIcon } from "../HeaderMobile/style";
 import {
   HamburgerContainer,
   RestaurantsLink,
@@ -24,7 +24,7 @@ const Hamburger = (props: Props) => {
         <RestaurantsLink>Restaurants</RestaurantsLink>
         <ChefsLink>Chefs</ChefsLink>
         <SpaceLine />
-        <Footer />
+        <Footer Type={"Mobile"} />
       </HamburgerContainer>
     </>
   );

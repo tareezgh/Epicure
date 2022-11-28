@@ -15,11 +15,11 @@ import {
   SearchContainer,
 } from "./style";
 
-import Hamburger from "./Hamburger/Hamburger";
-import Search from "../Search/Search";
-import Cart from "./Cart/Cart";
+import Hamburger from "../Hamburger/Hamburger";
+import Search from "../../Search/Search";
+import Cart from "../Cart/Cart";
 
-const Header = () => {
+const HeaderMobile = () => {
   const [hamburgerOpen, setHamburgerOpen] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
@@ -38,24 +38,49 @@ const Header = () => {
     setCartOpen(!cartOpen);
   };
 
+  const renderHamburger = (
+    <>
+      <NavbarLeftSideContainer onClick={toggleHamburger}>
+        <HamburgerLine />
+        <HamburgerLine />
+        <HamburgerLine />
+      </NavbarLeftSideContainer>
+    </>
+  );
+
+  const renderLogo = (
+    <>
+      <EpicureLogoContainer>
+        <EpicureLogo />
+      </EpicureLogoContainer>
+    </>
+  );
+
+  const renderIcons = (
+    <>
+      <NavbarRightSideContainer>
+        <SearchIcon onClick={toggleSearch} />
+        <UserIcon />
+        <CartIcon onClick={toggleCart} />
+      </NavbarRightSideContainer>
+    </>
+  );
+
+  const renderCloseNavbar = (
+    <>
+      <CloseNavbar>
+        <CloseIcon onClick={toggleSearch} />
+        <CloseNavbarTitle>Search</CloseNavbarTitle>
+      </CloseNavbar>
+    </>
+  );
+
   return (
     <>
       <NavbarContainer>
-        <NavbarLeftSideContainer onClick={toggleHamburger}>
-          <HamburgerLine />
-          <HamburgerLine />
-          <HamburgerLine />
-        </NavbarLeftSideContainer>
-
-        <EpicureLogoContainer>
-          <EpicureLogo />
-        </EpicureLogoContainer>
-
-        <NavbarRightSideContainer>
-          <SearchIcon onClick={toggleSearch} />
-          <UserIcon />
-          <CartIcon onClick={toggleCart} />
-        </NavbarRightSideContainer>
+        {renderHamburger}
+        {renderLogo}
+        {renderIcons}
 
         {/* Pop Ups */}
 
@@ -64,11 +89,7 @@ const Header = () => {
 
         {searchOpen && (
           <>
-            <CloseNavbar>
-              <CloseIcon onClick={toggleSearch} />
-              <CloseNavbarTitle>Search</CloseNavbarTitle>
-            </CloseNavbar>
-
+            {renderCloseNavbar}
             <SearchContainer>
               <Search />
             </SearchContainer>
@@ -79,4 +100,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderMobile;

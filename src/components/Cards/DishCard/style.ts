@@ -130,24 +130,22 @@ export const SpicyIcon = styled.img.attrs({
 export const PriceFrame = styled(FlexContainerRow)<{
   size?: string;
 }>`
+  width: ${(props) => (props.size === "Default" ? "303px;" : "32.11px;")};
 
-width: ${(props) => (props.size === "Default" ? "303px;" : "32.11px;")};
+  height: ${(props) => (props.size === "Default" ? "30px;" : "19px;")};
 
-height: ${(props) => (props.size === "Default" ? "30px;" : "19px;")};
+  justify-content: flex-end;
+  align-items: center;
 
-justify-content: flex-end;
-align-items: center;
+  padding-bottom: 16px;
+  padding-left: 16px;
 
-padding-bottom: 16px;
-padding-left: 16px;
+  gap: 4px;
 
-gap: 4px;
-
-/* Inside auto layout */
-flex: none;
-order: 1
-// flex-grow: 0;
-
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  // flex-grow: 0;
 `;
 
 export const CurrencyIcon = styled.img.attrs({
@@ -175,4 +173,16 @@ export const Price = styled.div`
   flex: none;
   order: 1;
   flex-grow: 0;
+`;
+
+export const RowSpace = styled.div`
+  width: 256px;
+  height: 0px;
+
+  border: 0.5px solid #979797;
+  margin-left: 12px;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 1;
 `;

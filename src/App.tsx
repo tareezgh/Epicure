@@ -4,7 +4,8 @@ import "./App.css";
 
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
-import Header from "./components/Header/Header";
+import HeaderMobile from "./components/Header/HeaderMobile/HeaderMobile";
+import HeaderDesktop from "./components/Header/HeaderDesktop/HeaderDesktop";
 import Footer from "./components/Footer/Footer";
 import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePageMobile/HomePage";
@@ -15,6 +16,7 @@ import { setChefs, setDishes, setRestaurants } from "./helpers/Slicers";
 import { AllChefs, AllDishes, AllRestaurants } from "./services/Data";
 import RestaurantPage from "./pages/AllRestaurantsMobile/RestaurantPage";
 import ChefsPage from "./pages/ChefsMobile/ChefsPage";
+import SetWindowSize from "./helpers/SetWindowSize";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +26,11 @@ function App() {
     dispatch(setChefs(AllChefs));
   }, []);
 
+  const windowSize = SetWindowSize();
+
   return (
     <>
-      <Header />
+      {windowSize < 700 ? <HeaderMobile /> : <HeaderDesktop />}
 
       <BrowserRouter>
         <Routes>
@@ -35,11 +39,14 @@ function App() {
           <Route path="/AllRestaurants" element={<AllRestaurantsPage />} />
           <Route path="/Restaurant:name" element={<RestaurantPage />} />
           <Route path="/Chefs" element={<ChefsPage />} />
-          
         </Routes>
       </BrowserRouter>
 
-      <Footer />
+      {windowSize < 700 ? (
+        <Footer Type={"Mobile"} />
+      ) : (
+        <Footer Type={"Desktop"} />
+      )}
     </>
   );
 }
