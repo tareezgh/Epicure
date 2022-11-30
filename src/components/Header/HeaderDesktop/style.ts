@@ -43,6 +43,7 @@ export const EpicureLogoContainer = styled(FlexContainerRow)`
   order: 0;
   flex-grow: 0;
   gap: 15px;
+  cursor: pointer;
 `;
 
 export const EpicureLogo = styled.img.attrs({

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 import { SearchField, InputLine, SearchInput } from "../../Search/style";
 import Cart from "../Cart/Cart";
@@ -17,6 +18,7 @@ import {
 } from "./style";
 
 const HeaderDesktop = () => {
+  const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [userOpen, setUserOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
@@ -47,7 +49,7 @@ const HeaderDesktop = () => {
     <>
       <NavbarContainer>
         <NavbarContent>
-          <EpicureLogoContainer>
+          <EpicureLogoContainer onClick={() => navigate(`/`)}>
             <EpicureLogo />
             <EpicureTitle>Epicure</EpicureTitle>
           </EpicureLogoContainer>

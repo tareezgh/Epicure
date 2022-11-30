@@ -4,6 +4,8 @@ import { IChef } from "../../../Interfaces/IChef";
 
 import { CardContent, CardInfo, ChefName } from "./style";
 
+import chefImg from "../../../assets/chefs/Yossi_Shitrit.png";
+
 interface Params {
   chefOfTheWeek?: boolean;
 }
@@ -14,7 +16,6 @@ const ChefCard = (props: Params) => {
   const renderData = (
     <>
       {data.map((chef: IChef, key: number) => (
-       
         <CardContent key={key} imgUrl={chef.img}>
           <CardInfo>
             <ChefName>{chef.name}</ChefName>
@@ -26,7 +27,8 @@ const ChefCard = (props: Params) => {
 
   const renderOneChef = (
     <>
-      <CardContent imgUrl={"../../../assets/chefs/Yossi_Shitrit.png"}>
+      {/* {data.every((chef: IChef) => chef.chefOfTheWeek === true)} */}
+      <CardContent imgUrl={chefImg}>
         <CardInfo>
           <ChefName>Yossi Shitrit</ChefName>
         </CardInfo>

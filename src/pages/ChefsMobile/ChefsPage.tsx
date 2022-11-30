@@ -10,7 +10,6 @@ const ChefsPage = () => {
         <Filter active={true}>All</Filter>
         <Filter active={false}>New</Filter>
         <Filter active={false}>Most Viewed</Filter>
-        
       </FiltersFrame>
 
       <ChefsSection>

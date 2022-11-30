@@ -1,9 +1,5 @@
 import React from "react";
 
-// import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-
 import {
   AboutUsContainer,
   AboutUsTitle,
@@ -46,7 +42,7 @@ import RestaurantsCards from "../../components/Cards/RestaurantsCards/Restaurant
 import DishesCards from "../../components/Cards/DishCard/DishCard";
 import ChefCard from "../../components/Cards/ChefCard/ChefCard";
 
-const HomePageMobile = () => {
+const HomePageDesktop = () => {
   return (
     <>
       <HeroContainer>
@@ -156,4 +152,4 @@ const HomePageMobile = () => {
   );
 };
 
-export default HomePageMobile;
+export default HomePageDesktop;
