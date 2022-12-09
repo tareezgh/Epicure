@@ -1,46 +1,12 @@
-import React from "react";
+// DO NOT CHECK PLEASE //
 
-import {
-  AboutUsContainer,
-  AboutUsTitle,
-  AppleIcon,
-  ArrowImage,
-  ChefsContainer,
-  ChefsDescription,
-  ChefsTitle,
-  DishesContainer,
-  DishesTitle,
-  DownloadFrame,
-  EpicureLogo,
-  First,
-  FirstParagraph,
-  Frame,
-  GoogleIcon,
-  HeroContainer,
-  HeroContent,
-  HeroTitle,
-  IngredientName,
-  IngredientsContainer,
-  IngredientsFrame,
-  IngredientsTitle,
-  InsideFrame,
-  LinkAllContainer,
-  LinkAllDishes,
-  LinkAllRestaurants,
-  Platform,
-  RestaurantsContainer,
-  RestaurantsTitle,
-  SecondParagraph,
-  SpicyIcon,
-  VeganIcon,
-  VegetarianIcon,
-} from "./style";
+import { HeroContainer, HeroContent, HeroTitle } from "./style";
 
 // Components
 import Search from "../../components/Search/Search";
-import RestaurantsCards from "../../components/Cards/RestaurantsCards/RestaurantCard";
-import DishesCards from "../../components/Cards/DishCard/DishCard";
-import ChefCard from "../../components/Cards/ChefCard/ChefCard";
+// import RestaurantsCards from "../../components/Cards/RestaurantsCards/RestaurantCard";
+// import DishesCards from "../../components/Cards/DishCard/DishCard";
+// import ChefCard from "../../components/Cards/ChefCard/ChefCard";
 
 const HomePageDesktop = () => {
   return (
@@ -54,28 +20,28 @@ const HomePageDesktop = () => {
         </HeroContent>
       </HeroContainer>
 
-      <RestaurantsContainer>
+      {/* <RestaurantsContainer>
         <RestaurantsTitle>popular restaurant in epicure:</RestaurantsTitle>
 
-        <RestaurantsCards Size="Small" />
+        <RestaurantsCards size="Small" />
 
         <LinkAllContainer type="Restaurants">
           <LinkAllRestaurants>All Restaurants</LinkAllRestaurants>
           <ArrowImage />
         </LinkAllContainer>
-      </RestaurantsContainer>
+      </RestaurantsContainer> */}
 
-      <DishesContainer>
+      {/* <DishesContainer>
         <DishesTitle>Signature Dish Of:</DishesTitle>
-        <DishesCards Size="Small" />
+        <DishesCards size="Small" />
 
         <LinkAllContainer type="Dishes">
           <LinkAllDishes> All Dishes</LinkAllDishes>
           <ArrowImage />
         </LinkAllContainer>
-      </DishesContainer>
+      </DishesContainer> */}
 
-      <IngredientsContainer>
+      {/* <IngredientsContainer>
         <IngredientsTitle>Signature Dish Of:</IngredientsTitle>
 
         <IngredientsFrame type="Spicy">
@@ -92,28 +58,21 @@ const HomePageDesktop = () => {
           <VeganIcon />
           <IngredientName>Vegan</IngredientName>
         </IngredientsFrame>
-      </IngredientsContainer>
+      </IngredientsContainer> */}
 
-      <ChefsContainer>
-        {/* need to change for specific chef*/}
+      {/* <ChefsContainer>
         <ChefsTitle>Chef of the week:</ChefsTitle>
         <ChefCard chefOfTheWeek={true} />
-        <ChefsDescription>
-          Chef Yossi Shitrit has been living and breathing his culinary dreams
-          for more than two decades, including running the kitchen in his first
-          restaurant, the fondly-remembered Violet, located in Moshav Udim.
-          Shitrit's creativity and culinary acumen born of long experience are
-          expressed in the every detail of each and every dish.
-        </ChefsDescription>
+        
         <ChefsTitle>Chef of the week:</ChefsTitle>
-        <RestaurantsCards Size="Small" />
+        <RestaurantsCards size="Small" />
         <LinkAllContainer type="Restaurants">
           <LinkAllRestaurants> All Restaurants</LinkAllRestaurants>
           <ArrowImage />
         </LinkAllContainer>
-      </ChefsContainer>
+      </ChefsContainer> */}
 
-      <AboutUsContainer>
+      {/* <AboutUsContainer>
         <EpicureLogo />
 
         <DownloadFrame>
@@ -147,7 +106,7 @@ const HomePageDesktop = () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus
           vel justo fermentum bibendum no eu ipsum. Cras porta malesuada eros.
         </SecondParagraph>
-      </AboutUsContainer>
+      </AboutUsContainer> */}
     </>
   );
 };

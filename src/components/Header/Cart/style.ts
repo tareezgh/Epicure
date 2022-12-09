@@ -8,12 +8,28 @@ const FlexContainerColumn = styled.div`
   align-items: center;
 `;
 
-export const CartContainer = styled(FlexContainerColumn)`
-  width: 100%;
-  height: 218px;
+export const CartContainer = styled(FlexContainerColumn)<{
+  page?: string;
+}>`
+  ${(props) =>
+    props.page === "Desktop"
+      ? `
+      width: 497px;
+      height: 586px;
+      top: 64px;
+      right: 0;
+      `
+      : `
+      width: 100%;
+      height: 218px;
+      top: 46px;
+      `};
+
+  // width: 100%;
+  // height: 218px;
+  // left: 0px;
+  // top: 46px;
   gap: 20px;
-  left: 0px;
-  top: 46px;
   position: fixed;
   z-index: 1;
   background: #ffffff;

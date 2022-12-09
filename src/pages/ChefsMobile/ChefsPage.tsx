@@ -1,19 +1,25 @@
-import React from "react";
+import { useState } from "react";
 import ChefCard from "../../components/Cards/ChefCard/ChefCard";
-import { Filter, FiltersFrame, PageTitle, ChefsSection } from "./style";
+import FilterFunction from "../../components/Filters/FilterFunction";
+import { FiltersFrame, PageTitle, ChefsSection } from "./style";
 const ChefsPage = () => {
+  const [chefsFilter, setChefsFilter] = useState<string>("All");
+  const filters = ["All", "New", "Most Viewed"];
+
+  const handleData = (filter: string) => {
+    setChefsFilter(filter);
+  };
+
   return (
     <>
       <PageTitle>Chefs</PageTitle>
 
       <FiltersFrame>
-        <Filter active={true}>All</Filter>
-        <Filter active={false}>New</Filter>
-        <Filter active={false}>Most Viewed</Filter>
+        <FilterFunction myFilters={filters} handleData={handleData} />
       </FiltersFrame>
 
       <ChefsSection>
-        <ChefCard />
+        <ChefCard filter={chefsFilter} />
       </ChefsSection>
     </>
   );

@@ -101,7 +101,6 @@ export const CloseNavbarTitle = styled.h3`
   line-height: 22px;
   letter-spacing: 1.92px;
   text-align: center;
-  color: #000000;
 `;
 
 export const SearchContainer = styled(FlexContainerColumn)`

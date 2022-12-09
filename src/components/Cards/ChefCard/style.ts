@@ -10,6 +10,8 @@ const FlexContainerColumn = styled.div`
   align-items: center;
 `;
 
+export const CardsContainer = styled.section``;
+
 export const CardContent = styled.div<{
   imgUrl: string;
 }>`
@@ -40,4 +42,15 @@ export const ChefName = styled.h3`
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+`;
+
+export const ChefsDescription = styled.p`
+  width: 335px;
+  height: 252px;
+
+  margin: 24px 0 0 20px;
+  line-height: 28px;
+  /* or 156% */
+  text-align: justify;
+  letter-spacing: 1.25px;
 `;

@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 import epicureLogo from "../../assets/Epicure-logo.png";
-import arrowIcon from "../../assets/arrow-icon.svg";
-import googleIcon from "../../assets/google-icon.svg";
-import appleIcon from "../../assets/apple-icon.svg";
+import heroImage from "../../assets/hero-img-mobile.png";
 
 import spicyIcon from "../../assets/spicy-icon-small.svg";
 import vegetarianIcon from "../../assets/vegetarian-icon-small.svg";
 import veganIcon from "../../assets/vegan-icon-small.svg";
 
-import heroImage from "../../assets/hero-img-mobile.png";
+import arrowIcon from "../../assets/arrow-icon.svg";
+import googleIcon from "../../assets/google-icon.svg";
+import appleIcon from "../../assets/apple-icon.svg";
 
 const FlexContainerColumn = styled.div`
   display: flex;
@@ -129,7 +129,7 @@ export const LinkAllRestaurants = styled(LinkAll).attrs({
 `;
 
 export const LinkAllDishes = styled(LinkAll).attrs({
-  href: "#",
+  href: "",
 })`
   width: 126px;
 `;
@@ -152,7 +152,7 @@ export const IngredientsContainer = styled(FlexContainerColumn)`
   align-items: center;
 
   gap: 32px;
-
+  padding-bottom: 24px;
   background: #fafafa;
 `;
 
@@ -161,7 +161,6 @@ export const IngredientsFrame = styled(FlexContainerColumn)<{
 }>`
   align-items: center;
   padding: 0px;
-  // margin-top: ${(props) => (props.type === "Spicy" ? "0" : "32px")}
   margin-top: 32px;
   gap: 32px;
 
@@ -223,17 +222,6 @@ export const ChefsContainer = styled.section`
   padding-bottom: 48px;
 `;
 
-export const ChefsDescription = styled.p`
-  width: 335px;
-  height: 252px;
-
-  margin: 24px 0 0 20px;
-  line-height: 28px;
-  /* or 156% */
-  text-align: justify;
-  letter-spacing: 1.25px;
-`;
-
 export const AboutUsContainer = styled(FlexContainerColumn)`
   justify-content: center;
   align-items: none;
@@ -261,8 +249,6 @@ export const DownloadFrame = styled(FlexContainerColumn)`
   width: 180px;
   height: 120px;
   margin: 0 0 48px 20px;
-  // margin-bottom: 48px;
-  // margin-left: 20px;
 `;
 
 export const Frame = styled(FlexContainerRow)`
@@ -276,8 +262,6 @@ export const Frame = styled(FlexContainerRow)`
 
   border: 0.5px solid #000000;
   border-radius: 10px;
-
-  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -289,13 +273,13 @@ export const InsideFrame = styled(FlexContainerColumn)`
   width: 130px;
   height: 38px;
   align-items: center;
-  /* Inside auto layout */
+  
   flex: none;
   order: 1;
   flex-grow: 0;
 `;
 
-export const First = styled.div`
+export const Hint = styled.div`
   width: 130px;
   height: 18px;
 

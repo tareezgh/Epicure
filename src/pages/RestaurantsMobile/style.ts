@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import claroImg from "../../assets/claro-img-mobile.png";
-
 import clockIcon from "../../assets/clock-icon.svg";
 
 const FlexContainerColumn = styled.div`
@@ -32,19 +30,7 @@ export const FiltersFrame = styled(FlexContainerRow)`
   gap: 20px;
 `;
 
-export const Filter = styled.div<{
-  active?: boolean;
-}>`
-  line-height: 22px;
-  letter-spacing: 1.92px;
-  flex: none;
-  flex-grow: 0;
-  cursor: pointer;
-  ${(props) =>
-    props.active &&
-    `font-weight: 400;
-  border-bottom: 1.8px solid rgba(222, 146, 0, 0.9);`};
-`;
+export const RestaurantInfo = styled.div``;
 
 export const RestaurantsSection = styled(FlexContainerColumn)`
   padding: 0px;
@@ -55,12 +41,12 @@ export const RestaurantsSection = styled(FlexContainerColumn)`
 
 // *********//
 
-export const RestaurantImage = styled.img.attrs({
-  src: claroImg,
-})`
+export const RestaurantImage = styled.img`
   width: 100%;
   height: 272px;
   margin-top: 46px;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
 `;
 
 export const InfoSection = styled.section`
@@ -79,9 +65,6 @@ export const RestaurantName = styled.h3`
 `;
 
 export const RestaurantManager = styled.h4`
-  width: 104px;
-  height: 20px;
-
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 1.82px;

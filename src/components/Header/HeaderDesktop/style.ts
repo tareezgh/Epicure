@@ -6,11 +6,6 @@ import userIcon from "../../../assets/user-icon.svg";
 import cartIcon from "../../../assets/cart-icon.svg";
 import blackCloseIcon from "../../../assets/black-close-icon.svg";
 
-const FlexContainerColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const FlexContainerRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -72,18 +67,6 @@ export const FiltersFrame = styled(FlexContainerRow)`
   flex: none;
   order: 1;
   flex-grow: 0;
-`;
-
-export const Filter = styled.a<{
-  active?: boolean;
-}>`
-  line-height: 22px;
-  letter-spacing: 1.92px;
-  flex: none;
-  flex-grow: 0;
-  cursor: pointer;
-  ${(props) =>
-    props.active && `border-bottom: 1.8px solid rgba(222, 146, 0, 0.9);`};
 `;
 
 export const IconsContainer = styled(FlexContainerRow)`

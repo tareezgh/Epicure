@@ -4,7 +4,7 @@ export interface IDish {
   name: string;
   description: string;
   restaurant?: IRestaurant;
-  img: string;
+  image: string;
   price: number;
   properties: string;
   signature: boolean;

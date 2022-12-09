@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const FooterContainer = styled.div<{
-  type?: string;
+  windowType?: string;
 }>`
   background: #ffffff;
-  height: ${(props) => (props.type === "Desktop" ? "84px" : "202px")};
+  height: ${(props) => (props.windowType === "Desktop" ? "84px" : "202px")};
 
   ${(props) =>
-    props.type === "Desktop"
+    props.windowType === "Desktop"
       ? `
       display: flex;
       flex-direction: column;
@@ -18,14 +18,15 @@ export const FooterContainer = styled.div<{
 `;
 
 export const FooterList = styled.div<{
-  type?: string;
+  windowType?: string;
 }>`
   display: flex;
-  flex-direction: ${(props) => (props.type === "Desktop" ? "row" : "column")};
+  flex-direction: ${(props) =>
+    props.windowType === "Desktop" ? "row" : "column"};
   align-items: flex-start;
   list-style: none;
   gap: 40px;
-  ${(props) => (props.type === "Mobile" ? `margin-top: 40px;` : ``)};
+  ${(props) => (props.windowType === "Mobile" ? `margin-top: 40px;` : ``)};
 `;
 
 export const FooterLink = styled.a`

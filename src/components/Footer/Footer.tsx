@@ -1,16 +1,14 @@
-import React from "react";
-
 import { FooterContainer, FooterList, FooterLink } from "./style";
 
 interface Params {
-  Type: string;
+  windowType: string;
 }
 
-const Footer = (props: Params) => {
+const Footer = (footerProps: Params) => {
   return (
     <>
-      <FooterContainer type={props.Type}>
-        <FooterList type={props.Type}>
+      <FooterContainer windowType={footerProps.windowType}>
+        <FooterList windowType={footerProps.windowType}>
           <FooterLink>Contact Us</FooterLink>
           <FooterLink>Term of Use</FooterLink>
           <FooterLink>Privacy Policy</FooterLink>

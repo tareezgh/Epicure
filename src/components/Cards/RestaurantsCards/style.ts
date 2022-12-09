@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import claroImg from "../../../assets/claro-img-mobile.png";
-
 const FlexContainerColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,7 +16,7 @@ export const SlideRow = styled.div<{
   height: ${(props) => (props.type === "Restaurants" ? "232.8px" : "388px")};
   padding: 0px;
   gap: 24px;
-  // overflow: hidden;
+ 
 `;
 
 export const CardContent = styled(FlexContainerColumn)<{
@@ -31,19 +29,19 @@ export const CardContent = styled(FlexContainerColumn)<{
   margin-left: 20px;
 `;
 
-export const CardImage = styled.img.attrs({
-  src: claroImg,
-})<{
+export const CardImage = styled.img<{
   size?: string;
 }>`
   width: ${(props) => (props.size === "Default" ? "334px" : "245px")};
-
   height: ${(props) => (props.size === "Default" ? "207px" : "151.8px")};
 
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
   flex: none;
   order: 0;
   flex-grow: 0;
 `;
+
 
 export const CardFrame = styled(FlexContainerColumn)<{
   size?: string;
@@ -62,7 +60,7 @@ export const CardFrame = styled(FlexContainerColumn)<{
 `;
 
 export const CardInfo = styled(FlexContainerColumn)`
-  width: 104px;
+  
   height: 49px;
   padding-top: 16px;
   padding-left: 16px;
@@ -73,9 +71,6 @@ export const CardInfo = styled(FlexContainerColumn)`
 `;
 
 export const RestaurantName = styled.h3`
-  // width: 54px;
-  height: 21px;
-
   font-weight: 400;
   line-height: 21px;
   letter-spacing: 2.67px;
@@ -86,9 +81,6 @@ export const RestaurantName = styled.h3`
   flex-grow: 0;
 `;
 export const RestaurantManager = styled.h4`
-  width: 104px;
-  height: 20px;
-
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 1.82px;

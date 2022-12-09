@@ -1,6 +1,8 @@
 export interface IChef {
   name: string;
   description: string;
-  img: string;
+  image: string;
+  new: boolean;
+  viewed: boolean;
   chefOfTheWeek: boolean;
 }

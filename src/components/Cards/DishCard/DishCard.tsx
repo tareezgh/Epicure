@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -19,60 +18,34 @@ import {
 import { IDish } from "../../../Interfaces/IDish";
 
 interface Params {
-  Size: string;
-  Page?: string;
+  size: string;
+  page?: string;
+  filter?: string;
 }
 
-const DishesCards = (props: Params) => {
+const DishesCards = (dishesProps: Params) => {
   const data = useSelector((state: any) => state.dishes.value);
 
-  // Dublicates *******
-  const renderDataDefault = (
+  const renderData = (
     <>
       {data.map((dish: IDish, key: number) => (
         <SwiperSlide key={key}>
-          <CardContent size={props.Size}>
-            <CardImage size={props.Size} />
+          <CardContent size={dishesProps.size}>
+            <CardImage size={dishesProps.size} src={dish.image}/>
 
-            <CardFrame size={props.Size}>
+            <CardFrame size={dishesProps.size}>
               <CardInfo>
                 <DishName>{dish.name}</DishName>
-                <DishDescription size={props.Size}>
+                <DishDescription size={dishesProps.size}>
                   {dish.description}
                 </DishDescription>
+                <>{dishesProps.page === "Restaurant" ? "" : <SpicyIcon />}</>
               </CardInfo>
 
-              <PriceFrame size={props.Size}>
+              <PriceFrame size={dishesProps.size}>
                 <CurrencyIcon />
                 <Price>{dish.price}</Price>
-                <RowSpace />
-              </PriceFrame>
-            </CardFrame>
-          </CardContent>
-        </SwiperSlide>
-      ))}
-    </>
-  );
-
-  const renderDataSmall = (
-    <>
-      {data.map((dish: IDish, key: number) => (
-        <SwiperSlide key={key}>
-          <CardContent size={props.Size}>
-            <CardImage size={props.Size} />
-
-            <CardFrame size={props.Size}>
-              <CardInfo>
-                <DishName>{dish.name}</DishName>
-                <DishDescription size={props.Size}>
-                  {dish.description}
-                </DishDescription>
-                <SpicyIcon />
-              </CardInfo>
-
-              <PriceFrame size={props.Size}>
-                <CurrencyIcon />
-                <Price>{dish.price}</Price>
+                <>{dishesProps.page === "Restaurant" ? <RowSpace /> : ""}</>
               </PriceFrame>
             </CardFrame>
           </CardContent>
@@ -84,13 +57,15 @@ const DishesCards = (props: Params) => {
   const renderSwiperData = (
     <>
       <Swiper spaceBetween={24} slidesPerView={1.5}>
-        <SlideRow type="Dish">{renderDataSmall}</SlideRow>
+        <SlideRow type="Dish">{renderData}</SlideRow>
       </Swiper>
     </>
   );
 
   return (
-    <>{props.Page === "Restaurant" ? renderDataDefault : renderSwiperData}</>
+    <>
+      {dishesProps.page === "Restaurant" ? renderData : renderSwiperData}
+    </>
   );
 };
 

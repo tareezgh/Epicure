@@ -5,7 +5,7 @@ import spicyIcon from "../../../assets/spicy-icon-small.svg";
 import vegetarianIcon from "../../../assets/vegetarian-icon-small.svg";
 import veganIcon from "../../../assets/vegan-icon-small.svg";
 
-import claroImg from "../../../assets/claro-img-mobile.png";
+// import claroImg from "../../../assets/claro-img-mobile.png";
 
 const FlexContainerColumn = styled.div`
   display: flex;
@@ -42,14 +42,13 @@ export const CardContent = styled(FlexContainerColumn)<{
   flex-grow: 0;
 `;
 
-export const CardImage = styled.img.attrs({
-  src: claroImg,
-})<{
+export const CardImage = styled.img<{
   size?: string;
 }>`
   width: ${(props) => (props.size === "Default" ? "335px" : "245px")};
   height: ${(props) => (props.size === "Default" ? "211.9px" : "152px")};
-
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -59,7 +58,6 @@ export const CardFrame = styled(FlexContainerColumn)<{
   size?: string;
 }>`
   width: ${(props) => (props.size === "Default" ? "335px" : "245px")};
-
   height: ${(props) => (props.size === "Default" ? "179px" : "236px")};
 
   gap: 16px;
@@ -72,7 +70,6 @@ export const CardFrame = styled(FlexContainerColumn)<{
 
 export const CardInfo = styled(FlexContainerColumn)`
   width: 209px;
-
   padding-left: 16px;
   gap: 8px;
   flex: none;
@@ -99,7 +96,6 @@ export const DishDescription = styled.p<{
   size?: string;
 }>`
   width: ${(props) => (props.size === "Default" ? "303px;" : "209px;")};
-
   height: ${(props) => (props.size === "Default" ? "75px;" : "100px;")};
 
   font-size: 16px;
@@ -108,7 +104,6 @@ export const DishDescription = styled.p<{
   letter-spacing: 1.8px;
 
   margin: 8px 0 0 0;
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -131,7 +126,6 @@ export const PriceFrame = styled(FlexContainerRow)<{
   size?: string;
 }>`
   width: ${(props) => (props.size === "Default" ? "303px;" : "32.11px;")};
-
   height: ${(props) => (props.size === "Default" ? "30px;" : "19px;")};
 
   justify-content: flex-end;
@@ -142,10 +136,9 @@ export const PriceFrame = styled(FlexContainerRow)<{
 
   gap: 4px;
 
-  /* Inside auto layout */
   flex: none;
   order: 1;
-  // flex-grow: 0;
+  
 `;
 
 export const CurrencyIcon = styled.img.attrs({
@@ -181,7 +174,7 @@ export const RowSpace = styled.div`
 
   border: 0.5px solid #979797;
   margin-left: 12px;
-  /* Inside auto layout */
+ 
   flex: none;
   order: 1;
   flex-grow: 1;

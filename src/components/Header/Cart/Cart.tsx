@@ -1,11 +1,13 @@
-import React from "react";
-
 import { CartContainer, CartStatus, CartIcon } from "./style";
 
-const Cart = () => {
+interface Params {
+  page?: string;
+}
+
+const Cart = (cartProps: Params) => {
   return (
     <>
-      <CartContainer>
+      <CartContainer page={cartProps.page}>
         <CartIcon />
         <CartStatus>YOUR BAG IS EMPTY</CartStatus>
       </CartContainer>

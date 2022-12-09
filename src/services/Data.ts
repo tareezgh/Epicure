@@ -12,66 +12,93 @@ import ShahafShabtay_Img from "../assets/chefs/Shahaf_Shabtay.png";
 import YossiShitrit_Img from "../assets/chefs/Yossi_Shitrit.png";
 import YuvalBenNeriah_Img from "../assets/chefs/Yuval_Ben_Neriah.png";
 
+import Claro_Img from "../assets/restaurants/Claro.png";
+import KabKem_Img from "../assets/restaurants/KabKem.png";
+import Messa_Img from "../assets/restaurants/Messa.png";
+import NitanThai_Img from "../assets/restaurants/NitanThai.png";
+import TigerLilly_Img from "../assets/restaurants/TigerLilly.png";
+import YaPan_Img from "../assets/restaurants/YaPan.png";
+
 export const AllChefs: Array<IChef> = [
   {
     name: "Asaf Granit",
     description: "",
-    img: AsafGranit_Img,
+    image: AsafGranit_Img,
+    new: false,
+    viewed: true,
     chefOfTheWeek: false,
   },
   {
     name: "Aviv Moshe",
     description: "",
-    img: AvivMoshe_Img,
+    image: AvivMoshe_Img,
+    new: false,
+    viewed: false,
     chefOfTheWeek: false,
   },
   {
     name: "Eyal Shani",
     description: "",
-    img: EyalShani_Img,
+    image: EyalShani_Img,
+    new: false,
+    viewed: true,
     chefOfTheWeek: false,
   },
   {
     name: "Meir Adoni",
     description: "",
-    img: MeirAdoni_Img,
+    image: MeirAdoni_Img,
+    new: true,
+    viewed: false,
     chefOfTheWeek: false,
   },
   {
     name: "Nitzan Raz",
     description: "",
-    img: NitzanRaz_Img,
+    image: NitzanRaz_Img,
+    new: false,
+    viewed: false,
     chefOfTheWeek: false,
   },
   {
     name: "Omer Mille",
     description: "",
-    img: OmerMille_Img,
-    chefOfTheWeek: false,
-  },
-  {
-    name: "Asaf Granit",
-    description: "",
-    img: AsafGranit_Img,
+    image: OmerMille_Img,
+    new: false,
+    viewed: false,
     chefOfTheWeek: false,
   },
   {
     name: "Yossi Shitrit",
     description:
       "Chef Yossi Shitrit has been living and breathing his culinary dreams for more than two decades, including running the kitchen in his first restaurant, the fondly-remembered Violet, located in Moshav  Udim. Shitrit's creativity and culinary  acumen born of long experience  are expressed in the every detail of each and every dish.",
-    img: YossiShitrit_Img,
+    image: YossiShitrit_Img,
+    new: false,
+    viewed: true,
     chefOfTheWeek: true,
   },
   {
     name: "Yuval Ben Neriah",
     description: "",
-    img: YuvalBenNeriah_Img,
+    image: YuvalBenNeriah_Img,
+    new: true,
+    viewed: false,
     chefOfTheWeek: false,
   },
   {
     name: "Ran Shmueli",
     description: "",
-    img: "",
+    image: "",
+    new: true,
+    viewed: false,
+    chefOfTheWeek: false,
+  },
+  {
+    name: "Shahaf Shabtay",
+    description: "",
+    image: ShahafShabtay_Img,
+    new: true,
+    viewed: false,
     chefOfTheWeek: false,
   },
 ];
@@ -79,9 +106,13 @@ export const AllChefs: Array<IChef> = [
 export const AllRestaurants: Array<IRestaurant> = [
   {
     name: "Claro",
-    chef: AllChefs[9],
+    chef: AllChefs[8],
     rating: 10,
     popular: true,
+    new: true,
+    open: true,
+    address: "",
+    image: Claro_Img,
     openingHours: {
       sunday: {
         open: "",
@@ -112,15 +143,17 @@ export const AllRestaurants: Array<IRestaurant> = [
         close: "",
       },
     },
-    address: "",
-    image: "",
   },
 
   {
     name: "Kab Kem",
-    chef: AllChefs[9],
+    chef: AllChefs[7],
     rating: 10,
     popular: true,
+    new: true,
+    open: false,
+    address: "",
+    image: KabKem_Img,
     openingHours: {
       sunday: {
         open: "",
@@ -151,8 +184,170 @@ export const AllRestaurants: Array<IRestaurant> = [
         close: "",
       },
     },
+  },
+
+  {
+    name: "Messa",
+    chef: AllChefs[1],
+    rating: 10,
+    popular: true,
+    new: false,
+    open: false,
     address: "",
-    image: "",
+    image: Messa_Img,
+    openingHours: {
+      sunday: {
+        open: "",
+        close: "",
+      },
+      monday: {
+        open: "",
+        close: "",
+      },
+      tuesday: {
+        open: "",
+        close: "",
+      },
+      wednesday: {
+        open: "",
+        close: "",
+      },
+      thursday: {
+        open: "",
+        close: "",
+      },
+      friday: {
+        open: "",
+        close: "",
+      },
+      saturday: {
+        open: "",
+        close: "",
+      },
+    },
+  },
+
+  {
+    name: "Nitan Thai",
+    chef: AllChefs[6],
+    rating: 10,
+    popular: true,
+    new: false,
+    open: false,
+    address: "",
+    image: NitanThai_Img,
+    openingHours: {
+      sunday: {
+        open: "",
+        close: "",
+      },
+      monday: {
+        open: "",
+        close: "",
+      },
+      tuesday: {
+        open: "",
+        close: "",
+      },
+      wednesday: {
+        open: "",
+        close: "",
+      },
+      thursday: {
+        open: "",
+        close: "",
+      },
+      friday: {
+        open: "",
+        close: "",
+      },
+      saturday: {
+        open: "",
+        close: "",
+      },
+    },
+  },
+
+  {
+    name: "Tiger Lilly",
+    chef: AllChefs[8],
+    rating: 10,
+    popular: true,
+    new: false,
+    open: false,
+    address: "",
+    image: TigerLilly_Img,
+    openingHours: {
+      sunday: {
+        open: "",
+        close: "",
+      },
+      monday: {
+        open: "",
+        close: "",
+      },
+      tuesday: {
+        open: "",
+        close: "",
+      },
+      wednesday: {
+        open: "",
+        close: "",
+      },
+      thursday: {
+        open: "",
+        close: "",
+      },
+      friday: {
+        open: "",
+        close: "",
+      },
+      saturday: {
+        open: "",
+        close: "",
+      },
+    },
+  },
+
+  {
+    name: "YaPan",
+    chef: AllChefs[7],
+    rating: 10,
+    popular: true,
+    new: false,
+    open: false,
+    address: "",
+    image: YaPan_Img,
+    openingHours: {
+      sunday: {
+        open: "",
+        close: "",
+      },
+      monday: {
+        open: "",
+        close: "",
+      },
+      tuesday: {
+        open: "",
+        close: "",
+      },
+      wednesday: {
+        open: "",
+        close: "",
+      },
+      thursday: {
+        open: "",
+        close: "",
+      },
+      friday: {
+        open: "",
+        close: "",
+      },
+      saturday: {
+        open: "",
+        close: "",
+      },
+    },
   },
 ];
 
@@ -161,7 +356,7 @@ export const AllDishes: Array<IDish> = [
     name: "Pad Ki Mao",
     description:
       "Shrimps, Glass Noodles, Kemiri Nuts, Shallots, Lemon Grass, Magic Chili Brown Coconut",
-    img: "",
+    image: Claro_Img,
     price: 88,
     properties: "spicy",
     signature: true,
@@ -170,7 +365,7 @@ export const AllDishes: Array<IDish> = [
     name: "Ta Ma La Ko",
     description:
       "Green Papaya, Mango, Chukka Chili, Mint, Kaffir lime, Cashew, Akaya Cham sauce",
-    img: "",
+    image: Claro_Img,
     price: 65,
     properties: "",
     signature: true,

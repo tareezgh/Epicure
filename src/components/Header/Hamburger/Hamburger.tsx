@@ -1,4 +1,3 @@
-import React from "react";
 import Footer from "../../Footer/Footer";
 
 import { CloseNavbar, CloseIcon } from "../HeaderMobile/style";
@@ -9,22 +8,22 @@ import {
   SpaceLine,
 } from "./style";
 
-type Props = {
+type Params = {
   toggleHamburger: () => void;
 };
 
-const Hamburger = (props: Props) => {
+const Hamburger = (HamburgerProps: Params) => {
   return (
     <>
       <CloseNavbar>
-        <CloseIcon onClick={() => props.toggleHamburger()} />
+        <CloseIcon onClick={() => HamburgerProps.toggleHamburger()} />
       </CloseNavbar>
 
       <HamburgerContainer>
         <RestaurantsLink>Restaurants</RestaurantsLink>
         <ChefsLink>Chefs</ChefsLink>
         <SpaceLine />
-        <Footer Type={"Mobile"} />
+        <Footer windowType={"Mobile"} />
       </HamburgerContainer>
     </>
   );

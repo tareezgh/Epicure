@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+// DO NOT CHECK PLEASE //
 
-import { SearchField, InputLine, SearchInput } from "../../Search/style";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import FilterFunction from "../../Filters/FilterFunction";
+import Search from "../../Search/Search";
+
 import Cart from "../Cart/Cart";
 import {
   CartIcon,
   EpicureLogo,
   EpicureLogoContainer,
   EpicureTitle,
-  Filter,
   FiltersFrame,
   IconsContainer,
   NavbarContainer,
@@ -22,12 +24,15 @@ const HeaderDesktop = () => {
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [userOpen, setUserOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
+  const [headerFilter, setHeaderFilter] = useState<string>("");
+  const filters = ["Restaurants", "Chefs"];
 
   const toggleSearch = () => {
     setSearchOpen(!searchOpen);
   };
 
   const toggleUser = () => {
+    // not implemented yet
     setUserOpen(!userOpen);
   };
 
@@ -35,15 +40,9 @@ const HeaderDesktop = () => {
     setCartOpen(!cartOpen);
   };
 
-  const renderSearchInput = (
-    <>
-      <SearchField>
-        <InputLine />
-        <SearchInput />
-        <SearchIcon />
-      </SearchField>
-    </>
-  );
+  const handleData = (filter: string) => {
+    setHeaderFilter(filter);
+  };
 
   return (
     <>
@@ -55,18 +54,23 @@ const HeaderDesktop = () => {
           </EpicureLogoContainer>
 
           <FiltersFrame>
-            <Filter active={true}>Restaurants</Filter>
-            <Filter active={false}>Chefs</Filter>
+            <FilterFunction myFilters={filters} handleData={handleData} />
           </FiltersFrame>
 
           <IconsContainer>
-            <SearchIcon onClick={toggleSearch} />
-            {searchOpen && <>{renderSearchInput}</>}
+            <>
+              {searchOpen ? (
+                <Search page="HeaderDesktop" toggleSearch={toggleSearch} />
+              ) : (
+                <SearchIcon onClick={toggleSearch} />
+              )}
+            </>
+
             <UserIcon />
             <CartIcon onClick={toggleCart} />
           </IconsContainer>
 
-          {cartOpen && <Cart />}
+          {cartOpen && <Cart page="Desktop" />}
         </NavbarContent>
       </NavbarContainer>
     </>

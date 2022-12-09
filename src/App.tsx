@@ -6,17 +6,19 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
-import HeaderMobile from "./components/Header/HeaderMobile/HeaderMobile";
-import HeaderDesktop from "./components/Header/HeaderDesktop/HeaderDesktop";
-import Footer from "./components/Footer/Footer";
-import Layout from "./pages/Layout";
-import HomePage from "./pages/HomePageMobile/HomePage";
-import RestaurantPage from "./pages/AllRestaurantsMobile/RestaurantPage";
-import AllRestaurantsPage from "./pages/AllRestaurantsMobile/AllRestaurantsPage";
-import ChefsPage from "./pages/ChefsMobile/ChefsPage";
 import SetWindowSize from "./helpers/SetWindowSize";
 import { setChefs, setDishes, setRestaurants } from "./helpers/Slicers";
 import { AllChefs, AllDishes, AllRestaurants } from "./services/Data";
+
+import HeaderMobile from "./components/Header/HeaderMobile/HeaderMobile";
+import HeaderDesktop from "./components/Header/HeaderDesktop/HeaderDesktop";
+import Footer from "./components/Footer/Footer";
+
+import Layout from "./pages/Layout";
+import HomePage from "./pages/HomePageMobile/HomePage";
+import AllRestaurantsPage from "./pages/RestaurantsMobile/AllRestaurantsPage";
+import RestaurantPage from "./pages/RestaurantsMobile/RestaurantPage";
+import ChefsPage from "./pages/ChefsMobile/ChefsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +33,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {windowSize < 700 ? <HeaderMobile /> : <HeaderDesktop />}
+        {windowSize < 600 ? <HeaderMobile /> : <HeaderDesktop />}
 
         <Routes>
           <Route path="/" element={<Layout />} />
@@ -42,9 +44,9 @@ function App() {
         </Routes>
 
         {windowSize < 700 ? (
-          <Footer Type={"Mobile"} />
+          <Footer windowType={"Mobile"} />
         ) : (
-          <Footer Type={"Desktop"} />
+          <Footer windowType={"Desktop"} />
         )}
       </BrowserRouter>
     </>

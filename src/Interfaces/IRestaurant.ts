@@ -1,10 +1,15 @@
 import { IChef } from "./IChef";
 
 export interface IRestaurant {
+  [x: string]: any;
   name: string;
   chef: IChef;
   rating: number;
   popular: boolean;
+  new: boolean;
+  open: boolean; // before check by openingHours
+  address: string;
+  image: string;
   openingHours: {
     sunday: {
       open: string;
@@ -35,6 +40,5 @@ export interface IRestaurant {
       close: string;
     };
   };
-  address: string;
-  image: string;
+ 
 }
