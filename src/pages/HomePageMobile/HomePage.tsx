@@ -15,6 +15,7 @@ import {
   HeroContainer,
   HeroContent,
   HeroTitle,
+  Hint,
   IngredientName,
   IngredientsContainer,
   IngredientsFrame,
@@ -24,7 +25,6 @@ import {
   LinkAllDishes,
   LinkAllRestaurants,
   Platform,
-  Hint,
   RestaurantsContainer,
   RestaurantsTitle,
   SecondParagraph,
@@ -35,9 +35,9 @@ import {
 
 // Components
 import Search from "../../components/Search/Search";
-import RestaurantsCards from "../../components/Cards/RestaurantsCards/RestaurantCard";
-import DishesCards from "../../components/Cards/DishCard/DishCard";
-import ChefCard from "../../components/Cards/ChefCard/ChefCard";
+import RestaurantsCards from "../../components/CardsMobile/RestaurantsCards/RestaurantCard";
+import DishesCards from "../../components/CardsMobile/DishCard/DishCard";
+import ChefCard from "../../components/CardsMobile/ChefCard/ChefCard";
 
 const HomePageMobile = () => {
   const renderAllLink = (
@@ -62,7 +62,7 @@ const HomePageMobile = () => {
 
       <RestaurantsContainer>
         <RestaurantsTitle>popular restaurant in epicure:</RestaurantsTitle>
-        <RestaurantsCards size="Small" />
+        <RestaurantsCards size="Small" page="HomePageMobile"/>
         {renderAllLink}
       </RestaurantsContainer>
 
@@ -99,7 +99,7 @@ const HomePageMobile = () => {
         <ChefsTitle>Chef of the week:</ChefsTitle>
         <ChefCard chefOfTheWeek={true} />
         <ChefsTitle>Chef of the week:</ChefsTitle>
-        <RestaurantsCards size="Small" />
+        <RestaurantsCards size="Small" page="HomePageMobile"/>
         {renderAllLink}
       </ChefsContainer>
 
@@ -123,7 +123,7 @@ const HomePageMobile = () => {
           </Frame>
         </DownloadFrame>
 
-        <AboutUsTitle>about us:</AboutUsTitle>
+        <AboutUsTitle>About us:</AboutUsTitle>
         <FirstParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus
           vel justo fermentum bibendum non eu ipsum. Cras porta malesuada eros,

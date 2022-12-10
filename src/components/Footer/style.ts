@@ -32,4 +32,5 @@ export const FooterList = styled.div<{
 export const FooterLink = styled.a`
   line-height: 22px;
   letter-spacing: 1.92px;
+  cursor: pointer;
 `;

@@ -59,9 +59,7 @@ export const HeroTitle = styled(GeneralTitle)`
 
 export const RestaurantsTitle = styled(GeneralTitle)`
   width: 326px;
-  height: 24px;
   margin: 48px 0 17px 20px;
-
   line-height: 133%;
   /* identical to box height, or 24px */
 `;
@@ -289,7 +287,6 @@ export const Hint = styled.div`
   /* identical to box height, or 18px */
   text-align: center;
   letter-spacing: 1.29px;
-
   flex: none;
   order: 0;
   align-self: stretch;
@@ -334,10 +331,8 @@ export const FirstParagraph = styled.p`
 export const SecondParagraph = styled.p`
   width: 306px;
   height: 168px;
-
   line-height: 28px;
   /* or 156% */
   letter-spacing: 2.14px;
-
   margin: 0 0 0 20px;
 `;

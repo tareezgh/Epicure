@@ -358,8 +358,7 @@ export const AllDishes: Array<IDish> = [
       "Shrimps, Glass Noodles, Kemiri Nuts, Shallots, Lemon Grass, Magic Chili Brown Coconut",
     image: Claro_Img,
     price: 88,
-    properties: "spicy",
-    signature: true,
+    signature: "spicy",
   },
   {
     name: "Ta Ma La Ko",
@@ -367,7 +366,6 @@ export const AllDishes: Array<IDish> = [
       "Green Papaya, Mango, Chukka Chili, Mint, Kaffir lime, Cashew, Akaya Cham sauce",
     image: Claro_Img,
     price: 65,
-    properties: "",
-    signature: true,
+    signature: "",
   },
 ];

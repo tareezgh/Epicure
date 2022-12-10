@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { IDish } from "../../../Interfaces/IDish";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import {
@@ -14,8 +15,7 @@ import {
   SpicyIcon,
   SlideRow,
   RowSpace,
-} from "../DishCard/style";
-import { IDish } from "../../../Interfaces/IDish";
+} from "./style";
 
 interface Params {
   size: string;

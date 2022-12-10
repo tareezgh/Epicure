@@ -23,7 +23,6 @@ export const CardContent = styled(FlexContainerColumn)<{
   size?: string;
 }>`
   width: ${(props) => (props.size === "Default" ? "334px" : "245px")};
-
   height: ${(props) => (props.size === "Default" ? "288px" : "232.8px")};
   padding: 0px;
   margin-left: 20px;
@@ -34,7 +33,6 @@ export const CardImage = styled.img<{
 }>`
   width: ${(props) => (props.size === "Default" ? "334px" : "245px")};
   height: ${(props) => (props.size === "Default" ? "207px" : "151.8px")};
-
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
   flex: none;
@@ -47,9 +45,7 @@ export const CardFrame = styled(FlexContainerColumn)<{
   size?: string;
 }>`
   width: ${(props) => (props.size === "Default" ? "334px" : "245px")};
-
   height: 81px;
-
   gap: 10px;
   background: #f9f4ea;
 
@@ -60,7 +56,6 @@ export const CardFrame = styled(FlexContainerColumn)<{
 `;
 
 export const CardInfo = styled(FlexContainerColumn)`
-  
   height: 49px;
   padding-top: 16px;
   padding-left: 16px;

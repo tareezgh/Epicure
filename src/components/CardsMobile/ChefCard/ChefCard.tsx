@@ -20,15 +20,12 @@ const ChefCard = (chefProps: Params) => {
 
   const renderSwitch = () => {
     switch (chefProps.filter) {
-      case "All":
-        break;
       case "New":
         filteredData = data.filter((chef: IChef) => chef.new === true);
         break;
       case "Most Viewed":
         filteredData = data.filter((chef: IChef) => chef.viewed === true);
         break;
-
       default:
         break;
     }

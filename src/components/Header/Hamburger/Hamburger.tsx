@@ -8,15 +8,15 @@ import {
   SpaceLine,
 } from "./style";
 
-type Params = {
+interface Params {
   toggleHamburger: () => void;
 };
 
-const Hamburger = (HamburgerProps: Params) => {
+const Hamburger = (hamburgerProps: Params) => {
   return (
     <>
       <CloseNavbar>
-        <CloseIcon onClick={() => HamburgerProps.toggleHamburger()} />
+        <CloseIcon onClick={() => hamburgerProps.toggleHamburger()} />
       </CloseNavbar>
 
       <HamburgerContainer>

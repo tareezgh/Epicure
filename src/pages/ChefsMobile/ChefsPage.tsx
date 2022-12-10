@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ChefCard from "../../components/Cards/ChefCard/ChefCard";
+import ChefCard from "../../components/CardsMobile/ChefCard/ChefCard";
 import FilterFunction from "../../components/Filters/FilterFunction";
 import { FiltersFrame, PageTitle, ChefsSection } from "./style";
 const ChefsPage = () => {

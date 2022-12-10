@@ -6,6 +6,6 @@ export interface IDish {
   restaurant?: IRestaurant;
   image: string;
   price: number;
-  properties: string;
-  signature: boolean;
+  signature: string;
+
 }

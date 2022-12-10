@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import FilterFunction from "../../components/Filters/FilterFunction";
-import DishesCards from "../../components/Cards/DishCard/DishCard";
+import DishesCards from "../../components/CardsMobile/DishCard/DishCard";
 import { IRestaurant } from "../../Interfaces/IRestaurant";
 import {
   RestaurantInfo,

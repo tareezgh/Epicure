@@ -28,7 +28,7 @@ const Search = (searchProps: Params) => {
     <>
       {restaurantsData
         .filter((restaurant: IRestaurant) =>
-          restaurant.name.includes(searchResult)
+          restaurant.name.toLowerCase().includes(searchResult.toLowerCase())
         )
         .map((restaurant: IRestaurant, key: number) => (
           <Results
@@ -48,7 +48,9 @@ const Search = (searchProps: Params) => {
   const renderDishesData = (
     <>
       {dishesData
-        .filter((dish: IDish) => dish.name.includes(searchResult))
+        .filter((dish: IDish) =>
+          dish.name.toLowerCase().includes(searchResult.toLowerCase())
+        )
         .map((dish: IDish, key: number) => (
           <Results type="Result" key={key}>
             {dish.name}
@@ -82,7 +84,7 @@ const Search = (searchProps: Params) => {
           </SearchField>
         )}
 
-        {searchResult !== "" ? (
+        {searchResult ? (
           <SearchResultBox>
             <Results type="Title">Restaurants:</Results>
             {renderRestaurantsData}

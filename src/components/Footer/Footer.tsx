@@ -1,17 +1,19 @@
 import { FooterContainer, FooterList, FooterLink } from "./style";
+import { useNavigate } from "react-router";
 
 interface Params {
   windowType: string;
 }
 
 const Footer = (footerProps: Params) => {
+  const navigate = useNavigate();
   return (
     <>
       <FooterContainer windowType={footerProps.windowType}>
         <FooterList windowType={footerProps.windowType}>
-          <FooterLink>Contact Us</FooterLink>
-          <FooterLink>Term of Use</FooterLink>
-          <FooterLink>Privacy Policy</FooterLink>
+          <FooterLink onClick={() => navigate(`/`)}>Contact Us</FooterLink>
+          <FooterLink onClick={() => navigate(`/`)}>Term of Use</FooterLink>
+          <FooterLink onClick={() => navigate(`/`)}>Privacy Policy</FooterLink>
         </FooterList>
       </FooterContainer>
     </>

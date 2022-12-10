@@ -23,8 +23,6 @@ export const SearchContent = styled(FlexContainerColumn)<{
       : ``}
 `;
 
-
-
 export const SearchField = styled(FlexContainerRow)`
   box-sizing: border-box;
   padding: 6px 12px;
@@ -66,9 +64,15 @@ export const SearchInput = styled.input.attrs({
   letter-spacing: 1.29px;
   margin: 0 12px 0 4px;
   padding: 0;
+  &:focus{
+    opacity: 0.5;
+  }
+  &:active {
+    opacity: 1;
+  }
 `;
 
-// on focus  opacity: 0.2;
+
 
 export const SearchResultBox = styled(FlexContainerColumn)`
   align-items: flex-start;

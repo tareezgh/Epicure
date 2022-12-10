@@ -1,7 +1,6 @@
 import { IChef } from "./IChef";
 
 export interface IRestaurant {
-  [x: string]: any;
   name: string;
   chef: IChef;
   rating: number;

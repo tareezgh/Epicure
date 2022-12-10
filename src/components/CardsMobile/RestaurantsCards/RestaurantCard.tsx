@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { IRestaurant } from "../../../Interfaces/IRestaurant";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import {
@@ -12,7 +13,6 @@ import {
   SlideRow,
 } from "./style";
 
-import { IRestaurant } from "../../../Interfaces/IRestaurant";
 
 interface Params {
   size: string;
@@ -27,8 +27,6 @@ const RestaurantsCards = (restaurantProps: Params) => {
 
   const renderSwitch = () => {
     switch (restaurantProps.filter) {
-      case "All":
-        break;
       case "New":
         filteredData = data.filter(
           (restaurant: IRestaurant) => restaurant.new === true
@@ -47,6 +45,9 @@ const RestaurantsCards = (restaurantProps: Params) => {
       default:
         break;
     }
+    if (restaurantProps.page === "HomePageMobile")
+      // in home page display 3 cards only
+      filteredData = data.slice(0, 3);
   };
 
   const renderData = (
@@ -58,11 +59,7 @@ const RestaurantsCards = (restaurantProps: Params) => {
             size={restaurantProps.size}
             onClick={() => navigate(`/Restaurant${restaurant.name}`)}
           >
-            <CardImage
-              size={restaurantProps.size}
-             
-              src={restaurant.image}
-            />
+            <CardImage size={restaurantProps.size} src={restaurant.image} />
             <CardFrame size={restaurantProps.size}>
               <CardInfo>
                 <RestaurantName>{restaurant.name}</RestaurantName>
@@ -77,7 +74,7 @@ const RestaurantsCards = (restaurantProps: Params) => {
 
   const renderSwiperData = (
     <>
-      <Swiper spaceBetween={24} slidesPerView={1.5} >
+      <Swiper spaceBetween={24} slidesPerView={1.5}>
         <SlideRow type="Restaurants">{renderData}</SlideRow>
       </Swiper>
     </>

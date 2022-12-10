@@ -2,10 +2,7 @@ import styled from "styled-components";
 
 import currencyIcon from "../../../assets/currency-icon.svg";
 import spicyIcon from "../../../assets/spicy-icon-small.svg";
-import vegetarianIcon from "../../../assets/vegetarian-icon-small.svg";
-import veganIcon from "../../../assets/vegan-icon-small.svg";
 
-// import claroImg from "../../../assets/claro-img-mobile.png";
 
 const FlexContainerColumn = styled.div`
   display: flex;
