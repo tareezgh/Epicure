@@ -42,6 +42,18 @@ const HeaderDesktop = () => {
 
   const handleData = (filter: string) => {
     setHeaderFilter(filter);
+    switch (filter) {
+      case "Restaurants":
+        navigate(`/AllRestaurants`);
+        break;
+        
+      case "Chefs":
+        navigate(`/Chefs`);
+        break;  
+    
+      default:
+        break;
+    }
   };
 
   return (

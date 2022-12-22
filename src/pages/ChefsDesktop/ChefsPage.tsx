@@ -1,12 +1,14 @@
 import { useState } from "react";
-import ChefCard from "../../components/CardsMobile/ChefCard/ChefCard";
+
+
+import ChefCard from "../../components/CardsDesktop/ChefCard/ChefCard";
 import FilterFunction from "../../components/Filters/FilterFunction";
-import { FiltersFrame, PageTitle, ChefsSection } from "./style";
-const ChefsPageMobile = () => {
+import { FiltersFrame, ChefsSection, RowSection } from "./style";
+
+
+const ChefsPageDesktop = () => {
   const [chefsFilter, setChefsFilter] = useState<string>("All");
   const filters = ["All", "New", "Most Viewed"];
-
-  
 
   const handleData = (filter: string) => {
     setChefsFilter(filter);
@@ -14,17 +16,17 @@ const ChefsPageMobile = () => {
 
   return (
     <>
-      <PageTitle>Chefs</PageTitle>
-
       <FiltersFrame>
         <FilterFunction myFilters={filters} handleData={handleData} />
       </FiltersFrame>
 
       <ChefsSection>
-        <ChefCard filter={chefsFilter} />
+        <RowSection>
+          <ChefCard filter={chefsFilter} />
+        </RowSection>
       </ChefsSection>
     </>
   );
 };
 
-export default ChefsPageMobile;
+export default ChefsPageDesktop;

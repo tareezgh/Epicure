@@ -56,7 +56,7 @@ const HomePageMobile = () => {
           <HeroTitle>
             Epicure works with the top chef restaurants in Tel Aviv
           </HeroTitle>
-          <Search page={"HomePage"} />
+          <Search page={"HomePageMobile"} />
         </HeroContent>
       </HeroContainer>
 

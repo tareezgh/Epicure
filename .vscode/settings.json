@@ -1,5 +1,9 @@
 {
   "cSpell.words": [
     "Swiper"
-  ]
+  ],
+  "files.associations": {
+    "*.asm": "asm-collection",
+    "SaveData.C": "cpp"
+  }
 }

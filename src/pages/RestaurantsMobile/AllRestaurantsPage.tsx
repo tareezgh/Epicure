@@ -2,7 +2,7 @@ import { useState } from "react";
 import RestaurantsCards from "../../components/CardsMobile/RestaurantsCards/RestaurantCard";
 import FilterFunction from "../../components/Filters/FilterFunction";
 import { FiltersFrame, PageTitle, RestaurantsSection } from "./style";
-const AllRestaurantsPage = () => {
+const AllRestaurantsPageMobile = () => {
   const [restaurantsFilter, setRestaurantsFilter] = useState<string>("All");
   const filters = ["All", "New", "Most Popular", "Open Now"];
 
@@ -29,4 +29,4 @@ const AllRestaurantsPage = () => {
   );
 };
 
-export default AllRestaurantsPage;
+export default AllRestaurantsPageMobile;

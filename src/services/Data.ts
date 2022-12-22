@@ -368,4 +368,20 @@ export const AllDishes: Array<IDish> = [
     price: 65,
     signature: "",
   },
+  {
+    name: "Ta Ma La Ko",
+    description:
+      "Green Papaya, Mango, Chukka Chili, Mint, Kaffir lime, Cashew, Akaya Cham sauce",
+    image: Claro_Img,
+    price: 65,
+    signature: "",
+  },
+  {
+    name: "Ta Ma La Ko",
+    description:
+      "Green Papaya, Mango, Chukka Chili, Mint, Kaffir lime, Cashew, Akaya Cham sauce",
+    image: Claro_Img,
+    price: 65,
+    signature: "",
+  },
 ];

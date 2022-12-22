@@ -3,7 +3,7 @@ import { Filter } from "./style";
 
 interface Params {
   myFilters: string[];
-
+  page?: string;
   handleData: (str: string) => void;
 }
 
@@ -24,6 +24,7 @@ const FilterFunction = (filtersProps: Params) => {
             borderBottom:
               myFilter === filter ? "1.8px solid rgba(222, 146, 0, 0.9)" : "",
           }}
+          page={filtersProps.page}
         >
           {filter}
         </Filter>

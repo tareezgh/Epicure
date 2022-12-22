@@ -4,22 +4,22 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import FilterFunction from "../../components/Filters/FilterFunction";
-import DishesCards from "../../components/CardsMobile/DishCard/DishCard";
+import DishesCards from "../../components/CardsDesktop/DishCard/DishCard";
 import { IRestaurant } from "../../Interfaces/IRestaurant";
 import {
   RestaurantInfo,
   RestaurantImage,
   RestaurantName,
   RestaurantManager,
-  InfoSection,
   ClockIcon,
   Hours,
   HourStatus,
-  FiltersFrame,
+  FiltersFrame2,
   DishesSection,
+  RowSection,
 } from "./style";
 
-const RestaurantPageMobile = () => {
+const RestaurantPageDesktop = () => {
   const restaurantNameByParams = useParams();
   const data = useSelector((state: any) => state.restaurants.value);
 
@@ -41,26 +41,30 @@ const RestaurantPageMobile = () => {
           <RestaurantInfo key={key}>
             <RestaurantImage src={restaurant.image} />
 
-            <InfoSection>
-              <RestaurantName>{restaurant.name}</RestaurantName>
-              <RestaurantManager>{restaurant.chef.name}</RestaurantManager>
+            <RestaurantName>{restaurant.name}</RestaurantName>
+            <RestaurantManager>{restaurant.chef.name}</RestaurantManager>
 
-              <Hours>
-                <ClockIcon />
-                <HourStatus>Open Now</HourStatus>
-              </Hours>
-            </InfoSection>
+            <Hours>
+              <ClockIcon />
+              <HourStatus>Open Now</HourStatus>
+            </Hours>
 
-            <FiltersFrame>
-              <FilterFunction myFilters={filters} handleData={handleData} />
-            </FiltersFrame>
+            <FiltersFrame2>
+              <FilterFunction
+                myFilters={filters}
+                handleData={handleData}
+                page={"Desktop"}
+              />
+            </FiltersFrame2>
 
             <DishesSection>
-              <DishesCards
-                size={"Default"}
-                page={"Restaurant"}
-                filter={dishesFilter} 
-              />
+              <RowSection>
+                <DishesCards
+                  size={"Small"}
+                  page={"Restaurant"}
+                  filter={dishesFilter}
+                />
+              </RowSection>
             </DishesSection>
           </RestaurantInfo>
         ))}
@@ -70,4 +74,4 @@ const RestaurantPageMobile = () => {
   return <>{renderData}</>;
 };
 
-export default RestaurantPageMobile;
+export default RestaurantPageDesktop;

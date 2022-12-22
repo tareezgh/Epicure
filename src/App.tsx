@@ -16,9 +16,12 @@ import Footer from "./components/Footer/Footer";
 
 import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePageMobile/HomePage";
-import AllRestaurantsPage from "./pages/RestaurantsMobile/AllRestaurantsPage";
-import RestaurantPage from "./pages/RestaurantsMobile/RestaurantPage";
-import ChefsPage from "./pages/ChefsMobile/ChefsPage";
+import AllRestaurantsPageMobile from "./pages/RestaurantsMobile/AllRestaurantsPage";
+import AllRestaurantsPageDesktop from "./pages/RestaurantsDesktop/AllRestaurantsPage";
+import RestaurantPageMobile from "./pages/RestaurantsMobile/RestaurantPage";
+import RestaurantPageDesktop from "./pages/RestaurantsDesktop/RestaurantPage";
+import ChefsPageMobile from "./pages/ChefsMobile/ChefsPage";
+import ChefsPageDesktop from "./pages/ChefsDesktop/ChefsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,12 +41,35 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />} />
           <Route path="/HomePage" element={<HomePage />} />
-          <Route path="/AllRestaurants" element={<AllRestaurantsPage />} />
-          <Route path="/Restaurant:name" element={<RestaurantPage />} />
-          <Route path="/Chefs" element={<ChefsPage />} />
+          <Route
+            path="/AllRestaurants"
+            element={
+              windowSize < 600 ? (
+                <AllRestaurantsPageMobile />
+              ) : (
+                <AllRestaurantsPageDesktop />
+              )
+            }
+          />
+          <Route
+            path="/Restaurant:name"
+            element={
+              windowSize < 600 ? (
+                <RestaurantPageMobile />
+              ) : (
+                <RestaurantPageDesktop />
+              )
+            }
+          />
+          <Route
+            path="/Chefs"
+            element={
+              windowSize < 600 ? <ChefsPageMobile /> : <ChefsPageDesktop />
+            }
+          />
         </Routes>
 
-        {windowSize < 700 ? (
+        {windowSize < 600 ? (
           <Footer windowType={"Mobile"} />
         ) : (
           <Footer windowType={"Desktop"} />

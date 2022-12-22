@@ -75,20 +75,32 @@ const Search = (searchProps: Params) => {
             />
           </SearchField>
         ) : (
-          <SearchField>
-            <SearchIcon />
-            <>{searchProps.page === "HomePage" ? "" : <InputLine />}</>
+          <SearchField page={searchProps.page}>
+            <SearchIcon page={searchProps.page} />
+            <>
+              {searchProps.page === "HomePageMobile" ||
+              searchProps.page === "HomePageDesktop" ? (
+                ""
+              ) : (
+                <InputLine />
+              )}
+            </>
             <SearchInput
+              page={searchProps.page}
               onChange={(text) => setSearchResult(text.target.value)}
             />
           </SearchField>
         )}
 
         {searchResult ? (
-          <SearchResultBox>
-            <Results type="Title">Restaurants:</Results>
+          <SearchResultBox page={searchProps.page}>
+            <Results type="Title" page={searchProps.page}>
+              Restaurants:
+            </Results>
             {renderRestaurantsData}
-            <Results type="Title">Cuisine:</Results>
+            <Results type="Title" page={searchProps.page}>
+              Cuisine:
+            </Results>
             {renderDishesData}
           </SearchResultBox>
         ) : (

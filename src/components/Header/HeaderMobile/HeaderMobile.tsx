@@ -19,6 +19,7 @@ import {
 import Hamburger from "../Hamburger/Hamburger";
 import Search from "../../Search/Search";
 import Cart from "../Cart/Cart";
+import SignIn from "../SignIn/SignIn";
 
 const HeaderMobile = () => {
   const navigate = useNavigate();
@@ -38,7 +39,6 @@ const HeaderMobile = () => {
   };
 
   const toggleUser = () => {
-    // not implemented yet
     setUserOpen(!userOpen);
   };
 
@@ -60,7 +60,7 @@ const HeaderMobile = () => {
         </EpicureLogoContainer>
         <NavbarRightSideContainer>
           <SearchIcon onClick={toggleSearch} />
-          <UserIcon />
+          <UserIcon onClick={toggleUser}/>
           <CartIcon onClick={toggleCart} />
         </NavbarRightSideContainer>
 
@@ -69,6 +69,15 @@ const HeaderMobile = () => {
         {hamburgerOpen && <Hamburger toggleHamburger={toggleHamburger} />}
         {cartOpen && <Cart />}
 
+        {userOpen && (
+          <>
+            <CloseNavbar>
+              <CloseIcon onClick={toggleUser} />
+            </CloseNavbar>
+            <SignIn/>
+          </>
+        )}
+
         {searchOpen && (
           <>
             <CloseNavbar>
@@ -76,7 +85,7 @@ const HeaderMobile = () => {
               <CloseNavbarTitle>Search</CloseNavbarTitle>
             </CloseNavbar>
             <SearchContainer>
-              <Search toggleSearch={toggleSearch}/>
+              <Search toggleSearch={toggleSearch} />
             </SearchContainer>
           </>
         )}

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IChef } from "../../../Interfaces/IChef";
+import RestaurantsCards from "../RestaurantsCards/RestaurantCard";
 
 import {
   CardsContainer,
@@ -8,6 +8,10 @@ import {
   CardInfo,
   ChefName,
   ChefsDescription,
+  CardImage,
+  CardsFrame,
+  RestaurantsContainer,
+  SubTitle,
 } from "./style";
 
 interface Params {
@@ -18,6 +22,7 @@ interface Params {
 const ChefCard = (chefProps: Params) => {
   const data = useSelector((state: any) => state.chefs.value);
   let filteredData: IChef[] = data;
+  let i = 0;
 
   const renderSwitch = () => {
     switch (chefProps.filter) {
@@ -35,8 +40,10 @@ const ChefCard = (chefProps: Params) => {
   const renderData = (
     <>
       {renderSwitch()}
-      {filteredData.map((chef: IChef, key: number) => (
-        <CardContent key={key} imgUrl={chef.image}>
+
+      {filteredData.slice(i, i + 5).map((chef: IChef, key: number) => (
+        <CardContent key={key} regular={true}>
+          <CardImage src={chef.image} regular={true} />
           <CardInfo>
             <ChefName>{chef.name}</ChefName>
           </CardInfo>
@@ -50,14 +57,23 @@ const ChefCard = (chefProps: Params) => {
       {data
         .filter((chef: IChef) => chef.chefOfTheWeek === true)
         .map((chef: IChef, key: number) => (
-          <CardsContainer key={key}>
-            <CardContent imgUrl={chef.image}>
-              <CardInfo>
-                <ChefName>{chef.name}</ChefName>
-              </CardInfo>
-            </CardContent>
-            <ChefsDescription> {chef.description}</ChefsDescription>
-          </CardsContainer>
+          <>
+            <CardsContainer key={key}>
+              <CardContent>
+                <CardImage src={chef.image} />
+                <CardInfo>
+                  <ChefName>{chef.name}</ChefName>
+                </CardInfo>
+              </CardContent>
+              <ChefsDescription> {chef.description}</ChefsDescription>
+            </CardsContainer>
+            <RestaurantsContainer>
+              <SubTitle>{chef.name.split(" ")[0]}`s Restaurants</SubTitle>
+              <CardsFrame>
+                <RestaurantsCards size="Small" /> {/* Chefs's restaurants */}
+              </CardsFrame>
+            </RestaurantsContainer>
+          </>
         ))}
     </>
   );
