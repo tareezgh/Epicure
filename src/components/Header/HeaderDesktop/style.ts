@@ -4,7 +4,7 @@ import epicureLogo from "../../../assets/Epicure-logo.png";
 import searchIcon from "../../../assets/search-icon.svg";
 import userIcon from "../../../assets/user-icon.svg";
 import cartIcon from "../../../assets/cart-icon.svg";
-import blackCloseIcon from "../../../assets/black-close-icon.svg";
+import whiteCloseIcon from "../../../assets/white-close-icon.svg";
 
 const FlexContainerRow = styled.div`
   display: flex;
@@ -102,3 +102,13 @@ export const UserIcon = styled(NavbarIconsGeneral).attrs({
 export const CartIcon = styled(NavbarIconsGeneral).attrs({
   src: cartIcon,
 })``;
+
+export const CloseIcon = styled.img.attrs({
+  src: whiteCloseIcon,
+})`
+  width: 24px;
+  height: 24px;
+  margin-left: 24px;
+  padding-top: 15px;
+  cursor: pointer;
+`;

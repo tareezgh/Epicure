@@ -2,11 +2,11 @@ import { IChef } from "./IChef";
 
 export interface IRestaurant {
   name: string;
-  chef: IChef;
-  rating: number;
-  popular: boolean;
-  new: boolean;
-  open: boolean; // before check by openingHours
+  chefName: string;
+  restaurantRating: number;
+  isPopular: boolean;
+  isNewRestaurant: boolean;
+  isOpen: boolean; // before check by openingHours
   address: string;
   image: string;
   openingHours: {
@@ -39,5 +39,4 @@ export interface IRestaurant {
       close: string;
     };
   };
- 
 }

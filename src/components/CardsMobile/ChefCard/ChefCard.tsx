@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IChef } from "../../../Interfaces/IChef";
 
@@ -22,10 +21,10 @@ const ChefCard = (chefProps: Params) => {
   const renderSwitch = () => {
     switch (chefProps.filter) {
       case "New":
-        filteredData = data.filter((chef: IChef) => chef.new === true);
+        filteredData = data.filter((chef: IChef) => chef.isNewChef === true);
         break;
       case "Most Viewed":
-        filteredData = data.filter((chef: IChef) => chef.viewed === true);
+        filteredData = data.filter((chef: IChef) => chef.isViewed === true);
         break;
       default:
         break;
@@ -38,7 +37,7 @@ const ChefCard = (chefProps: Params) => {
       {filteredData.map((chef: IChef, key: number) => (
         <CardContent key={key} imgUrl={chef.image}>
           <CardInfo>
-            <ChefName>{chef.name}</ChefName>
+            <ChefName>{chef.chefName}</ChefName>
           </CardInfo>
         </CardContent>
       ))}
@@ -48,12 +47,12 @@ const ChefCard = (chefProps: Params) => {
   const renderChefOfTheWeek = (
     <>
       {data
-        .filter((chef: IChef) => chef.chefOfTheWeek === true)
+        .filter((chef: IChef) => chef.isChefOfTheWeek === true)
         .map((chef: IChef, key: number) => (
           <CardsContainer key={key}>
             <CardContent imgUrl={chef.image}>
               <CardInfo>
-                <ChefName>{chef.name}</ChefName>
+                <ChefName>{chef.chefName}</ChefName>
               </CardInfo>
             </CardContent>
             <ChefsDescription> {chef.description}</ChefsDescription>

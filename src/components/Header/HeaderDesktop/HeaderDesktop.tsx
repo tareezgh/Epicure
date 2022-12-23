@@ -1,13 +1,13 @@
-// DO NOT CHECK PLEASE //
-
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import FilterFunction from "../../Filters/FilterFunction";
 import Search from "../../Search/Search";
-
+import SignIn from "../SignIn/SignIn";
 import Cart from "../Cart/Cart";
+
 import {
   CartIcon,
+  CloseIcon,
   EpicureLogo,
   EpicureLogoContainer,
   EpicureTitle,
@@ -24,7 +24,6 @@ const HeaderDesktop = () => {
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [userOpen, setUserOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
-  const [headerFilter, setHeaderFilter] = useState<string>("");
   const filters = ["Restaurants", "Chefs"];
 
   const toggleSearch = () => {
@@ -41,32 +40,48 @@ const HeaderDesktop = () => {
   };
 
   const handleData = (filter: string) => {
-    setHeaderFilter(filter);
     switch (filter) {
       case "Restaurants":
         navigate(`/AllRestaurants`);
         break;
-        
+
       case "Chefs":
         navigate(`/Chefs`);
-        break;  
-    
+        break;
+
       default:
         break;
     }
+  };
+
+  const getWindowDimensions = () => {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
   };
 
   return (
     <>
       <NavbarContainer>
         <NavbarContent>
-          <EpicureLogoContainer onClick={() => navigate(`/`)}>
+          <EpicureLogoContainer
+            onClick={() => {
+              navigate(`/`);
+              window.location.reload(); // reload the page
+            }}
+          >
             <EpicureLogo />
             <EpicureTitle>Epicure</EpicureTitle>
           </EpicureLogoContainer>
 
           <FiltersFrame>
-            <FilterFunction myFilters={filters} handleData={handleData} />
+            <FilterFunction
+              myFilters={filters}
+              handleData={handleData}
+              page={"Header"}
+            />
           </FiltersFrame>
 
           <IconsContainer>
@@ -78,11 +93,18 @@ const HeaderDesktop = () => {
               )}
             </>
 
-            <UserIcon />
+            <UserIcon onClick={toggleUser} />
             <CartIcon onClick={toggleCart} />
           </IconsContainer>
 
           {cartOpen && <Cart page="Desktop" />}
+
+          {userOpen && (
+            <>
+              <CloseIcon onClick={toggleUser} />
+              <SignIn page="Desktop" />
+            </>
+          )}
         </NavbarContent>
       </NavbarContainer>
     </>

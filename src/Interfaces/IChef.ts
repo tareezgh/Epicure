@@ -1,8 +1,9 @@
 export interface IChef {
-  name: string;
+  chefName: string;
   description: string;
   image: string;
-  new: boolean;
-  viewed: boolean;
-  chefOfTheWeek: boolean;
+  restaurants: [];
+  isNewChef: boolean;
+  isViewed: boolean;
+  isChefOfTheWeek: boolean;
 }

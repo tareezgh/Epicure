@@ -15,14 +15,15 @@ import {
   RowSection,
   Title,
 } from "./style";
+
 const AllRestaurantsPageDesktop = () => {
   const [priceOpen, setPriceOpen] = useState<boolean>(false);
   const [distanceOpen, setDistanceOpen] = useState<boolean>(false);
   const [ratingOpen, setRatingOpen] = useState<boolean>(false);
   const [restaurantsFilter, setRestaurantsFilter] = useState<string>("All");
   const filters = ["All", "New", "Most Popular", "Open Now", "Map View"];
-  let flag = 0;
   const buttons = ["Price Range", "Distance", "Rating"];
+  // let flag = 0;
 
   const handleData = (filter: string) => {
     setRestaurantsFilter(filter);
@@ -58,15 +59,15 @@ const AllRestaurantsPageDesktop = () => {
       default:
         break;
     }
-    flag = 1;
+    // flag = 1;
   };
 
   const renderComponent = buttons.map((button: string, key: number) => (
     <InsiderFrame
       key={key}
-      style={{
-        background: flag === 1 ? "#D0CFCF" : "#FAFAFA",
-      }}
+      // style={{
+      //   background: flag === 1 ? "#D0CFCF" : "#FAFAFA",
+      // }}
     >
       <ComponentFrame onClick={() => toggle(button)}>
         <Title>{button}</Title>

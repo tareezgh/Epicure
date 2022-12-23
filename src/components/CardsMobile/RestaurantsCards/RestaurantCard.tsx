@@ -13,7 +13,6 @@ import {
   SlideRow,
 } from "./style";
 
-
 interface Params {
   size: string;
   page?: string;
@@ -29,17 +28,17 @@ const RestaurantsCards = (restaurantProps: Params) => {
     switch (restaurantProps.filter) {
       case "New":
         filteredData = data.filter(
-          (restaurant: IRestaurant) => restaurant.new === true
+          (restaurant: IRestaurant) => restaurant.isNewRestaurant === true
         );
         break;
       case "Most Popular":
         filteredData = data.filter(
-          (restaurant: IRestaurant) => restaurant.popular === true
+          (restaurant: IRestaurant) => restaurant.isPopular === true
         );
         break;
       case "Open Now":
         filteredData = data.filter(
-          (restaurant: IRestaurant) => restaurant.open === true
+          (restaurant: IRestaurant) => restaurant.isOpen === true
         ); // need to check by date exactly
         break;
       default:
@@ -63,7 +62,7 @@ const RestaurantsCards = (restaurantProps: Params) => {
             <CardFrame size={restaurantProps.size}>
               <CardInfo>
                 <RestaurantName>{restaurant.name}</RestaurantName>
-                <RestaurantManager>{restaurant.chef.name}</RestaurantManager>
+                <RestaurantManager>{restaurant.chefName}</RestaurantManager>
               </CardInfo>
             </CardFrame>
           </CardContent>

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { IDish } from "../../../Interfaces/IDish";
-
 import spicyIcon from "../../../assets/spicy-icon-big.svg";
 
 import {
@@ -26,8 +26,26 @@ interface Params {
 const DishesCards = (dishesProps: Params) => {
   const data = useSelector((state: any) => state.dishes.value);
   let filteredData: IDish[] = data;
-  const checkPage = () => {
-    if (dishesProps.page === "HomePageDesktop") filteredData = data.slice(0, 3);
+
+  const navigate = useNavigate();
+
+  const renderSwitch = () => {
+    switch (dishesProps.filter) {
+      case "Breakfast":
+        filteredData = data.filter((dish: IDish) => dish.type === "Breakfast");
+        break;
+      case "Launch":
+        filteredData = data.filter((dish: IDish) => dish.type === "Launch");
+        break;
+      case "Dinner":
+        filteredData = data.filter((dish: IDish) => dish.type === "Dinner");
+        break;
+      default:
+        break;
+    }
+    if (dishesProps.page === "HomePageDesktop")
+      // in home page display 3 cards only
+      filteredData = data.slice(0, 3);
   };
 
   const renderPrice = (dish: IDish) => {
@@ -47,7 +65,7 @@ const DishesCards = (dishesProps: Params) => {
 
   const renderCard = (
     <>
-      {checkPage()}
+      {renderSwitch()}
       {filteredData.map((dish: IDish, key: number) => (
         <CardContent key={key} size={dishesProps.size}>
           <CardImage
@@ -64,7 +82,6 @@ const DishesCards = (dishesProps: Params) => {
 
             {dishesProps.page === "HomePageDesktop" && key !== 1 ? (
               <SpicyIcon src={spicyIcon} />
-              
             ) : (
               <>{renderPrice(dish)}</>
             )}

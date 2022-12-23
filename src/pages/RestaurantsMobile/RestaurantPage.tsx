@@ -1,6 +1,4 @@
-// render data by filters not implemented yet
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import FilterFunction from "../../components/Filters/FilterFunction";
@@ -18,10 +16,13 @@ import {
   FiltersFrame,
   DishesSection,
 } from "./style";
+import axios from "axios";
 
 const RestaurantPageMobile = () => {
   const restaurantNameByParams = useParams();
+  const url = "http://localhost:3001/api";
   const data = useSelector((state: any) => state.restaurants.value);
+  // const [restaurant, setRestaurant] = useState<IRestaurant>();
 
   const [dishesFilter, setDishesFilter] = useState<string>("Breakfast");
   const filters = ["Breakfast", "Launch", "Dinner"];
@@ -29,6 +30,20 @@ const RestaurantPageMobile = () => {
   const handleData = (filter: string) => {
     setDishesFilter(filter);
   };
+
+  const fetchRestaurantData = async () => {
+    return await axios
+      .get(`${url}/restaurants/getRestaurant`, {
+        params: {
+          name: restaurantNameByParams.name,
+        },
+      })
+      .then((response) => console.log("data " + response.data.name));
+  };
+
+  useEffect(() => {
+    fetchRestaurantData(); // Not found
+  }, []);
 
   const renderData = (
     <>
@@ -43,7 +58,7 @@ const RestaurantPageMobile = () => {
 
             <InfoSection>
               <RestaurantName>{restaurant.name}</RestaurantName>
-              <RestaurantManager>{restaurant.chef.name}</RestaurantManager>
+              <RestaurantManager>{restaurant.chefName}</RestaurantManager>
 
               <Hours>
                 <ClockIcon />
@@ -59,7 +74,7 @@ const RestaurantPageMobile = () => {
               <DishesCards
                 size={"Default"}
                 page={"Restaurant"}
-                filter={dishesFilter} 
+                filter={dishesFilter}
               />
             </DishesSection>
           </RestaurantInfo>

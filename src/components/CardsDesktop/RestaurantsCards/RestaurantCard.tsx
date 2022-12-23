@@ -28,17 +28,17 @@ const RestaurantsCards = (restaurantProps: Params) => {
     switch (restaurantProps.filter) {
       case "New":
         filteredData = data.filter(
-          (restaurant: IRestaurant) => restaurant.new === true
+          (restaurant: IRestaurant) => restaurant.isNewRestaurant === true
         );
         break;
       case "Most Popular":
         filteredData = data.filter(
-          (restaurant: IRestaurant) => restaurant.popular === true
+          (restaurant: IRestaurant) => restaurant.isPopular === true
         );
         break;
       case "Open Now":
         filteredData = data.filter(
-          (restaurant: IRestaurant) => restaurant.open === true
+          (restaurant: IRestaurant) => restaurant.isOpen === true
         ); // need to check by date exactly
         break;
       default:
@@ -62,14 +62,17 @@ const RestaurantsCards = (restaurantProps: Params) => {
           <CardFrame size={restaurantProps.size}>
             <CardInfo>
               <RestaurantName>{restaurant.name}</RestaurantName>
-              <RestaurantManager>{restaurant.chef.name}</RestaurantManager>
+              <RestaurantManager>{restaurant.chefName}</RestaurantManager>
             </CardInfo>
             <StarsFrame>
-              <Star active={true} />
-              <Star active={true} />
-              <Star active={false} />
-              <Star active={false} />
-              <Star active={false} />
+              {[...new Array(5)].map((arr, index) => {
+                return (
+                  <Star
+                    key={index}
+                    active={index < restaurant.restaurantRating ? true : false}
+                  />
+                );
+              })}
             </StarsFrame>
           </CardFrame>
         </CardContent>

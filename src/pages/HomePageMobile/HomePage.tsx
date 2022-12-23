@@ -62,7 +62,7 @@ const HomePageMobile = () => {
 
       <RestaurantsContainer>
         <RestaurantsTitle>popular restaurant in epicure:</RestaurantsTitle>
-        <RestaurantsCards size="Small" page="HomePageMobile"/>
+        <RestaurantsCards size="Small" page="HomePageMobile" />
         {renderAllLink}
       </RestaurantsContainer>
 
@@ -99,7 +99,7 @@ const HomePageMobile = () => {
         <ChefsTitle>Chef of the week:</ChefsTitle>
         <ChefCard chefOfTheWeek={true} />
         <ChefsTitle>Chef of the week:</ChefsTitle>
-        <RestaurantsCards size="Small" page="HomePageMobile"/>
+        <RestaurantsCards size="Small" page="HomePageMobile" />
         {renderAllLink}
       </ChefsContainer>
 

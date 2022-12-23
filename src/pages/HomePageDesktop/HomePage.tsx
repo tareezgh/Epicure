@@ -55,7 +55,7 @@ const HomePageDesktop = () => {
 
       <RestaurantsContainer>
         <CardsFrame>
-          <RestaurantsCards size="Big" page="HomePageDesktop"/>
+          <RestaurantsCards size="Big" page="HomePageDesktop" />
         </CardsFrame>
 
         <LinkAllContainer>

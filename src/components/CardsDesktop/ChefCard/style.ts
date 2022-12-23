@@ -11,6 +11,11 @@ const FlexContainerRow = styled.div`
   flex-direction: row;
 `;
 
+export const Container = styled.div`
+  width: 1183.5px;
+  margin: 40px auto 45px auto;
+`;
+
 export const CardsContainer = styled(FlexContainerRow)`
   width: 1183.5px;
   margin: 40px auto 45px auto;
@@ -76,7 +81,8 @@ export const CardImage = styled.img<{
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
 `;
-
+//  background-image: url(${(props) => props.src});
+//`http://localhost:3000/${require(`${chef.image}`)}`
 export const CardInfo = styled(FlexContainerColumn)`
   justify-content: center;
   text-align: center;

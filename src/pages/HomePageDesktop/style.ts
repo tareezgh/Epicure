@@ -5,10 +5,6 @@ import arrowIcon from "../../assets/arrow-icon.svg";
 import googleIcon from "../../assets/google-icon.svg";
 import appleIcon from "../../assets/apple-icon.svg";
 
-import spicyIcon from "../../assets/spicy-icon-big.svg";
-import vegetarianIcon from "../../assets/vegetarian-icon-big.svg";
-import veganIcon from "../../assets/vegan-icon-big.svg";
-
 import heroImage from "../../assets/hero-img-desktop.png";
 
 const FlexContainerColumn = styled.div`

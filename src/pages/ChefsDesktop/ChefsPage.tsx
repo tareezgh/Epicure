@@ -1,10 +1,8 @@
 import { useState } from "react";
 
-
 import ChefCard from "../../components/CardsDesktop/ChefCard/ChefCard";
 import FilterFunction from "../../components/Filters/FilterFunction";
 import { FiltersFrame, ChefsSection, RowSection } from "./style";
-
 
 const ChefsPageDesktop = () => {
   const [chefsFilter, setChefsFilter] = useState<string>("All");

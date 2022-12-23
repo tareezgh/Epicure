@@ -25,7 +25,7 @@ interface Params {
 const SignIn = (signInProps: Params) => {
   return (
     <>
-      <SignInContainer>
+      <SignInContainer page={signInProps.page}>
         <InfoFrame>
           <Title>Sign In</Title>
           <SubTitle>To continue the order, please sign in</SubTitle>

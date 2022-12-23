@@ -19,11 +19,11 @@ export const SignInContainer = styled(FlexContainerColumn)<{
   // padding: 40px 0px;
   gap: 40px;
   position: fixed;
-  width: 100%;
+  width: ${(props) => (props.page === "Desktop" ? "573px" : "100%")};
   height: 590px;
   z-index: 1;
   top: 46px;
-
+  margin: ${(props) => (props.page === "Desktop" ? "auto" : "")};
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;

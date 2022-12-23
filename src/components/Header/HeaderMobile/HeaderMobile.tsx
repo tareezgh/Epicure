@@ -60,7 +60,7 @@ const HeaderMobile = () => {
         </EpicureLogoContainer>
         <NavbarRightSideContainer>
           <SearchIcon onClick={toggleSearch} />
-          <UserIcon onClick={toggleUser}/>
+          <UserIcon onClick={toggleUser} />
           <CartIcon onClick={toggleCart} />
         </NavbarRightSideContainer>
 
@@ -74,7 +74,7 @@ const HeaderMobile = () => {
             <CloseNavbar>
               <CloseIcon onClick={toggleUser} />
             </CloseNavbar>
-            <SignIn/>
+            <SignIn />
           </>
         )}
 

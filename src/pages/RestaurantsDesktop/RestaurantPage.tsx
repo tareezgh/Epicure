@@ -1,5 +1,3 @@
-// render data by filters not implemented yet
-
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -42,7 +40,7 @@ const RestaurantPageDesktop = () => {
             <RestaurantImage src={restaurant.image} />
 
             <RestaurantName>{restaurant.name}</RestaurantName>
-            <RestaurantManager>{restaurant.chef.name}</RestaurantManager>
+            <RestaurantManager>{restaurant.chefName}</RestaurantManager>
 
             <Hours>
               <ClockIcon />

@@ -6,9 +6,12 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
+import axios from "axios";
 import SetWindowSize from "./helpers/SetWindowSize";
 import { setChefs, setDishes, setRestaurants } from "./helpers/Slicers";
-import { AllChefs, AllDishes, AllRestaurants } from "./services/Data";
+import { IChef } from "./Interfaces/IChef";
+import { IDish } from "./Interfaces/IDish";
+import { IRestaurant } from "./Interfaces/IRestaurant";
 
 import HeaderMobile from "./components/Header/HeaderMobile/HeaderMobile";
 import HeaderDesktop from "./components/Header/HeaderDesktop/HeaderDesktop";
@@ -24,14 +27,33 @@ import ChefsPageMobile from "./pages/ChefsMobile/ChefsPage";
 import ChefsPageDesktop from "./pages/ChefsDesktop/ChefsPage";
 
 function App() {
+  const url = "http://localhost:3001/api";
+  const windowSize = SetWindowSize();
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(setRestaurants(AllRestaurants));
-    dispatch(setDishes(AllDishes));
-    dispatch(setChefs(AllChefs));
+    fetchAllRestaurantsData();
+    fetchAllDishesData();
+    fetchAllChefsData();
   }, []);
 
-  const windowSize = SetWindowSize();
+  const fetchAllChefsData = async () => {
+    return await axios
+      .get(`${url}/chefs/getChefs`)
+      .then((response) => dispatch(setChefs(response.data)));
+  };
+
+  const fetchAllRestaurantsData = async () => {
+    return await axios
+      .get(`${url}/restaurants/getRestaurants`)
+      .then((response) => dispatch(setRestaurants(response.data)));
+  };
+
+  const fetchAllDishesData = async () => {
+    return await axios
+      .get(`${url}/dishes/getDishes`)
+      .then((response) => dispatch(setDishes(response.data)));
+  };
 
   return (
     <>

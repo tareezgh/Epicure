@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Filter } from "./style";
 
 interface Params {
@@ -8,7 +8,12 @@ interface Params {
 }
 
 const FilterFunction = (filtersProps: Params) => {
-  const [myFilter, setMyFilter] = useState<string>(filtersProps.myFilters[0]);
+  const [myFilter, setMyFilter] = useState<string>(" ");
+  // if (filtersProps.page === "Header") setMyFilter(" ");
+
+  useEffect(() => {
+    filtersProps.page === "Header" ? setMyFilter(" ") : setMyFilter(filtersProps.myFilters[0]);
+  }, []);
 
   const renderData = (
     <>

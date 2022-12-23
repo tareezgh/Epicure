@@ -6,8 +6,6 @@ const ChefsPageMobile = () => {
   const [chefsFilter, setChefsFilter] = useState<string>("All");
   const filters = ["All", "New", "Most Viewed"];
 
-  
-
   const handleData = (filter: string) => {
     setChefsFilter(filter);
   };

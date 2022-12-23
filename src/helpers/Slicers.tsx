@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AllRestaurants, AllDishes, AllChefs } from "../services/Data";
 
 export const restaurantSlice = createSlice({
   name: "restaurants",
   initialState: {
-    value: AllRestaurants,
+    value: [],
   },
   reducers: {
     setRestaurants: (state, action) => {
@@ -16,7 +15,7 @@ export const restaurantSlice = createSlice({
 export const dishSlice = createSlice({
   name: "dishes",
   initialState: {
-    value: AllDishes,
+    value: [],
   },
   reducers: {
     setDishes: (state, action) => {
@@ -28,7 +27,7 @@ export const dishSlice = createSlice({
 export const chefSlice = createSlice({
   name: "chefs",
   initialState: {
-    value: AllChefs,
+    value: [],
   },
   reducers: {
     setChefs: (state, action) => {

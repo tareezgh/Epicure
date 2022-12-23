@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { IDish } from "../../../Interfaces/IDish";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -25,13 +26,35 @@ interface Params {
 
 const DishesCards = (dishesProps: Params) => {
   const data = useSelector((state: any) => state.dishes.value);
+  let filteredData: IDish[] = data;
+  const navigate = useNavigate();
+
+  const renderSwitch = () => {
+    switch (dishesProps.filter) {
+      case "Breakfast":
+        filteredData = data.filter((dish: IDish) => dish.type === "Breakfast");
+        break;
+      case "Launch":
+        filteredData = data.filter((dish: IDish) => dish.type === "Launch");
+        break;
+      case "Dinner":
+        filteredData = data.filter((dish: IDish) => dish.type === "Dinner");
+        break;
+      default:
+        break;
+    }
+    if (dishesProps.page === "HomePageMobile")
+      // in home page display 3 cards only
+      filteredData = data.slice(0, 3);
+  };
 
   const renderData = (
     <>
-      {data.map((dish: IDish, key: number) => (
+      {renderSwitch()}
+      {filteredData.map((dish: IDish, key: number) => (
         <SwiperSlide key={key}>
           <CardContent size={dishesProps.size}>
-            <CardImage size={dishesProps.size} src={dish.image}/>
+            <CardImage size={dishesProps.size} src={dish.image} />
 
             <CardFrame size={dishesProps.size}>
               <CardInfo>
@@ -63,9 +86,7 @@ const DishesCards = (dishesProps: Params) => {
   );
 
   return (
-    <>
-      {dishesProps.page === "Restaurant" ? renderData : renderSwiperData}
-    </>
+    <>{dishesProps.page === "Restaurant" ? renderData : renderSwiperData}</>
   );
 };
 
