@@ -16,7 +16,6 @@ const FlexContainerRow = styled.div`
 export const SignInContainer = styled(FlexContainerColumn)<{
   page?: string;
 }>`
-  // padding: 40px 0px;
   gap: 40px;
   position: fixed;
   width: ${(props) => (props.page === "Desktop" ? "573px" : "100%")};

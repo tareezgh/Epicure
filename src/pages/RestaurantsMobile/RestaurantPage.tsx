@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import axios from "axios";
+
 import FilterFunction from "../../components/Filters/FilterFunction";
 import DishesCards from "../../components/CardsMobile/DishCard/DishCard";
 import { IRestaurant } from "../../Interfaces/IRestaurant";
+import {
+  CloseIcon,
+  CloseNavbar,
+} from "../../components/Header/HeaderMobile/style";
+import Order from "../../components/Order/Order";
+
 import {
   RestaurantInfo,
   RestaurantImage,
@@ -16,16 +24,23 @@ import {
   FiltersFrame,
   DishesSection,
 } from "./style";
-import axios from "axios";
 
 const RestaurantPageMobile = () => {
   const restaurantNameByParams = useParams();
   const url = "http://localhost:3001/api";
   const data = useSelector((state: any) => state.restaurants.value);
+  const [dish, setDish] = useState<string>(" ");
   // const [restaurant, setRestaurant] = useState<IRestaurant>();
 
   const [dishesFilter, setDishesFilter] = useState<string>("Breakfast");
   const filters = ["Breakfast", "Launch", "Dinner"];
+
+  const [orderOpen, setOrderOpen] = useState<boolean>(false);
+  const toggleOrder = (name: string) => {
+    console.log(name);
+    setDish(name);
+    setOrderOpen(!orderOpen);
+  };
 
   const handleData = (filter: string) => {
     setDishesFilter(filter);
@@ -75,6 +90,7 @@ const RestaurantPageMobile = () => {
                 size={"Default"}
                 page={"Restaurant"}
                 filter={dishesFilter}
+                toggleOrder={toggleOrder}
               />
             </DishesSection>
           </RestaurantInfo>
@@ -82,7 +98,19 @@ const RestaurantPageMobile = () => {
     </>
   );
 
-  return <>{renderData}</>;
+  return (
+    <>
+      {orderOpen && (
+        <>
+          <CloseNavbar>
+            <CloseIcon onClick={() => toggleOrder(" ")} />
+          </CloseNavbar>
+          <Order dishName={dish} />
+        </>
+      )}
+      {renderData}
+    </>
+  );
 };
 
 export default RestaurantPageMobile;

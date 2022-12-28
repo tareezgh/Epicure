@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 import { IDish } from "../../../Interfaces/IDish";
 import spicyIcon from "../../../assets/spicy-icon-big.svg";
 
@@ -21,13 +20,13 @@ interface Params {
   size: string;
   page?: string;
   filter?: string;
+  toggleDish: () => void;
 }
 
 const DishesCards = (dishesProps: Params) => {
   const data = useSelector((state: any) => state.dishes.value);
   let filteredData: IDish[] = data;
 
-  const navigate = useNavigate();
 
   const renderSwitch = () => {
     switch (dishesProps.filter) {
@@ -91,7 +90,9 @@ const DishesCards = (dishesProps: Params) => {
     </>
   );
 
-  const renderCartCard = <></>;
+  const renderCartCard = <>
+  
+  </>;
 
   return <>{dishesProps.page === "Cart" ? renderCartCard : renderCard}</>;
 };

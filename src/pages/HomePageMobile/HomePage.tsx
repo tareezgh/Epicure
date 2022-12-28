@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AboutUsContainer,
   AboutUsTitle,
@@ -40,6 +41,10 @@ import DishesCards from "../../components/CardsMobile/DishCard/DishCard";
 import ChefCard from "../../components/CardsMobile/ChefCard/ChefCard";
 
 const HomePageMobile = () => {
+  const [orderOpen, setOrderOpen] = useState<boolean>(false);
+  const toggleOrder = () => {
+    setOrderOpen(!orderOpen);
+  };
   const renderAllLink = (
     <>
       <LinkAllContainer type="Restaurants">
@@ -68,7 +73,7 @@ const HomePageMobile = () => {
 
       <DishesContainer>
         <DishesTitle>Signature Dish Of:</DishesTitle>
-        <DishesCards size="Small" />
+        <DishesCards size="Small" toggleOrder={toggleOrder} />
 
         <LinkAllContainer type="Dishes">
           <LinkAllDishes> All Dishes</LinkAllDishes>

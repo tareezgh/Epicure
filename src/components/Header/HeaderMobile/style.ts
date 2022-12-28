@@ -76,12 +76,12 @@ export const CartIcon = styled(NavbarIcons).attrs({
 })``;
 
 export const CloseNavbar = styled.div`
-  position: absolute;
+  position: fixed;
   display: grid;
   grid-template-columns: 1.5fr 2fr;
   width: 100%;
   height: 46px;
-  z-index: 1;
+  z-index: 10000;
   background: #ffffff;
 `;
 

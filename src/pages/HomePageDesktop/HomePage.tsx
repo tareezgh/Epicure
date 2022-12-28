@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AboutUsContainer,
   AboutUsTitle,
@@ -40,6 +41,10 @@ import vegetarianIcon from "../../assets/vegetarian-icon-big.svg";
 import veganIcon from "../../assets/vegan-icon-big.svg";
 
 const HomePageDesktop = () => {
+  const [dishOpen, setDishOpen] = useState<boolean>(false);
+  const toggleDish = () => {
+    setDishOpen(!dishOpen);
+  };
   return (
     <>
       <HeroContainer>
@@ -67,7 +72,11 @@ const HomePageDesktop = () => {
       <Title>SIGNATURE DISH OF:</Title>
       <DishesContainer>
         <CardsFrame>
-          <DishesCards size="Big" page="HomePageDesktop" />
+          <DishesCards
+            size="Big"
+            page="HomePageDesktop"
+            toggleDish={toggleDish}
+          />
         </CardsFrame>
       </DishesContainer>
 

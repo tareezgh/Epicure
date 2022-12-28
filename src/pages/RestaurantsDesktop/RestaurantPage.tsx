@@ -24,6 +24,11 @@ const RestaurantPageDesktop = () => {
   const [dishesFilter, setDishesFilter] = useState<string>("Breakfast");
   const filters = ["Breakfast", "Launch", "Dinner"];
 
+  const [dishOpen, setDishOpen] = useState<boolean>(false);
+  const toggleDish = () => {
+    setDishOpen(!dishOpen);
+  };
+
   const handleData = (filter: string) => {
     setDishesFilter(filter);
   };
@@ -61,6 +66,7 @@ const RestaurantPageDesktop = () => {
                   size={"Small"}
                   page={"Restaurant"}
                   filter={dishesFilter}
+                  toggleDish={toggleDish}
                 />
               </RowSection>
             </DishesSection>

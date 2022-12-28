@@ -110,7 +110,7 @@ export const StarsFrame = styled(FlexContainerRow)`
   flex-grow: 0;
 `;
 
-export const Star = styled.div<{
+export const StarIcon = styled.div<{
   active?: boolean;
 }>`
   width: 40px;

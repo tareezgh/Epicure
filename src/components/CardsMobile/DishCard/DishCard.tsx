@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 import { IDish } from "../../../Interfaces/IDish";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -22,12 +21,13 @@ interface Params {
   size: string;
   page?: string;
   filter?: string;
+  toggleOrder: (name: string) => void;
 }
 
 const DishesCards = (dishesProps: Params) => {
   const data = useSelector((state: any) => state.dishes.value);
+
   let filteredData: IDish[] = data;
-  const navigate = useNavigate();
 
   const renderSwitch = () => {
     switch (dishesProps.filter) {
@@ -53,7 +53,10 @@ const DishesCards = (dishesProps: Params) => {
       {renderSwitch()}
       {filteredData.map((dish: IDish, key: number) => (
         <SwiperSlide key={key}>
-          <CardContent size={dishesProps.size}>
+          <CardContent
+            size={dishesProps.size}
+            onClick={() => dishesProps.toggleOrder(dish.name)}
+          >
             <CardImage size={dishesProps.size} src={dish.image} />
 
             <CardFrame size={dishesProps.size}>

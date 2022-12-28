@@ -9,7 +9,7 @@ import {
   CardInfo,
   RestaurantManager,
   RestaurantName,
-  Star,
+  StarIcon,
   StarsFrame,
 } from "./style";
 
@@ -67,7 +67,7 @@ const RestaurantsCards = (restaurantProps: Params) => {
             <StarsFrame>
               {[...new Array(5)].map((arr, index) => {
                 return (
-                  <Star
+                  <StarIcon
                     key={index}
                     active={index < restaurant.restaurantRating ? true : false}
                   />
