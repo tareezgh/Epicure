@@ -1,4 +1,5 @@
-import { PriceContainer } from "./style";
+import { ClearBtnFrame, ClearBtnTitle } from "../../buttons";
+import { PriceContainer, Title } from "./style";
 
 interface Params {
   page?: string;
@@ -7,7 +8,14 @@ interface Params {
 const Price = (priceProps: Params) => {
   return (
     <>
-      <PriceContainer></PriceContainer>
+      <PriceContainer>
+        <Title>Price Range Selected</Title>
+
+        {/* if clicked */}
+        <ClearBtnFrame>
+          <ClearBtnTitle>clear</ClearBtnTitle>
+        </ClearBtnFrame>
+      </PriceContainer>
     </>
   );
 };

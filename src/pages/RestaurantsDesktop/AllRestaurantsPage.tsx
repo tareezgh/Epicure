@@ -3,7 +3,7 @@ import RestaurantsCards from "../../components/CardsDesktop/RestaurantsCards/Res
 import FilterFunction from "../../components/Filters/FilterFunction";
 import Distance from "../../components/RestaurantComponents/Distance/Distance";
 import Price from "../../components/RestaurantComponents/Price/Price";
-import Rating from "../../components/RestaurantComponents/RatingComponent/Rating";
+import Rating from "../../components/RestaurantComponents/Rating/Rating";
 import {
   Arrow,
   ComponentFrame,

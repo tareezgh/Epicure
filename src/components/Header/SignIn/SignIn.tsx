@@ -1,4 +1,10 @@
 import {
+  PrimaryBtnTitle,
+  PrimaryGrayBtnFrame,
+  SecondaryBtnTitle,
+  SecondaryFrame,
+} from "../../buttons";
+import {
   ForgetQuestion,
   InfoFrame,
   InputEmail,
@@ -7,12 +13,8 @@ import {
   InputTitle,
   Line,
   Or,
-  PrimaryBtnFrame,
-  PrimaryBtnTitle,
   PrimaryFrame,
   RowSpace,
-  SecondaryBtnTitle,
-  SecondaryFrame,
   SignInContainer,
   SubTitle,
   Title,
@@ -40,9 +42,9 @@ const SignIn = (signInProps: Params) => {
         </InfoFrame>
 
         <PrimaryFrame>
-          <PrimaryBtnFrame>
+          <PrimaryGrayBtnFrame>
             <PrimaryBtnTitle>login</PrimaryBtnTitle>
-          </PrimaryBtnFrame>
+          </PrimaryGrayBtnFrame>
           <ForgetQuestion>Forget password?</ForgetQuestion>
         </PrimaryFrame>
 

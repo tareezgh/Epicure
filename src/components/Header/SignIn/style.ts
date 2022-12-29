@@ -131,35 +131,6 @@ export const PrimaryFrame = styled(FlexContainerColumn)`
   flex-grow: 0;
 `;
 
-export const PrimaryBtnFrame = styled(FlexContainerRow)`
-  padding: 5px 24px;
-  gap: 10px;
-
-  width: 206px;
-  height: 48px;
-
-  background: #979797;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
-export const PrimaryBtnTitle = styled.h3`
-  font-weight: 400;
-  line-height: 20px;
-
-  text-align: center;
-  letter-spacing: 2.67px;
-  text-transform: uppercase;
-  margin: 0;
-  color: #ffffff;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
 export const ForgetQuestion = styled.h5`
   font-weight: 400;
   font-size: 14px;
@@ -206,36 +177,6 @@ export const Or = styled.h6`
   letter-spacing: 1.97px;
   color: #979797;
   margin: 0;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
-export const SecondaryFrame = styled(FlexContainerRow)`
-  padding: 5px 15px;
-  gap: 10px;
-
-  width: 206px;
-  height: 48px;
-
-  border: 1px solid #000000;
-
-  flex: none;
-  order: 3;
-  flex-grow: 0;
-`;
-
-export const SecondaryBtnTitle = styled.h3`
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 20px;
-
-  text-align: center;
-  letter-spacing: 2.67px;
-  text-transform: uppercase;
-  margin: 0;
-  color: #000000;
-
   flex: none;
   order: 0;
   flex-grow: 0;
