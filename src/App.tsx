@@ -1,15 +1,16 @@
-import React from "react";
-
-import "./App.css";
-
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
 import { ToastContainer } from "react-toastify";
-import axios from "axios";
 import SetWindowSize from "./helpers/SetWindowSize";
-import { setChefs, setDishes, setRestaurants } from "./helpers/Slicers";
+import {
+  setChefs,
+  setDishes,
+  setAllRestaurants,
+  setOrdersNumber,
+  setOrders,
+} from "./helpers/Slicers";
 
 import HeaderMobile from "./components/Header/HeaderMobile/HeaderMobile";
 import HeaderDesktop from "./components/Header/HeaderDesktop/HeaderDesktop";
@@ -26,36 +27,23 @@ import ChefsPageDesktop from "./pages/ChefsDesktop/ChefsPage";
 import {
   fetchAllChefsData,
   fetchAllDishesData,
+  fetchAllOrdersData,
   fetchAllRestaurantsData,
 } from "./services/fetchData";
+import "./App.css";
 
 function App() {
   const windowSize = SetWindowSize();
   const dispatch = useDispatch();
+  const ordersData = useSelector((state: any) => state.orders.value);
+  dispatch(setOrdersNumber(ordersData.length));
 
   useEffect(() => {
-    fetchAllRestaurantsData().then((res) => dispatch(setRestaurants(res)));
+    fetchAllRestaurantsData().then((res) => dispatch(setAllRestaurants(res)));
     fetchAllDishesData().then((res) => dispatch(setDishes(res)));
     fetchAllChefsData().then((res) => dispatch(setChefs(res)));
+    fetchAllOrdersData().then((res) => dispatch(setOrders(res)));
   }, []);
-
-  // const fetchAllChefsData = async () => {
-  //   return await axios
-  //     .get(getChefsUrl)
-  //     .then((response) => dispatch(setChefs(response.data)));
-  // };
-
-  // const fetchAllRestaurantsData = async () => {
-  //   return await axios
-  //     .get(getRestaurantsUrl)
-  //     .then((response) => dispatch(setRestaurants(response.data)));
-  // };
-
-  // const fetchAllDishesData = async () => {
-  //   return await axios
-  //     .get(getDishesUrl)
-  //     .then((response) => dispatch(setDishes(response.data)));
-  // };
 
   return (
     <>

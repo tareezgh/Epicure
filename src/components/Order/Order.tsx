@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { setOrdersNumber } from "../../helpers/Slicers";
 
 import { IDish } from "../../Interfaces/IDish";
 import { createOrder } from "../../services/fetchData";
 import { PrimaryBtnFrame, PrimaryBtnTitle } from "../buttons";
 
 import {
-  CheckBoxIcon,
   CheckFrame,
   Content,
   Description,
@@ -19,7 +20,7 @@ import {
   Quantity,
   QuantityFrame,
   RadioFrame,
-  RadioIcon,
+  Icon,
   RowFrame,
   SubTitle,
   Title,
@@ -28,18 +29,32 @@ import {
 interface Params {
   page?: string;
   dishName: string;
+  toggleOrder: (str: string) => void;
 }
 
 const Order = (orderProps: Params) => {
-  const data = useSelector((state: any) => state.dishes.value);
-  const [selectRadioBtn, setSelectRadioBtn] = useState("optionA");
-
+  const dispatch = useDispatch();
+  const dishesData = useSelector((state: any) => state.dishes.value);
+  const ordersNumber = useSelector((state: any) => state.orders.counter);
+  const [selectRadioBtn, setSelectRadioBtn] = useState("");
+  const selectCheckBoxBtn: string[] = [];
   let [quantity, setQuantity] = useState<number>(1);
 
-  // const handleSelectChange = event => {
-  //   const value = event.target.value;
-  //   setSelectRadioBtn(value);
-  // };
+  const handleRadioOptionChange = (event: any) => {
+    const value = event.target.value;
+    setSelectRadioBtn(value);
+  };
+
+  const handleCheckBoxOptionChange = (event: any) => {
+    const value = event.target.value;
+    if (selectCheckBoxBtn.includes(value)) {
+      let index = selectCheckBoxBtn.indexOf(value);
+      selectCheckBoxBtn.splice(index, 1);
+    } else {
+      selectCheckBoxBtn.push(value);
+    }
+    console.log(selectCheckBoxBtn);
+  };
 
   const clickPlus = () => {
     setQuantity(quantity++);
@@ -50,13 +65,30 @@ const Order = (orderProps: Params) => {
   };
 
   const clickAddToBag = (dish: IDish) => {
-    createOrder(dish);
+    if (selectRadioBtn !== "") {
+      createOrder(dish, selectRadioBtn, selectCheckBoxBtn, quantity).then(
+        () => {
+          orderProps.toggleOrder(" ");
+          dispatch(setOrdersNumber(ordersNumber + 1));
+        }
+      );
+    } else {
+      toast.error("Should choose a side first!", {
+        hideProgressBar: true,
+        position: "bottom-center",
+      });
+    }
   };
 
   const renderRadioBtn = (str: string) => (
     <>
       <RowFrame>
-        <RadioIcon />
+        <Icon
+          type="radio"
+          value={str}
+          checked={selectRadioBtn === str}
+          onChange={handleRadioOptionChange}
+        />
         <Content>{str}</Content>
       </RowFrame>
     </>
@@ -65,7 +97,12 @@ const Order = (orderProps: Params) => {
   const renderCheckBoxBtn = (str: string) => (
     <>
       <RowFrame>
-        <CheckBoxIcon />
+        <Icon
+          type="checkbox"
+          value={str}
+          onChange={handleCheckBoxOptionChange}
+          checked={selectCheckBoxBtn.includes(str)}
+        />
         <Content>{str}</Content>
       </RowFrame>
     </>
@@ -73,7 +110,7 @@ const Order = (orderProps: Params) => {
 
   const renderData = (
     <>
-      {data
+      {dishesData
         .filter((dish: IDish) => dish.name === orderProps.dishName)
         .map((dish: IDish, key: number) => (
           <OrderContainer key={key} page={orderProps.page}>
@@ -84,7 +121,7 @@ const Order = (orderProps: Params) => {
             </InfoFrame>
 
             <RadioFrame>
-              <SubTitle>Choose a side</SubTitle>
+              <SubTitle>Choose a side*</SubTitle>
               {renderRadioBtn("White bread")}
               {renderRadioBtn("Sticky rice")}
             </RadioFrame>
@@ -98,9 +135,15 @@ const Order = (orderProps: Params) => {
             <QuantityFrame>
               <SubTitle>Quantity</SubTitle>
               <InsideFrame>
-                <Minus active={false} onClick={clickMinus} />
+                <Minus
+                  active={quantity <= 1 ? false : true}
+                  onClick={clickMinus}
+                />
                 <Quantity>{quantity}</Quantity>
-                <Plus active={true} onClick={clickPlus} />
+                <Plus
+                  active={quantity > 100 ? false : true}
+                  onClick={clickPlus}
+                />
               </InsideFrame>
             </QuantityFrame>
 

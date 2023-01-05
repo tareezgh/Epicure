@@ -12,7 +12,7 @@ import {
   DishName,
   Price,
   PriceFrame,
-  SpicyIcon,
+  SignatureIcon,
   SlideRow,
   RowSpace,
 } from "./style";
@@ -25,28 +25,42 @@ interface Params {
 }
 
 const DishesCards = (dishesProps: Params) => {
-  const data = useSelector((state: any) => state.dishes.value);
+  const dishesData = useSelector((state: any) => state.dishes.value);
 
-  let filteredData: IDish[] = data;
+  let filteredData: IDish[] = dishesData;
 
   const renderSwitch = () => {
     switch (dishesProps.filter) {
       case "Breakfast":
-        filteredData = data.filter((dish: IDish) => dish.type === "Breakfast");
+        filteredData = dishesData.filter(
+          (dish: IDish) => dish.type === "Breakfast"
+        );
         break;
       case "Launch":
-        filteredData = data.filter((dish: IDish) => dish.type === "Launch");
+        filteredData = dishesData.filter(
+          (dish: IDish) => dish.type === "Launch"
+        );
         break;
       case "Dinner":
-        filteredData = data.filter((dish: IDish) => dish.type === "Dinner");
+        filteredData = dishesData.filter(
+          (dish: IDish) => dish.type === "Dinner"
+        );
         break;
       default:
         break;
     }
     if (dishesProps.page === "HomePageMobile")
       // in home page display 3 cards only
-      filteredData = data.slice(0, 3);
+      filteredData = dishesData.slice(0, 3);
   };
+
+  const renderIconCardData = (signature: string) => (
+    <>
+      <SignatureIcon
+        src={require(`../../../assets/${signature}-icon-small.svg`)}
+      />
+    </>
+  );
 
   const renderData = (
     <>
@@ -65,7 +79,11 @@ const DishesCards = (dishesProps: Params) => {
                 <DishDescription size={dishesProps.size}>
                   {dish.description}
                 </DishDescription>
-                <>{dishesProps.page === "Restaurant" ? "" : <SpicyIcon />}</>
+                <>
+                  {dishesProps.page === "Restaurant"
+                    ? ""
+                    : renderIconCardData(dish.signature)}
+                </>
               </CardInfo>
 
               <PriceFrame size={dishesProps.size}>

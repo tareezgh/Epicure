@@ -1,12 +1,20 @@
-const url = "http://localhost:3001/api";
+export const url = "http://localhost:3001/api";
 
-export const getChefsUrl = "http://localhost:3001/api/chefs/getChefs";
+// Restaurant
+export const getRestaurantsUrl = `${url}/restaurants/getRestaurants`;
+export const getSingleRestaurantUrl = `${url}/restaurants/getRestaurant`;
 
-export const getRestaurantsUrl =
-  "http://localhost:3001/api/restaurants/getRestaurants";
+// Chefs
+export const getChefsUrl = `${url}/chefs/getChefs`;
+export const getChefOfTheWeekUrl = `${url}/chefs/getChefOfTheWeek`; // not implemented
 
-export const getDishesUrl = "http://localhost:3001/api/dishes/getDishes";
+// Dishes
+export const getDishesUrl = `${url}/dishes/getDishes`;
 
-export const createOrderUrl = "http://localhost:3001/api/orders/createOrder";
+// Order
+export const createOrderUrl = `${url}/orders/createOrder`;
+export const getOrdersUrl = `${url}/orders/getOrders`;
 
-export const createUserUrl = "http://localhost:3001/api/user/createUser";
+// User
+export const loginUrl = `${url}/auth/login`;
+export const registerUrl = `${url}/auth/register`;

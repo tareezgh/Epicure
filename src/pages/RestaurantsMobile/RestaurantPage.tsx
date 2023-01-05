@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import axios from "axios";
+
 
 import FilterFunction from "../../components/Filters/FilterFunction";
 import DishesCards from "../../components/CardsMobile/DishCard/DishCard";
@@ -25,19 +25,21 @@ import {
   DishesSection,
 } from "./style";
 
+
 const RestaurantPageMobile = () => {
   const restaurantNameByParams = useParams();
-  const url = "http://localhost:3001/api";
+  // const dispatch = useDispatch();
   const data = useSelector((state: any) => state.restaurants.value);
+  // const restaurant = useSelector((state: any) => state.restaurants.restaurant);
+  // const [myRestaurant, setMyRestaurant] = useState<any>();
   const [dish, setDish] = useState<string>(" ");
-  // const [restaurant, setRestaurant] = useState<IRestaurant>();
 
   const [dishesFilter, setDishesFilter] = useState<string>("Breakfast");
   const filters = ["Breakfast", "Launch", "Dinner"];
 
   const [orderOpen, setOrderOpen] = useState<boolean>(false);
+
   const toggleOrder = (name: string) => {
-    console.log(name);
     setDish(name);
     setOrderOpen(!orderOpen);
   };
@@ -46,18 +48,10 @@ const RestaurantPageMobile = () => {
     setDishesFilter(filter);
   };
 
-  const fetchRestaurantData = async () => {
-    return await axios
-      .get(`${url}/restaurants/getRestaurant`, {
-        params: {
-          name: restaurantNameByParams.name,
-        },
-      })
-      .then((response) => console.log("data " + response.data.name));
-  };
-
   useEffect(() => {
-    fetchRestaurantData(); // Not found
+    // fetchRestaurantData("Claro").then((res) => dispatch(setRestaurant(res)));
+    // console.log(restaurant);
+    // setMyRestaurant(data);
   }, []);
 
   const renderData = (
@@ -105,7 +99,7 @@ const RestaurantPageMobile = () => {
           <CloseNavbar>
             <CloseIcon onClick={() => toggleOrder(" ")} />
           </CloseNavbar>
-          <Order dishName={dish} />
+          <Order dishName={dish} toggleOrder={toggleOrder}/>
         </>
       )}
       {renderData}

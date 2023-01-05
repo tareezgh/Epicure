@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 import currencyIcon from "../../../assets/currency-icon.svg";
-import spicyIcon from "../../../assets/spicy-icon-small.svg";
-
 
 const FlexContainerColumn = styled.div`
   display: flex;
@@ -97,7 +95,6 @@ export const DishDescription = styled.p<{
 
   font-size: 16px;
   line-height: 20px;
-  /* or 125% */
   letter-spacing: 1.8px;
 
   margin: 8px 0 0 0;
@@ -106,13 +103,11 @@ export const DishDescription = styled.p<{
   flex-grow: 0;
 `;
 
-export const SpicyIcon = styled.img.attrs({
-  src: spicyIcon,
-})`
-  width: 30px;
-  height: 24px;
-
-  // padding-left: 16px;
+export const SignatureIcon = styled.img`
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  // width: 30px;
+  // height: 24px;
 
   flex: none;
   order: 2;
@@ -135,7 +130,6 @@ export const PriceFrame = styled(FlexContainerRow)<{
 
   flex: none;
   order: 1;
-  
 `;
 
 export const CurrencyIcon = styled.img.attrs({
@@ -156,7 +150,6 @@ export const Price = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  /* identical to box height, or 119% */
   text-align: center;
   letter-spacing: 1.97px;
 
@@ -171,7 +164,7 @@ export const RowSpace = styled.div`
 
   border: 0.5px solid #979797;
   margin-left: 12px;
- 
+
   flex: none;
   order: 1;
   flex-grow: 1;

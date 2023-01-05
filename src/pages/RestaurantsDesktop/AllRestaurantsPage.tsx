@@ -23,7 +23,7 @@ const AllRestaurantsPageDesktop = () => {
   const [restaurantsFilter, setRestaurantsFilter] = useState<string>("All");
   const filters = ["All", "New", "Most Popular", "Open Now", "Map View"];
   const buttons = ["Price Range", "Distance", "Rating"];
-  // let flag = 0;
+
 
   const handleData = (filter: string) => {
     setRestaurantsFilter(filter);
@@ -59,14 +59,14 @@ const AllRestaurantsPageDesktop = () => {
       default:
         break;
     }
-    // flag = 1;
+
   };
 
   const renderComponent = buttons.map((button: string, key: number) => (
     <InsiderFrame
       key={key}
       // style={{
-      //   background: flag === 1 ? "#D0CFCF" : "#FAFAFA",
+      //   background:  ? "#D0CFCF" : "#FAFAFA",
       // }}
     >
       <ComponentFrame onClick={() => toggle(button)}>

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 import FilterFunction from "../../Filters/FilterFunction";
 import Search from "../../Search/Search";
 import SignIn from "../SignIn/SignIn";
 import Cart from "../Cart/Cart";
 
 import {
+  Badge,
   CartIcon,
   CloseIcon,
   EpicureLogo,
@@ -21,17 +23,21 @@ import {
 
 const HeaderDesktop = () => {
   const navigate = useNavigate();
+  const ordersNumber = useSelector((state: any) => state.orders.counter);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [userOpen, setUserOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const filters = ["Restaurants", "Chefs"];
 
   const toggleSearch = () => {
+    if (cartOpen) toggleCart();
+    if (userOpen) toggleUser();
     setSearchOpen(!searchOpen);
   };
 
   const toggleUser = () => {
-    // not implemented yet
+    if (cartOpen) toggleCart();
+    if (searchOpen) toggleSearch();
     setUserOpen(!userOpen);
   };
 
@@ -52,14 +58,6 @@ const HeaderDesktop = () => {
       default:
         break;
     }
-  };
-
-  const getWindowDimensions = () => {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-      width,
-      height,
-    };
   };
 
   return (
@@ -94,8 +92,11 @@ const HeaderDesktop = () => {
             </>
 
             <UserIcon onClick={toggleUser} />
+            {ordersNumber ? <Badge>{ordersNumber}</Badge> : ""}
             <CartIcon onClick={toggleCart} />
           </IconsContainer>
+
+          {/* Pop Ups */}
 
           {cartOpen && <Cart page="Desktop" />}
 

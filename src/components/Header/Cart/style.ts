@@ -18,20 +18,12 @@ const FlexContainerRow = styled.div`
 export const CartContainer = styled(FlexContainerColumn)<{
   page?: string;
 }>`
-  ${(props) =>
-    props.page === "Desktop"
-      ? `
-      width: 497px;
-      // height: 586px;
-      top: 64px;
-      right: 0;
-      `
-      : `
-      width: 100%;
-      // height: 218px;
-      top: 46px;
-      `};
+  width: ${(props) => (props.page === "Desktop" ? "497px" : "100%")};
+  top: ${(props) => (props.page === "Desktop" ? "64px" : "46px")};
 
+  right: ${(props) => (props.page === "Desktop" ? "0" : "")};
+
+  height: 514px;
   gap: 20px;
   position: absolute;
   z-index: 1;
@@ -62,11 +54,53 @@ export const CartStatus = styled.h3`
   color: #000000;
 `;
 
+export const Frame = styled(FlexContainerColumn)`
+  padding: 0px;
+  gap: 4px;
+  margin-top: 16px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+export const SummaryFrame = styled(FlexContainerRow)`
+  padding: 0px;
+  gap: 4px;
+  margin-top: 16px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+export const Title = styled.h3`
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+
+  align-items: center;
+  text-align: center;
+  letter-spacing: 2.67px;
+  text-transform: uppercase;
+  margin: 0;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+export const RestaurantName = styled.h3`
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 1.97px;
+  margin: 0;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+`;
+
 export const CardContent = styled(FlexContainerRow)`
   width: 340px;
   height: 96px;
   padding: 0px;
-  // margin-bottom: 12px;
   justify-content: flex-start;
   flex: none;
   order: 0;
@@ -88,10 +122,9 @@ export const CardImage = styled.img<{
 export const CardFrame = styled(FlexContainerColumn)`
   padding: 12px 12px 12px 24px;
   gap: 8px;
-
   width: 208px;
   height: 72px;
-  text-align: flex-start;
+  align-items: flex-start;
   background: #f9f4ea;
 
   flex: none;
@@ -144,16 +177,20 @@ export const ChangesFrame = styled(FlexContainerRow)`
   flex-grow: 0;
 `;
 
-export const PriceFrame = styled(FlexContainerRow)`
+export const PriceFrame = styled(FlexContainerRow)<{
+  changeOrder?: Boolean;
+}>`
   justify-content: flex-end;
 
   padding: 0px;
   gap: 2px;
 
-  width: 208px;
+  // width: 208px;
   height: 14px;
-
+  margin-right: 12px;
   flex: none;
+
+  order: ${(props) => (props.changeOrder ? "0" : "2")};
   order: 2;
   align-self: stretch;
   flex-grow: 1;

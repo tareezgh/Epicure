@@ -75,6 +75,25 @@ export const CartIcon = styled(NavbarIcons).attrs({
   src: cartIcon,
 })``;
 
+export const Badge = styled.div`
+  display: inline-block;
+  position: relative;
+  border-radius: 50%;
+  background: #000000;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  top: -18px;
+  left: 30px;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 10px;
+  letter-spacing: 1.29px;
+
+  text-align: center;
+  color: #ffffff;
+`;
+
 export const CloseNavbar = styled.div`
   position: fixed;
   display: grid;

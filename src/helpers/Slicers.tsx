@@ -4,13 +4,18 @@ export const restaurantSlice = createSlice({
   name: "restaurants",
   initialState: {
     value: [],
+    restaurant: {},
   },
   reducers: {
-    setRestaurants: (state, action) => {
+    setAllRestaurants: (state, action) => {
       state.value = action.payload;
+    },
+    setRestaurant: (state, action) => {
+      state.restaurant = action.payload;
     },
   },
 });
+
 
 export const dishSlice = createSlice({
   name: "dishes",
@@ -36,7 +41,37 @@ export const chefSlice = createSlice({
   },
 });
 
+export const orderSlice = createSlice({
+  name: "orders",
+  initialState: {
+    value: [],
+    counter: 0,
+  },
+  reducers: {
+    setOrders: (state, action) => {
+      state.value = action.payload;
+    },
+    setOrdersNumber: (state, action) => {
+      state.counter = action.payload;
+    },
+  },
+});
+
+export const userSlice = createSlice({
+  name: "users",
+  initialState: {
+    value: [],
+  },
+  reducers: {
+    setUsers: (state, action) => {
+      state.value = action.payload;
+    },
+  },
+});
+
 // Action creators are generated for each case reducer function
-export const { setRestaurants } = restaurantSlice.actions;
+export const { setAllRestaurants, setRestaurant } = restaurantSlice.actions;
 export const { setDishes } = dishSlice.actions;
 export const { setChefs } = chefSlice.actions;
+export const { setOrders, setOrdersNumber } = orderSlice.actions;
+export const { setUsers } = userSlice.actions;

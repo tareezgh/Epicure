@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 import {
   NavbarContainer,
   NavbarLeftSideContainer,
@@ -14,6 +15,7 @@ import {
   CloseNavbar,
   CloseNavbarTitle,
   SearchContainer,
+  Badge,
 } from "./style";
 
 import Hamburger from "../Hamburger/Hamburger";
@@ -23,22 +25,27 @@ import SignIn from "../SignIn/SignIn";
 
 const HeaderMobile = () => {
   const navigate = useNavigate();
+  const ordersNumber = useSelector((state: any) => state.orders.counter);
   const [hamburgerOpen, setHamburgerOpen] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
-  const [userOpen, setUserOpen] = useState<boolean>(false); // not implemented yet
+  const [userOpen, setUserOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
 
   const toggleHamburger = () => {
     if (cartOpen) toggleCart();
+    if (userOpen) toggleUser();
     setHamburgerOpen(!hamburgerOpen);
   };
 
   const toggleSearch = () => {
     if (cartOpen) toggleCart();
+    if (userOpen) toggleUser();
     setSearchOpen(!searchOpen);
   };
 
   const toggleUser = () => {
+    if (cartOpen) toggleCart();
+    if (searchOpen) toggleSearch();
     setUserOpen(!userOpen);
   };
 
@@ -61,6 +68,7 @@ const HeaderMobile = () => {
         <NavbarRightSideContainer>
           <SearchIcon onClick={toggleSearch} />
           <UserIcon onClick={toggleUser} />
+          {ordersNumber ? <Badge>{ordersNumber}</Badge> : ""}
           <CartIcon onClick={toggleCart} />
         </NavbarRightSideContainer>
 

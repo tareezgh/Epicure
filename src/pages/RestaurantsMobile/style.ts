@@ -30,7 +30,9 @@ export const FiltersFrame = styled(FlexContainerRow)`
   gap: 20px;
 `;
 
-export const RestaurantInfo = styled.div``;
+export const RestaurantInfo = styled.div`
+  height: auto;
+`;
 
 export const RestaurantsSection = styled(FlexContainerColumn)`
   padding: 0px;

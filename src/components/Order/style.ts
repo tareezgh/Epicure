@@ -128,18 +128,33 @@ export const RowFrame = styled(FlexContainerRow)`
   flex-grow: 0;
 `;
 
-export const RadioIcon = styled.img.attrs({
-  src: radioIcon,
-})`
+// type="radio"
+
+export const Icon = styled.input`
   width: 18px;
   height: 18px;
 
-  // background-repeat: no-repeat;
   cursor: pointer;
   flex: none;
   order: 0;
   flex-grow: 0;
+  &:active {
+    background: #000;
+  }
 `;
+
+// export const RadioIcon = styled.img.attrs({
+//   src: radioIcon,
+// })`
+//   width: 18px;
+//   height: 18px;
+
+//   // background-repeat: no-repeat;
+//   cursor: pointer;
+//   flex: none;
+//   order: 0;
+//   flex-grow: 0;
+// `;
 // &:active{
 //   background-image: url(${(props) => props.src});
 // }
@@ -156,7 +171,7 @@ export const CheckBoxIcon = styled.img.attrs({
   flex-grow: 0;
 `;
 
-export const Content = styled.h4`
+export const Content = styled.label`
   line-height: 18px;
 
   text-align: center;
@@ -190,9 +205,9 @@ export const Minus = styled.div<{
   width: 19px;
   height: 0;
   margin: auto;
-  opacity: ${(props) => (props.active ? "1" : "0.3")};
+  opacity: ${(props) => (props.active ? "0.8" : "0.3")};
 
-  border: 1.2px solid #000000;
+  border: 1px solid #000000;
   cursor: pointer;
   flex: none;
   order: 0;
