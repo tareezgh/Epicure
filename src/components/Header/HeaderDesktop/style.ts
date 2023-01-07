@@ -73,7 +73,7 @@ export const IconsContainer = styled(FlexContainerRow)`
   justify-content: flex-end;
   align-items: center;
   padding: 0px;
-  gap: 24px;
+  gap: 4px;
 
   width: 60%;
   height: 36px;
@@ -118,14 +118,15 @@ export const Badge = styled.div`
   position: relative;
   border-radius: 50%;
   background: #000000;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
   margin: 0;
-  top: -18px;
-  left: 30px;
+  top: -11px;
+  left: 36px;
+
   font-weight: 700;
-  font-size: 8px;
-  line-height: 10px;
+  font-size: 12px;
+  line-height: 18px;
   letter-spacing: 1.29px;
 
   text-align: center;

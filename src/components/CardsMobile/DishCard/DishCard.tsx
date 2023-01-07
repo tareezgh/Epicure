@@ -26,7 +26,6 @@ interface Params {
 
 const DishesCards = (dishesProps: Params) => {
   const dishesData = useSelector((state: any) => state.dishes.value);
-
   let filteredData: IDish[] = dishesData;
 
   const renderSwitch = () => {

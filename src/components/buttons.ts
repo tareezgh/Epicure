@@ -12,10 +12,8 @@ const FlexContainerRow = styled.div`
 export const PrimaryBtnFrame = styled(FlexContainerRow)`
   padding: 5px 24px;
   gap: 10px;
-
   width: 206px;
   height: 48px;
-
   background: #000000;
   margin: 40px 0 0 20px;
   flex: none;
@@ -61,8 +59,6 @@ export const PrimaryGrayBtnFrame = styled(FlexContainerRow)`
 
   width: 206px;
   height: 48px;
-
-  background: #979797;
 
   flex: none;
   order: 0;

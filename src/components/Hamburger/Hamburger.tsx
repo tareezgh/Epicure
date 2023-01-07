@@ -1,6 +1,6 @@
-import Footer from "../../Footer/Footer";
+import Footer from "../Footer/Footer";
 
-import { CloseNavbar, CloseIcon } from "../HeaderMobile/style";
+import { CloseNavbar, CloseIcon } from "../Header/HeaderMobile/style";
 import {
   HamburgerContainer,
   RestaurantsLink,
@@ -10,7 +10,7 @@ import {
 
 interface Params {
   toggleHamburger: () => void;
-};
+}
 
 const Hamburger = (hamburgerProps: Params) => {
   return (

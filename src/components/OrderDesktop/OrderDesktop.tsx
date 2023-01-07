@@ -8,6 +8,7 @@ import { createOrder } from "../../services/fetchData";
 import { PrimaryBtnFrame, PrimaryBtnTitle } from "../buttons";
 
 import {
+  AllInfoContainer,
   CheckFrame,
   Content,
   Description,
@@ -24,10 +25,19 @@ import {
   RowFrame,
   SubTitle,
   Title,
+  CloseIcon,
+  CloseNavbar,
 } from "./style";
+import {
+  PriceAndIcon,
+  PriceFrame,
+  CurrencyIcon,
+  Price,
+  Line,
+  SignatureIcon,
+} from "../CardsDesktop/DishCard/style";
 
 interface Params {
-  page?: string;
   dishName: string;
   toggleOrder: (str: string) => void;
 }
@@ -43,6 +53,29 @@ const Order = (orderProps: Params) => {
   const handleRadioOptionChange = (event: any) => {
     const value = event.target.value;
     setSelectRadioBtn(value);
+  };
+
+  const renderIconCardData = (signature: string) => (
+    <>
+      <SignatureIcon
+        src={require(`../../assets/${signature}-icon-small.svg`)}
+      />
+    </>
+  );
+
+  const renderPrice = (dish: IDish) => {
+    return (
+      <>
+        <PriceFrame>
+          <Line />
+          <PriceAndIcon>
+            <CurrencyIcon />
+            <Price>{dish.price}</Price>
+          </PriceAndIcon>
+          <Line second={true} />
+        </PriceFrame>
+      </>
+    );
   };
 
   const handleCheckBoxOptionChange = (event: any) => {
@@ -61,7 +94,7 @@ const Order = (orderProps: Params) => {
   };
 
   const clickMinus = () => {
-    setQuantity(quantity--);
+    if (quantity > 0) setQuantity(quantity--);
   };
 
   const clickAddToBag = (dish: IDish) => {
@@ -113,40 +146,47 @@ const Order = (orderProps: Params) => {
       {dishesData
         .filter((dish: IDish) => dish.name === orderProps.dishName)
         .map((dish: IDish, key: number) => (
-          <OrderContainer key={key} page={orderProps.page}>
+          <OrderContainer key={key}>
+            <CloseNavbar>
+              <CloseIcon onClick={() => orderProps.toggleOrder(" ")} />
+            </CloseNavbar>
             <DishImage src={dish.image} />
-            <InfoFrame>
-              <Title>{dish.name}</Title>
-              <Description>{dish.description}</Description>
-            </InfoFrame>
+            <AllInfoContainer>
+              <InfoFrame>
+                <Title>{dish.name}</Title>
+                <Description>{dish.description}</Description>
+                <>{renderIconCardData(dish.signature)}</>
 
-            <RadioFrame>
-              <SubTitle>Choose a side*</SubTitle>
-              {renderRadioBtn("White bread")}
-              {renderRadioBtn("Sticky rice")}
-            </RadioFrame>
+                <>{renderPrice(dish)}</>
+              </InfoFrame>
 
-            <CheckFrame>
-              <SubTitle>Changes</SubTitle>
-              {renderCheckBoxBtn("Without peanuts")}
-              {renderCheckBoxBtn("Sticky Less spicy")}
-            </CheckFrame>
+              <RadioFrame>
+                <SubTitle>Choose a side*</SubTitle>
+                {renderRadioBtn("White bread")}
+                {renderRadioBtn("Sticky rice")}
+              </RadioFrame>
 
-            <QuantityFrame>
-              <SubTitle>Quantity</SubTitle>
-              <InsideFrame>
-                <Minus
-                  active={quantity <= 1 ? false : true}
-                  onClick={clickMinus}
-                />
-                <Quantity>{quantity}</Quantity>
-                <Plus
-                  active={quantity > 100 ? false : true}
-                  onClick={clickPlus}
-                />
-              </InsideFrame>
-            </QuantityFrame>
+              <CheckFrame>
+                <SubTitle>Changes</SubTitle>
+                {renderCheckBoxBtn("Without peanuts")}
+                {renderCheckBoxBtn("Sticky Less spicy")}
+              </CheckFrame>
 
+              <QuantityFrame>
+                <SubTitle>Quantity</SubTitle>
+                <InsideFrame>
+                  <Minus
+                    active={quantity <= 1 ? false : true}
+                    onClick={clickMinus}
+                  />
+                  <Quantity>{quantity}</Quantity>
+                  <Plus
+                    active={quantity > 100 ? false : true}
+                    onClick={clickPlus}
+                  />
+                </InsideFrame>
+              </QuantityFrame>
+            </AllInfoContainer>
             <PrimaryBtnFrame onClick={() => clickAddToBag(dish)}>
               <PrimaryBtnTitle>Add to bag</PrimaryBtnTitle>
             </PrimaryBtnFrame>

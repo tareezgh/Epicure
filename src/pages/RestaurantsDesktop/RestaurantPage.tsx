@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import FilterFunction from "../../components/Filters/FilterFunction";
 import DishesCards from "../../components/CardsDesktop/DishCard/DishCard";
 import { IRestaurant } from "../../Interfaces/IRestaurant";
+import Order from "../../components/OrderDesktop/OrderDesktop";
+
 import {
   RestaurantInfo,
   RestaurantImage,
@@ -19,14 +21,24 @@ import {
 
 const RestaurantPageDesktop = () => {
   const restaurantNameByParams = useParams();
-  const data = useSelector((state: any) => state.restaurants.value);
+  const dispatch = useDispatch();
+  const restaurantsData = useSelector((state: any) => state.restaurants.value);
+  const [orderOpen, setOrderOpen] = useState<boolean>(false);
+  const [dish, setDish] = useState<string>(" ");
 
   const [dishesFilter, setDishesFilter] = useState<string>("Breakfast");
   const filters = ["Breakfast", "Launch", "Dinner"];
 
-  const [dishOpen, setDishOpen] = useState<boolean>(false);
-  const toggleDish = () => {
-    setDishOpen(!dishOpen);
+  const backgroundStyle = {
+    opacity: `${orderOpen ? "0.5" : ""}`,
+  };
+
+  // BUG
+  const toggleOrder = (name: string) => {
+    const temp = dish;
+    setDish(name);
+    setOrderOpen(!orderOpen);
+    // if (name !== " " || name === dish) { }
   };
 
   const handleData = (filter: string) => {
@@ -35,13 +47,13 @@ const RestaurantPageDesktop = () => {
 
   const renderData = (
     <>
-      {data
+      {restaurantsData
         .filter(
           (restaurant: IRestaurant) =>
             restaurant.name === restaurantNameByParams.name
         )
         .map((restaurant: IRestaurant, key: number) => (
-          <RestaurantInfo key={key}>
+          <RestaurantInfo key={key} style={backgroundStyle}>
             <RestaurantImage src={restaurant.image} />
 
             <RestaurantName>{restaurant.name}</RestaurantName>
@@ -66,7 +78,7 @@ const RestaurantPageDesktop = () => {
                   size={"Small"}
                   page={"Restaurant"}
                   filter={dishesFilter}
-                  toggleDish={toggleDish}
+                  toggleOrder={toggleOrder}
                 />
               </RowSection>
             </DishesSection>
@@ -75,7 +87,16 @@ const RestaurantPageDesktop = () => {
     </>
   );
 
-  return <>{renderData}</>;
+  return (
+    <>
+      {orderOpen && (
+        <>
+          <Order dishName={dish} toggleOrder={toggleOrder} />
+        </>
+      )}
+      {renderData}
+    </>
+  );
 };
 
 export default RestaurantPageDesktop;

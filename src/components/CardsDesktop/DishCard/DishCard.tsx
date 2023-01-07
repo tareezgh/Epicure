@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { IDish } from "../../../Interfaces/IDish";
-import spicyIcon from "../../../assets/spicy-icon-big.svg";
 
 import {
   CardContent,
@@ -13,38 +12,51 @@ import {
   Price,
   PriceFrame,
   PriceAndIcon,
-  SpicyIcon,
+  SignatureIcon,
 } from "./style";
 
 interface Params {
   size: string;
   page?: string;
   filter?: string;
-  toggleDish: () => void;
+  toggleOrder: (name: string) => void;
 }
 
 const DishesCards = (dishesProps: Params) => {
-  const data = useSelector((state: any) => state.dishes.value);
-  let filteredData: IDish[] = data;
+  const dishesData = useSelector((state: any) => state.dishes.value);
+  let filteredData: IDish[] = dishesData;
 
+  const renderIconCardData = (signature: string) => (
+    <>
+      <SignatureIcon
+        src={require(`../../../assets/${signature}-icon-big.svg`)}
+      />
+    </>
+  );
 
   const renderSwitch = () => {
     switch (dishesProps.filter) {
       case "Breakfast":
-        filteredData = data.filter((dish: IDish) => dish.type === "Breakfast");
+        filteredData = dishesData.filter(
+          (dish: IDish) => dish.type === "Breakfast"
+        );
         break;
       case "Launch":
-        filteredData = data.filter((dish: IDish) => dish.type === "Launch");
+        filteredData = dishesData.filter(
+          (dish: IDish) => dish.type === "Launch"
+        );
         break;
       case "Dinner":
-        filteredData = data.filter((dish: IDish) => dish.type === "Dinner");
+        filteredData = dishesData.filter(
+          (dish: IDish) => dish.type === "Dinner"
+        );
         break;
       default:
         break;
     }
     if (dishesProps.page === "HomePageDesktop")
       // in home page display 3 cards only
-      filteredData = data.slice(0, 3);
+      filteredData = dishesData.slice(0, 3);
   };
 
   const renderPrice = (dish: IDish) => {
@@ -66,12 +78,12 @@ const DishesCards = (dishesProps: Params) => {
     <>
       {renderSwitch()}
       {filteredData.map((dish: IDish, key: number) => (
-        <CardContent key={key} size={dishesProps.size}>
-          <CardImage
-            size={dishesProps.size}
-            onClick={() => ""}
-            src={dish.image}
-          />
+        <CardContent
+          key={key}
+          size={dishesProps.size}
+          onClick={() => dishesProps.toggleOrder(dish.name)}
+        >
+          <CardImage size={dishesProps.size} src={dish.image} />
 
           <CardFrame size={dishesProps.size}>
             <DishName size={dishesProps.size}>{dish.name}</DishName>
@@ -80,7 +92,7 @@ const DishesCards = (dishesProps: Params) => {
             </DishDescription>
 
             {dishesProps.page === "HomePageDesktop" && key !== 1 ? (
-              <SpicyIcon src={spicyIcon} />
+              renderIconCardData(dish.signature)
             ) : (
               <>{renderPrice(dish)}</>
             )}
@@ -90,11 +102,7 @@ const DishesCards = (dishesProps: Params) => {
     </>
   );
 
-  const renderCartCard = <>
-  
-  </>;
-
-  return <>{dishesProps.page === "Cart" ? renderCartCard : renderCard}</>;
+  return <>{renderCard}</>;
 };
 
 export default DishesCards;

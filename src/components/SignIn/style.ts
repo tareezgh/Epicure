@@ -111,10 +111,12 @@ const Input = styled.input`
 
 export const InputEmail = styled(Input).attrs({
   placeholder: "Email address",
+  type: "email",
 })``;
 
 export const InputPassword = styled(Input).attrs({
   placeholder: "Password",
+  type: "password",
 })``;
 
 //

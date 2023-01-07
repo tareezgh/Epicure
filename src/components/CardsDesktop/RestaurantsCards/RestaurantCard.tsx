@@ -39,7 +39,10 @@ const RestaurantsCards = (restaurantProps: Params) => {
       case "Open Now":
         filteredData = data.filter(
           (restaurant: IRestaurant) => restaurant.isOpen === true
-        ); // need to check by date exactly
+        ); // need to check by date exactly // BUG
+        break;
+      case "Map View":
+        filteredData = []; // need to view map
         break;
       default:
         break;

@@ -8,6 +8,8 @@ import {
   getOrdersUrl,
   getRestaurantsUrl,
   getSingleRestaurantUrl,
+  loginUrl,
+  registerUrl,
 } from "../constants";
 import { IDish } from "../Interfaces/IDish";
 
@@ -65,7 +67,7 @@ export const createOrder = async (
   dish: IDish,
   selectRadioBtn: string,
   selectCheckBoxBtn: string[],
-  quantity: number,
+  quantity: number
 ) => {
   const args = {
     restaurant: dish.restaurant,
@@ -98,17 +100,42 @@ export const fetchAllOrdersData = async () => {
 
 // Users
 
-// export const createUser = async (user: any) => {
-//   const args = {
-//     name: user.name,
-//   };
-//   try {
-//     await axios.post(createUserUrl, args);
-//     toast.success("Added successfully!", {
-//       position: "bottom-center",
-//       hideProgressBar: true,
-//     });
-//   } catch {
-//     toast.error("Error!");
-//   }
-// };
+export const registerUser = async (user: any) => {
+  const args = {
+    email: user.email,
+    password: user.password,
+  };
+
+  const respond = await axios.post(registerUrl, args);
+
+  if (respond.data.status === "failure") {
+    toast.error(respond.data.message, {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+  } else {
+    toast.success("Added successfully!", {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+  }
+};
+
+export const loginUser = async (user: any) => {
+  const args = {
+    email: user.email,
+    password: user.password,
+  };
+  try {
+    await axios.post(loginUrl, args);
+    toast.success("Logged in!", {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+  } catch {
+    toast.error("Error!", {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+  }
+};

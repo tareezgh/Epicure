@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setOrders, setOrdersNumber } from "../../../helpers/Slicers";
-import { fetchAllOrdersData } from "../../../services/fetchData";
-import { PrimaryBtnFrame, PrimaryBtnTitle } from "../../buttons";
+import { setOrders, setOrdersNumber } from "../../helpers/Slicers";
+import { fetchAllOrdersData } from "../../services/fetchData";
+import { PrimaryBtnFrame, PrimaryBtnTitle } from "../buttons";
 
 import {
   CardContent,
@@ -36,7 +36,6 @@ const Cart = (cartProps: Params) => {
   let totalPrice = 0; // data.map((d: any) => (totalPrice = d.price * d.quantity));
 
   useEffect(() => {
-   
     // dispatch(setOrdersNumber(data.length));
     data.map((order: any) => restaurantsSet.add(order.restaurant));
     console.log(restaurantsSet);

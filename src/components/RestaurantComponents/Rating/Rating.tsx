@@ -3,7 +3,7 @@ import {
   StarIcon,
   StarsFrame,
 } from "../../CardsDesktop/RestaurantsCards/style";
-import { CheckBoxIcon } from "../../Order/style";
+import { CheckBoxIcon } from "../../OrderMobile/style";
 import { ClearBtnFrame, ClearBtnTitle } from "../../buttons";
 
 const Rating = () => {

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import FilterFunction from "../../Filters/FilterFunction";
 import Search from "../../Search/Search";
-import SignIn from "../SignIn/SignIn";
-import Cart from "../Cart/Cart";
+import SignIn from "../../SignIn/SignIn";
+import Cart from "../../Cart/Cart";
 
 import {
   Badge,

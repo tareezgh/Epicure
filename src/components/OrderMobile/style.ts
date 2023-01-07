@@ -18,13 +18,12 @@ const FlexContainerRow = styled.div`
   justify-content: flex-start;
 `;
 
-export const OrderContainer = styled(FlexContainerColumn)<{
-  page?: string;
-}>`
+export const OrderContainer = styled(FlexContainerColumn)`
   position: absolute;
-  width: ${(props) => (props.page === "Desktop" ? "573px" : "100%")};
-  height: 950px;
-  margin: ${(props) => (props.page === "Desktop" ? "auto" : "")};
+
+  width: "100%";
+  height: "950px";
+
   z-index: 1;
   padding-bottom: 48px;
   background: #ffffff;
@@ -127,8 +126,6 @@ export const RowFrame = styled(FlexContainerRow)`
   align-self: stretch;
   flex-grow: 0;
 `;
-
-// type="radio"
 
 export const Icon = styled.input`
   width: 18px;

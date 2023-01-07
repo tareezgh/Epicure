@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import cartIcon from "../../../assets/cart-icon.svg";
-import currencyIcon from "../../../assets/currency-icon.svg";
+import cartIcon from "../../assets/cart-icon.svg";
+import currencyIcon from "../../assets/currency-icon.svg";
 
 const FlexContainerColumn = styled.div`
   display: flex;

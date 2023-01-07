@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   AboutUsContainer,
   AboutUsTitle,
@@ -41,10 +40,6 @@ import vegetarianIcon from "../../assets/vegetarian-icon-big.svg";
 import veganIcon from "../../assets/vegan-icon-big.svg";
 
 const HomePageDesktop = () => {
-  const [dishOpen, setDishOpen] = useState<boolean>(false);
-  const toggleDish = () => {
-    setDishOpen(!dishOpen);
-  };
   return (
     <>
       <HeroContainer>
@@ -75,8 +70,9 @@ const HomePageDesktop = () => {
           <DishesCards
             size="Big"
             page="HomePageDesktop"
-            toggleDish={toggleDish}
+            toggleOrder={() => {}}
           />
+          {/* no need to open order her */}
         </CardsFrame>
       </DishesContainer>
 

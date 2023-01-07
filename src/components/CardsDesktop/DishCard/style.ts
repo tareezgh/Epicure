@@ -98,10 +98,7 @@ export const DishDescription = styled.p<{
   flex-grow: 0;
 `;
 
-export const SpicyIcon = styled.img`
-  width: 40px;
-  height: 31px;
-
+export const SignatureIcon = styled.img`
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
   flex: none;

@@ -38,6 +38,7 @@ function App() {
   const ordersData = useSelector((state: any) => state.orders.value);
   dispatch(setOrdersNumber(ordersData.length));
 
+  // PromiseAll need to FIX
   useEffect(() => {
     fetchAllRestaurantsData().then((res) => dispatch(setAllRestaurants(res)));
     fetchAllDishesData().then((res) => dispatch(setDishes(res)));

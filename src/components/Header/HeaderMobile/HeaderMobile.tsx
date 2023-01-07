@@ -18,10 +18,10 @@ import {
   Badge,
 } from "./style";
 
-import Hamburger from "../Hamburger/Hamburger";
+import Hamburger from "../../Hamburger/Hamburger";
 import Search from "../../Search/Search";
-import Cart from "../Cart/Cart";
-import SignIn from "../SignIn/SignIn";
+import Cart from "../../Cart/Cart";
+import SignIn from "../../SignIn/SignIn";
 
 const HeaderMobile = () => {
   const navigate = useNavigate();

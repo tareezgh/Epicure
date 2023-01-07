@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-
 
 import FilterFunction from "../../components/Filters/FilterFunction";
 import DishesCards from "../../components/CardsMobile/DishCard/DishCard";
 import { IRestaurant } from "../../Interfaces/IRestaurant";
+import Order from "../../components/OrderMobile/OrderMobile";
 import {
   CloseIcon,
   CloseNavbar,
 } from "../../components/Header/HeaderMobile/style";
-import Order from "../../components/Order/Order";
 
 import {
   RestaurantInfo,
@@ -25,19 +24,19 @@ import {
   DishesSection,
 } from "./style";
 
+// const restaurant = useSelector((state: any) => state.restaurants.restaurant);
+// const [myRestaurant, setMyRestaurant] = useState<any>();
 
 const RestaurantPageMobile = () => {
   const restaurantNameByParams = useParams();
-  // const dispatch = useDispatch();
-  const data = useSelector((state: any) => state.restaurants.value);
-  // const restaurant = useSelector((state: any) => state.restaurants.restaurant);
-  // const [myRestaurant, setMyRestaurant] = useState<any>();
+  const dispatch = useDispatch();
+  const restaurantsData = useSelector((state: any) => state.restaurants.value);
+
+  const [orderOpen, setOrderOpen] = useState<boolean>(false);
   const [dish, setDish] = useState<string>(" ");
 
   const [dishesFilter, setDishesFilter] = useState<string>("Breakfast");
   const filters = ["Breakfast", "Launch", "Dinner"];
-
-  const [orderOpen, setOrderOpen] = useState<boolean>(false);
 
   const toggleOrder = (name: string) => {
     setDish(name);
@@ -48,15 +47,15 @@ const RestaurantPageMobile = () => {
     setDishesFilter(filter);
   };
 
-  useEffect(() => {
-    // fetchRestaurantData("Claro").then((res) => dispatch(setRestaurant(res)));
-    // console.log(restaurant);
-    // setMyRestaurant(data);
-  }, []);
+  // useEffect(() => {
+  // fetchRestaurantData("Claro").then((res) => dispatch(setRestaurant(res)));
+  // console.log(restaurant);
+  // setMyRestaurant(data);
+  // }, []);
 
   const renderData = (
     <>
-      {data
+      {restaurantsData
         .filter(
           (restaurant: IRestaurant) =>
             restaurant.name === restaurantNameByParams.name
@@ -99,7 +98,7 @@ const RestaurantPageMobile = () => {
           <CloseNavbar>
             <CloseIcon onClick={() => toggleOrder(" ")} />
           </CloseNavbar>
-          <Order dishName={dish} toggleOrder={toggleOrder}/>
+          <Order dishName={dish} toggleOrder={toggleOrder} />
         </>
       )}
       {renderData}

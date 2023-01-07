@@ -24,6 +24,12 @@ const AllRestaurantsPageDesktop = () => {
   const filters = ["All", "New", "Most Popular", "Open Now", "Map View"];
   const buttons = ["Price Range", "Distance", "Rating"];
 
+  // BUG
+  const frameStyle = {
+    background: `${
+      priceOpen || distanceOpen || ratingOpen ? "#D0CFCF" : "#FAFAFA"
+    }`,
+  };
 
   const handleData = (filter: string) => {
     setRestaurantsFilter(filter);
@@ -59,16 +65,10 @@ const AllRestaurantsPageDesktop = () => {
       default:
         break;
     }
-
   };
 
   const renderComponent = buttons.map((button: string, key: number) => (
-    <InsiderFrame
-      key={key}
-      // style={{
-      //   background:  ? "#D0CFCF" : "#FAFAFA",
-      // }}
-    >
+    <InsiderFrame key={key} style={frameStyle}>
       <ComponentFrame onClick={() => toggle(button)}>
         <Title>{button}</Title>
         <Arrow />
