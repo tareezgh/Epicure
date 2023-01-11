@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import ChefCard from "../../components/CardsDesktop/ChefCard/ChefCard";
+import ChefCard from "../../components/Cards/CardsDesktop/ChefCard/ChefCard";
 import FilterFunction from "../../components/Filters/FilterFunction";
 import { FiltersFrame, ChefsSection, RowSection } from "./style";
 

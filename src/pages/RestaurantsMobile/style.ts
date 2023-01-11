@@ -41,7 +41,7 @@ export const RestaurantsSection = styled(FlexContainerColumn)`
   margin: 37px 0 0 0;
 `;
 
-// *********//
+///
 
 export const RestaurantImage = styled.img`
   width: 100%;

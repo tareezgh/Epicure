@@ -35,9 +35,9 @@ import {
 
 // Components
 import Search from "../../components/Search/Search";
-import RestaurantsCards from "../../components/CardsMobile/RestaurantsCards/RestaurantCard";
-import DishesCards from "../../components/CardsMobile/DishCard/DishCard";
-import ChefCard from "../../components/CardsMobile/ChefCard/ChefCard";
+import RestaurantsCards from "../../components/Cards/CardsMobile/RestaurantsCards/RestaurantCard";
+import DishesCards from "../../components/Cards/CardsMobile/DishCard/DishCard";
+import ChefCard from "../../components/Cards/CardsMobile/ChefCard/ChefCard";
 
 const HomePageMobile = () => {
   const renderAllLink = (
@@ -68,7 +68,11 @@ const HomePageMobile = () => {
 
       <DishesContainer>
         <DishesTitle>Signature Dish Of:</DishesTitle>
-        <DishesCards size="Small" toggleOrder={() => {}} />
+        <DishesCards
+          page="HomePageMobile"
+          size="Small"
+          toggleOrder={() => {}}
+        />
         {/*  no need to open order her  */}
         <LinkAllContainer type="Dishes">
           <LinkAllDishes> All Dishes</LinkAllDishes>
@@ -98,8 +102,6 @@ const HomePageMobile = () => {
       <ChefsContainer>
         <ChefsTitle>Chef of the week:</ChefsTitle>
         <ChefCard chefOfTheWeek={true} />
-        <ChefsTitle>Chef of the week:</ChefsTitle>
-        <RestaurantsCards size="Small" page="HomePageMobile" />
         {renderAllLink}
       </ChefsContainer>
 

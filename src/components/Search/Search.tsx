@@ -19,8 +19,10 @@ interface Params {
 }
 
 const Search = (searchProps: Params) => {
-  const restaurantsData = useSelector((state: any) => state.restaurants.value);
-  const dishesData = useSelector((state: any) => state.dishes.value);
+  const restaurantsData = useSelector(
+    (state: any) => state.restaurants.allRestaurants
+  );
+  const dishesData = useSelector((state: any) => state.dishes.allDishes);
   const [searchResult, setSearchResult] = useState("");
   const navigate = useNavigate();
 

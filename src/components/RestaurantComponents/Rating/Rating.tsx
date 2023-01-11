@@ -2,8 +2,8 @@ import { RatingContainer, RowFrame, Rows, Title } from "./style";
 import {
   StarIcon,
   StarsFrame,
-} from "../../CardsDesktop/RestaurantsCards/style";
-import { CheckBoxIcon } from "../../OrderMobile/style";
+} from "../../Cards/CardsDesktop/RestaurantsCards/style";
+import { CheckBoxIcon } from "../../Order/OrderMobile/style";
 import { ClearBtnFrame, ClearBtnTitle } from "../../buttons";
 
 const Rating = () => {

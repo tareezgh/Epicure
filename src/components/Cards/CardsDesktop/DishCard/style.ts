@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import currencyIcon from "../../../assets/currency-icon.svg";
+import currencyIcon from "../../../../assets/currency-icon.svg";
 
 const FlexContainerColumn = styled.div`
   display: flex;
@@ -23,6 +23,7 @@ export const CardContent = styled(FlexContainerColumn)<{
   flex: none;
   order: 0;
   flex-grow: 0;
+  cursor: pointer;
 `;
 
 export const CardImage = styled.img<{

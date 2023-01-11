@@ -71,7 +71,7 @@ export const CardImage = styled.img<{
     props.regular
       ? `
       width: 378px;
-    height: 372px;
+      height: 372px;
       margin: 0;
 `
       : `width: 380px;
@@ -81,8 +81,7 @@ export const CardImage = styled.img<{
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
 `;
-//  background-image: url(${(props) => props.src});
-//`http://localhost:3000/${require(`${chef.image}`)}`
+
 export const CardInfo = styled(FlexContainerColumn)`
   justify-content: center;
   text-align: center;

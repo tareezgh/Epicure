@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-
+import { setRestaurant, setRestaurantDishes } from "../../helpers/Slicers";
+import {
+  fetchRestaurantData,
+  fetchRestaurantDishesData,
+} from "../../services/fetchData";
 import FilterFunction from "../../components/Filters/FilterFunction";
-import DishesCards from "../../components/CardsMobile/DishCard/DishCard";
-import { IRestaurant } from "../../Interfaces/IRestaurant";
-import Order from "../../components/OrderMobile/OrderMobile";
+import DishesCards from "../../components/Cards/CardsMobile/DishCard/DishCard";
+
+import Order from "../../components/Order/OrderMobile/OrderMobile";
 import {
   CloseIcon,
   CloseNavbar,
@@ -24,14 +28,11 @@ import {
   DishesSection,
 } from "./style";
 
-// const restaurant = useSelector((state: any) => state.restaurants.restaurant);
-// const [myRestaurant, setMyRestaurant] = useState<any>();
-
 const RestaurantPageMobile = () => {
-  const restaurantNameByParams = useParams();
   const dispatch = useDispatch();
-  const restaurantsData = useSelector((state: any) => state.restaurants.value);
-
+  const restaurantNameByParams = useParams();
+  const restaurantName = restaurantNameByParams.name!;
+  const restaurant = useSelector((state: any) => state.restaurants.restaurant);
   const [orderOpen, setOrderOpen] = useState<boolean>(false);
   const [dish, setDish] = useState<string>(" ");
 
@@ -47,47 +48,44 @@ const RestaurantPageMobile = () => {
     setDishesFilter(filter);
   };
 
-  // useEffect(() => {
-  // fetchRestaurantData("Claro").then((res) => dispatch(setRestaurant(res)));
-  // console.log(restaurant);
-  // setMyRestaurant(data);
-  // }, []);
+  useEffect(() => {
+    fetchRestaurantData(restaurantName).then((res) =>
+      dispatch(setRestaurant(res))
+    );
+    fetchRestaurantDishesData(restaurantName).then((res) =>
+      dispatch(setRestaurantDishes(res))
+    );
+  }, []);
 
   const renderData = (
     <>
-      {restaurantsData
-        .filter(
-          (restaurant: IRestaurant) =>
-            restaurant.name === restaurantNameByParams.name
-        )
-        .map((restaurant: IRestaurant, key: number) => (
-          <RestaurantInfo key={key}>
-            <RestaurantImage src={restaurant.image} />
+      <RestaurantInfo>
+        <RestaurantImage src={restaurant.image} />
 
-            <InfoSection>
-              <RestaurantName>{restaurant.name}</RestaurantName>
-              <RestaurantManager>{restaurant.chefName}</RestaurantManager>
+        <InfoSection>
+          <RestaurantName>{restaurant.name}</RestaurantName>
+          <RestaurantManager>{restaurant.chefName}</RestaurantManager>
 
-              <Hours>
-                <ClockIcon />
-                <HourStatus>Open Now</HourStatus>
-              </Hours>
-            </InfoSection>
+          <Hours>
+            <ClockIcon />
+            <HourStatus>Open Now</HourStatus>
+            {/* need to FIX */}
+          </Hours>
+        </InfoSection>
 
-            <FiltersFrame>
-              <FilterFunction myFilters={filters} handleData={handleData} />
-            </FiltersFrame>
+        <FiltersFrame>
+          <FilterFunction myFilters={filters} handleData={handleData} />
+        </FiltersFrame>
 
-            <DishesSection>
-              <DishesCards
-                size={"Default"}
-                page={"Restaurant"}
-                filter={dishesFilter}
-                toggleOrder={toggleOrder}
-              />
-            </DishesSection>
-          </RestaurantInfo>
-        ))}
+        <DishesSection>
+          <DishesCards
+            size={"Default"}
+            page={"Restaurant"}
+            filter={dishesFilter}
+            toggleOrder={toggleOrder}
+          />
+        </DishesSection>
+      </RestaurantInfo>
     </>
   );
 

@@ -9,10 +9,11 @@ interface Params {
 
 const FilterFunction = (filtersProps: Params) => {
   const [myFilter, setMyFilter] = useState<string>(" ");
-  // if (filtersProps.page === "Header") setMyFilter(" ");
 
   useEffect(() => {
-    filtersProps.page === "Header" ? setMyFilter(" ") : setMyFilter(filtersProps.myFilters[0]);
+    filtersProps.page === "Header"
+      ? setMyFilter(" ")
+      : setMyFilter(filtersProps.myFilters[0]);
   }, []);
 
   const renderData = (

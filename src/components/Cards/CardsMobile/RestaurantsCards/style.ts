@@ -16,7 +16,6 @@ export const SlideRow = styled.div<{
   height: ${(props) => (props.type === "Restaurants" ? "232.8px" : "388px")};
   padding: 0px;
   gap: 24px;
- 
 `;
 
 export const CardContent = styled(FlexContainerColumn)<{
@@ -26,6 +25,7 @@ export const CardContent = styled(FlexContainerColumn)<{
   height: ${(props) => (props.size === "Default" ? "288px" : "232.8px")};
   padding: 0px;
   margin-left: 20px;
+  cursor: pointer;
 `;
 
 export const CardImage = styled.img<{
@@ -39,7 +39,6 @@ export const CardImage = styled.img<{
   order: 0;
   flex-grow: 0;
 `;
-
 
 export const CardFrame = styled(FlexContainerColumn)<{
   size?: string;

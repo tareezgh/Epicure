@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RestaurantsCards from "../../components/CardsDesktop/RestaurantsCards/RestaurantCard";
+import RestaurantsCards from "../../components/Cards/CardsDesktop/RestaurantsCards/RestaurantCard";
 import FilterFunction from "../../components/Filters/FilterFunction";
 import Distance from "../../components/RestaurantComponents/Distance/Distance";
 import Price from "../../components/RestaurantComponents/Price/Price";
@@ -24,12 +24,17 @@ const AllRestaurantsPageDesktop = () => {
   const filters = ["All", "New", "Most Popular", "Open Now", "Map View"];
   const buttons = ["Price Range", "Distance", "Rating"];
 
-  // BUG
-  const frameStyle = {
-    background: `${
-      priceOpen || distanceOpen || ratingOpen ? "#D0CFCF" : "#FAFAFA"
-    }`,
-  };
+  const frameStyle = [
+    {
+      background: `${priceOpen ? "#D0CFCF" : "#FAFAFA"}`,
+    },
+    {
+      background: `${distanceOpen ? "#D0CFCF" : "#FAFAFA"}`,
+    },
+    {
+      background: `${ratingOpen ? "#D0CFCF" : "#FAFAFA"}`,
+    },
+  ];
 
   const handleData = (filter: string) => {
     setRestaurantsFilter(filter);
@@ -67,14 +72,19 @@ const AllRestaurantsPageDesktop = () => {
     }
   };
 
-  const renderComponent = buttons.map((button: string, key: number) => (
-    <InsiderFrame key={key} style={frameStyle}>
-      <ComponentFrame onClick={() => toggle(button)}>
-        <Title>{button}</Title>
-        <Arrow />
-      </ComponentFrame>
-    </InsiderFrame>
-  ));
+  const renderComponent = (str: string, key: number) => (
+    <>
+      <InsiderFrame key={key} style={frameStyle[key]}>
+        <ComponentFrame onClick={() => toggle(str)}>
+          <Title>{str}</Title>
+          <Arrow />
+        </ComponentFrame>
+      </InsiderFrame>
+      {priceOpen && <Price />}
+      {distanceOpen && <Distance />}
+      {ratingOpen && <Rating />}
+    </>
+  );
 
   return (
     <>
@@ -83,11 +93,14 @@ const AllRestaurantsPageDesktop = () => {
       </FiltersFrame>
 
       <Frame>
-        <Group>{renderComponent}</Group>
+        <Group>
+          <>
+            {renderComponent(buttons[0], 0)}
+            {renderComponent(buttons[1], 1)}
+            {renderComponent(buttons[2], 2)}
+          </>
+        </Group>
       </Frame>
-      {priceOpen && <Price />}
-      {distanceOpen && <Distance />}
-      {ratingOpen && <Rating />}
 
       <RestaurantsSection>
         <RowSection>

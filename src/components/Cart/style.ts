@@ -17,13 +17,14 @@ const FlexContainerRow = styled.div`
 
 export const CartContainer = styled(FlexContainerColumn)<{
   page?: string;
+  type?: string;
 }>`
   width: ${(props) => (props.page === "Desktop" ? "497px" : "100%")};
   top: ${(props) => (props.page === "Desktop" ? "64px" : "46px")};
 
   right: ${(props) => (props.page === "Desktop" ? "0" : "")};
 
-  height: 514px;
+  height: ${(props) => (props.type === "Empty" && props.page !== "Desktop" ? "218px" : "514px")};
   gap: 20px;
   position: absolute;
   z-index: 1;
@@ -34,10 +35,13 @@ export const CartContainer = styled(FlexContainerColumn)<{
 
 export const CartIcon = styled.img.attrs({
   src: cartIcon,
-})`
+})<{
+  page?: string;
+}>`
   width: 45px;
   height: 45px;
   margin-top: 63px;
+  margin: ${(props) => (props.page === "Desktop" ? "20% 0 0 0" : "")};
 `;
 
 export const CartStatus = styled.h3`
@@ -72,14 +76,18 @@ export const SummaryFrame = styled(FlexContainerRow)`
   flex-grow: 0;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h3<{
+  page?: string;
+}>`
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: ${(props) => (props.page === "Desktop" ? "32px" : "20px")};
+  line-height: ${(props) => (props.page === "Desktop" ? "35px" : "24px")};
 
   align-items: center;
   text-align: center;
-  letter-spacing: 2.67px;
+
+  letter-spacing: ${(props) =>
+    props.page === "Desktop" ? "1.25px" : "2.67px"};
   text-transform: uppercase;
   margin: 0;
   flex: none;

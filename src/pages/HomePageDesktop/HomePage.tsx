@@ -31,9 +31,9 @@ import {
 
 // Components
 import Search from "../../components/Search/Search";
-import RestaurantsCards from "../../components/CardsDesktop/RestaurantsCards/RestaurantCard";
-import DishesCards from "../../components/CardsDesktop/DishCard/DishCard";
-import ChefCard from "../../components/CardsDesktop/ChefCard/ChefCard";
+import RestaurantsCards from "../../components/Cards/CardsDesktop/RestaurantsCards/RestaurantCard";
+import DishesCards from "../../components/Cards/CardsDesktop/DishCard/DishCard";
+import ChefCard from "../../components/Cards/CardsDesktop/ChefCard/ChefCard";
 
 import spicyIcon from "../../assets/spicy-icon-big.svg";
 import vegetarianIcon from "../../assets/vegetarian-icon-big.svg";

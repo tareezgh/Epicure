@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import blackCloseIcon from "../../assets/black-close-icon.svg";
+
 const FlexContainerColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,24 +18,40 @@ const FlexContainerRow = styled.div`
 export const SignInContainer = styled(FlexContainerColumn)<{
   page?: string;
 }>`
-  gap: 40px;
+  ${(props) =>
+    props.page === "Desktop"
+      ? `
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      `
+      : `
+      top: 46px;
+  `};
   position: fixed;
+  gap: 40px;
+
   width: ${(props) => (props.page === "Desktop" ? "573px" : "100%")};
   height: 590px;
   z-index: 1;
-  top: 46px;
-  margin: ${(props) => (props.page === "Desktop" ? "auto" : "")};
+
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
+export const CloseIcon = styled.img.attrs({
+  src: blackCloseIcon,
+})`
+  width: 24px;
+  height: 24px;
+  margin: 10px;
+  cursor: pointer;
+`;
+
 export const InfoFrame = styled(FlexContainerColumn)`
   padding: 40px 0 0 0;
-  // gap: 40px;
-
   width: 351px;
   height: 242px;
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -66,7 +84,6 @@ export const SubTitle = styled.h4`
 export const InputFiled = styled(FlexContainerColumn)`
   align-items: flex-start;
   padding: 0px;
-  // gap: 8px;
 
   width: 327px;
   // height: 52px;

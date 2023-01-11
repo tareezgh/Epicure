@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { IRestaurant } from "../../../Interfaces/IRestaurant";
+import { IRestaurant } from "../../../../Interfaces/IRestaurant";
 
 import {
   CardContent,
@@ -20,26 +20,28 @@ interface Params {
 }
 
 const RestaurantsCards = (restaurantProps: Params) => {
-  const data = useSelector((state: any) => state.restaurants.value);
-  let filteredData: IRestaurant[] = data;
+  const restaurantsData = useSelector(
+    (state: any) => state.restaurants.allRestaurants
+  );
+  let filteredData: IRestaurant[] = restaurantsData;
   const navigate = useNavigate();
 
   const renderSwitch = () => {
     switch (restaurantProps.filter) {
       case "New":
-        filteredData = data.filter(
+        filteredData = restaurantsData.filter(
           (restaurant: IRestaurant) => restaurant.isNewRestaurant === true
         );
         break;
       case "Most Popular":
-        filteredData = data.filter(
+        filteredData = restaurantsData.filter(
           (restaurant: IRestaurant) => restaurant.isPopular === true
         );
         break;
       case "Open Now":
-        filteredData = data.filter(
+        filteredData = restaurantsData.filter(
           (restaurant: IRestaurant) => restaurant.isOpen === true
-        ); // need to check by date exactly // BUG
+        ); // need to check by date exactly to FIX
         break;
       case "Map View":
         filteredData = []; // need to view map
@@ -49,7 +51,7 @@ const RestaurantsCards = (restaurantProps: Params) => {
     }
     if (restaurantProps.page === "HomePageDesktop")
       // in home page display 3 cards only
-      filteredData = data.slice(0, 3);
+      filteredData = restaurantsData.slice(0, 3);
   };
 
   const renderBigCard = (

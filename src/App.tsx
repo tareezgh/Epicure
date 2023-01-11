@@ -10,6 +10,7 @@ import {
   setAllRestaurants,
   setOrdersNumber,
   setOrders,
+  setChefOfTheWeek,
 } from "./helpers/Slicers";
 
 import HeaderMobile from "./components/Header/HeaderMobile/HeaderMobile";
@@ -29,13 +30,16 @@ import {
   fetchAllDishesData,
   fetchAllOrdersData,
   fetchAllRestaurantsData,
+  fetchOrdersDataForUser,
+  getChefOfTheWeekData,
 } from "./services/fetchData";
 import "./App.css";
 
 function App() {
   const windowSize = SetWindowSize();
   const dispatch = useDispatch();
-  const ordersData = useSelector((state: any) => state.orders.value);
+  const ordersData = useSelector((state: any) => state.orders.allOrders);
+  const currentUser = useSelector((state: any) => state.currentUser.email);
   dispatch(setOrdersNumber(ordersData.length));
 
   // PromiseAll need to FIX
@@ -44,6 +48,7 @@ function App() {
     fetchAllDishesData().then((res) => dispatch(setDishes(res)));
     fetchAllChefsData().then((res) => dispatch(setChefs(res)));
     fetchAllOrdersData().then((res) => dispatch(setOrders(res)));
+    getChefOfTheWeekData().then((res) => dispatch(setChefOfTheWeek(res)));
   }, []);
 
   return (

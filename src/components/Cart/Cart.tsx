@@ -1,8 +1,11 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setOrders, setOrdersNumber } from "../../helpers/Slicers";
-import { fetchAllOrdersData } from "../../services/fetchData";
-import { PrimaryBtnFrame, PrimaryBtnTitle } from "../buttons";
+import { useSelector } from "react-redux";
+import SetWindowSize from "../../helpers/SetWindowSize";
+import {
+  PrimaryBtnFrame,
+  PrimaryBtnTitle,
+  SecondaryBtnTitle,
+  SecondaryFrame,
+} from "../buttons";
 
 import {
   CardContent,
@@ -29,22 +32,39 @@ interface Params {
 }
 
 const Cart = (cartProps: Params) => {
-  const dispatch = useDispatch();
-  const data = useSelector((state: any) => state.orders.value);
-
+  const windowSize = SetWindowSize();
+  const ordersData = useSelector((state: any) => state.orders.allOrders);
+  const ordersCounter = useSelector((state: any) => state.orders.counter);
   let restaurantsSet = new Set<string>();
-  let totalPrice = 0; // data.map((d: any) => (totalPrice = d.price * d.quantity));
+  let restaurantsArray = new Array<string>();
+  let totalPrice = 0;
 
-  useEffect(() => {
-    // dispatch(setOrdersNumber(data.length));
-    data.map((order: any) => restaurantsSet.add(order.restaurant));
-    console.log(restaurantsSet);
-  }, []);
+  const calculateTotalPrice = () => {
+    ordersData.map(
+      (order: any) => (totalPrice += order.price * order.quantity)
+    );
+  };
+
+  const prepareSetAndArray = () => {
+    ordersData.map((order: any) => restaurantsSet.add(order.restaurant));
+    restaurantsArray = Array.from(restaurantsSet);
+  };
 
   const renderEmptyCart = (
     <>
-      <CartIcon />
-      <CartStatus>YOUR BAG IS EMPTY</CartStatus>
+      <CartContainer page={cartProps.page} type={"Empty"}>
+        <CartIcon page={cartProps.page} />
+        <CartStatus>YOUR BAG IS EMPTY</CartStatus>
+        {cartProps.page === "Desktop" ? (
+          <>
+            <SecondaryFrame style={{ marginTop: "150px" }}>
+              <SecondaryBtnTitle>Order history</SecondaryBtnTitle>
+            </SecondaryFrame>
+          </>
+        ) : (
+          ""
+        )}
+      </CartContainer>
     </>
   );
 
@@ -55,7 +75,7 @@ const Cart = (cartProps: Params) => {
           <RestaurantName>{restaurant}</RestaurantName>
         </Frame>
 
-        {data
+        {ordersData
           .filter((order: any) => order.restaurant === restaurant)
           .map((order: any, key: number) => (
             <CardContent key={key}>
@@ -82,15 +102,17 @@ const Cart = (cartProps: Params) => {
     );
   };
 
-  const renderCartOrders = (
+  const renderMobileCart = (
     <>
       <Frame>
         <Title>My Order</Title>
       </Frame>
 
-      {renderOrderDishes("Claro")}
-      {renderOrderDishes("Kab kem")}
-
+      {prepareSetAndArray()}
+      {restaurantsArray
+        .reverse()
+        .map((restaurant) => renderOrderDishes(restaurant))}
+      {calculateTotalPrice()}
       <SummaryFrame>
         <Title>total - ₪{totalPrice}</Title>
       </SummaryFrame>
@@ -98,18 +120,34 @@ const Cart = (cartProps: Params) => {
       <PrimaryBtnFrame style={{ marginTop: 0, marginBottom: "24px" }}>
         <PrimaryBtnTitle>Checkout</PrimaryBtnTitle>
       </PrimaryBtnFrame>
-
-      {/* {(totalPrice += order.price)} */}
     </>
   );
 
-  return (
+  const renderDesktopCart = (
+    <>
+      <Frame>
+        <Title page={cartProps.page}>My Order</Title>
+      </Frame>
+
+      <PrimaryBtnFrame style={{ marginLeft: 0 }}>
+        <PrimaryBtnTitle>Checkout</PrimaryBtnTitle>
+      </PrimaryBtnFrame>
+
+      <SecondaryFrame>
+        <SecondaryBtnTitle>Order history</SecondaryBtnTitle>
+      </SecondaryFrame>
+    </>
+  );
+
+  const chooseCartType = (
     <>
       <CartContainer page={cartProps.page}>
-        {data ? renderCartOrders : renderEmptyCart}
+        {windowSize < 600 ? renderMobileCart : renderDesktopCart}
       </CartContainer>
     </>
   );
+
+  return <>{ordersCounter >= 1 ? chooseCartType : renderEmptyCart}</>;
 };
 
 export default Cart;

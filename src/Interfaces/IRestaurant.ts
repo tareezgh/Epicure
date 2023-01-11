@@ -6,7 +6,7 @@ export interface IRestaurant {
   restaurantRating: number;
   isPopular: boolean;
   isNewRestaurant: boolean;
-  isOpen: boolean; // before check by openingHours
+  isOpen: boolean; // before check by openingHours, need to FIX 
   address: string;
   image: string;
   openingHours: {

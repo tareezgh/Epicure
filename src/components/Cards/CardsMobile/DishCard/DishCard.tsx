@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { IDish } from "../../../Interfaces/IDish";
+import { IDish } from "../../../../Interfaces/IDish";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import {
@@ -25,7 +25,8 @@ interface Params {
 }
 
 const DishesCards = (dishesProps: Params) => {
-  const dishesData = useSelector((state: any) => state.dishes.value);
+  const allDishesData = useSelector((state: any) => state.dishes.allDishes);
+  const dishesData = useSelector((state: any) => state.restaurants.dishes);
   let filteredData: IDish[] = dishesData;
 
   const renderSwitch = () => {
@@ -50,13 +51,13 @@ const DishesCards = (dishesProps: Params) => {
     }
     if (dishesProps.page === "HomePageMobile")
       // in home page display 3 cards only
-      filteredData = dishesData.slice(0, 3);
+      filteredData = allDishesData.slice(0, 3);
   };
 
   const renderIconCardData = (signature: string) => (
     <>
       <SignatureIcon
-        src={require(`../../../assets/${signature}-icon-small.svg`)}
+        src={require(`../../../../assets/${signature}-icon-small.svg`)}
       />
     </>
   );

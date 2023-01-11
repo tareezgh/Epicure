@@ -15,6 +15,7 @@ export const RatingContainer = styled.div`
   width: 353px;
   // height: 324px;
   position: absolute;
+  margin-top: 60px;
   background: #ffffff;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
 `;

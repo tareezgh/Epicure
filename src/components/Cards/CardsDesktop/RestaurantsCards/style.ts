@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import fullStarIcon from "../../../assets/full-star-icon.svg";
-import emptyStarIcon from "../../../assets/empty-star-icon.svg";
+import fullStarIcon from "../../../../assets/full-star-icon.svg";
+import emptyStarIcon from "../../../../assets/empty-star-icon.svg";
 
 const FlexContainerColumn = styled.div`
   display: flex;
@@ -21,6 +21,7 @@ export const CardContent = styled(FlexContainerColumn)<{
   width: ${(props) => (props.size === "Big" ? "379px" : "231px")};
   height: ${(props) => (props.size === "Big" ? "405px" : "357px")};
   padding: 0px;
+  cursor: pointer;
 `;
 
 export const CardImage = styled.img<{

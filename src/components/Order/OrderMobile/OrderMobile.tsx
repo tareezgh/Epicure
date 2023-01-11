@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setOrdersNumber } from "../../helpers/Slicers";
+import { setOrdersNumber } from "../../../helpers/Slicers";
 
-import { IDish } from "../../Interfaces/IDish";
-import { createOrder } from "../../services/fetchData";
-import { PrimaryBtnFrame, PrimaryBtnTitle } from "../buttons";
-
+import { IDish } from "../../../Interfaces/IDish";
+import { createOrder } from "../../../services/fetchData";
+import { PrimaryBtnFrame, PrimaryBtnTitle } from "../../buttons";
 
 import {
   CheckFrame,
@@ -34,8 +33,10 @@ interface Params {
 
 const Order = (orderProps: Params) => {
   const dispatch = useDispatch();
-  const dishesData = useSelector((state: any) => state.dishes.value);
+  const currentUser = useSelector((state: any) => state.currentUser.email);
+  const dishesData = useSelector((state: any) => state.dishes.allDishes);
   const ordersNumber = useSelector((state: any) => state.orders.counter);
+
   const [selectRadioBtn, setSelectRadioBtn] = useState("");
   const selectCheckBoxBtn: string[] = [];
   let [quantity, setQuantity] = useState<number>(1);
@@ -66,12 +67,16 @@ const Order = (orderProps: Params) => {
 
   const clickAddToBag = (dish: IDish) => {
     if (selectRadioBtn !== "") {
-      createOrder(dish, selectRadioBtn, selectCheckBoxBtn, quantity).then(
-        () => {
-          orderProps.toggleOrder(" ");
-          dispatch(setOrdersNumber(ordersNumber + 1));
-        }
-      );
+      createOrder(
+        dish,
+        selectRadioBtn,
+        selectCheckBoxBtn,
+        quantity,
+        currentUser
+      ).then(() => {
+        orderProps.toggleOrder(" ");
+        dispatch(setOrdersNumber(ordersNumber + 1));
+      });
     } else {
       toast.error("Should choose a side first!", {
         hideProgressBar: true,
@@ -136,14 +141,11 @@ const Order = (orderProps: Params) => {
               <SubTitle>Quantity</SubTitle>
               <InsideFrame>
                 <Minus
-                  active={quantity <= 1 ? false : true}
+                  style={{ opacity: `${quantity <= 1 ? "0.3" : "0.8"}` }}
                   onClick={clickMinus}
                 />
                 <Quantity>{quantity}</Quantity>
-                <Plus
-                  active={quantity > 100 ? false : true}
-                  onClick={clickPlus}
-                />
+                <Plus onClick={clickPlus} />
               </InsideFrame>
             </QuantityFrame>
 
@@ -154,14 +156,8 @@ const Order = (orderProps: Params) => {
         ))}
     </>
   );
- 
 
-  return (
-    <>
-     
-      {renderData}
-    </>
-  );
+  return <>{renderData}</>;
 };
 
 export default Order;

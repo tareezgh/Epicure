@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RestaurantsCards from "../../components/CardsMobile/RestaurantsCards/RestaurantCard";
+import RestaurantsCards from "../../components/Cards/CardsMobile/RestaurantsCards/RestaurantCard";
 import FilterFunction from "../../components/Filters/FilterFunction";
 import { FiltersFrame, PageTitle, RestaurantsSection } from "./style";
 const AllRestaurantsPageMobile = () => {

@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
-import radioIcon from "../../assets/radioButton-icon-off.svg";
-import checkboxIcon from "../../assets/checkBox-icon-off.svg";
-import plusIcon from "../../assets/plus-icon.svg";
+import plusIcon from "../../../assets/plus-icon.svg";
+import whiteCloseIcon from "../../../assets/white-close-icon.svg";
 
 const FlexContainerColumn = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
 `;
 
 const FlexContainerRow = styled.div`
@@ -20,10 +18,9 @@ const FlexContainerRow = styled.div`
 
 export const OrderContainer = styled(FlexContainerColumn)`
   position: absolute;
-
-  width: "100%";
-  height: "950px";
-
+  width: 573px;
+  margin: 700px 50% 0 50%;
+  transform: translate(-50%, -50%);
   z-index: 1;
   padding-bottom: 48px;
   background: #ffffff;
@@ -31,28 +28,53 @@ export const OrderContainer = styled(FlexContainerColumn)`
   overflow-y: scroll;
 `;
 
+export const CloseNavbar = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 28px;
+  z-index: 10000;
+  background: transparent;
+`;
+
+export const CloseIcon = styled.img.attrs({
+  src: whiteCloseIcon,
+})`
+  width: 24px;
+  height: 24px;
+  margin: 10px;
+
+  cursor: pointer;
+`;
+
+export const AllInfoContainer = styled(FlexContainerColumn)`
+  width: 232px;
+  height: 616px;
+`;
+
 export const DishImage = styled.img`
   width: 100%;
-  height: 271px;
-  margin-top: 46px;
+  height: 292px;
+
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
 `;
 
 export const InfoFrame = styled(FlexContainerColumn)`
-  width: 318px;
+  width: 232px;
   gap: 14px;
 
-  margin: 32px auto 0 20px;
+  margin: 32px auto 0 auto;
   flex: none;
   order: 0;
   flex-grow: 0;
 `;
 
 export const Title = styled.h3`
-  width: 100%;
+  width: 232px;
   font-weight: 400;
+  font-size: 32px;
   line-height: 26px;
+
   letter-spacing: 2.67px;
   text-transform: uppercase;
   margin: 0;
@@ -63,14 +85,16 @@ export const Title = styled.h3`
 `;
 
 export const Description = styled.h4`
-  width: 100%;
-  font-size: 16px;
+  width: 232px;
+  font-weight: 200;
+  font-size: 14px;
   line-height: 18px;
-
   letter-spacing: 1.97px;
+  text-align: center;
   margin: 0;
   flex: none;
   order: 1;
+
   flex-grow: 0;
 `;
 
@@ -87,19 +111,21 @@ export const SubTitle = styled.h4`
 `;
 
 export const RadioFrame = styled(FlexContainerColumn)`
-  padding: 8px 0px 0px;
+  width: 200px;
+  padding: 8px 20px 0 0;
   gap: 24px;
 
-  margin: 32px 0 0 20px;
+  margin: 32px 0 0 0;
   flex: none;
   order: 0;
   flex-grow: 0;
 `;
 
 export const CheckFrame = styled(FlexContainerColumn)`
+  width: 200px;
   gap: 24px;
 
-  margin: 32px 20px 0 20px;
+  margin: 32px 20px 0 0px;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -156,17 +182,17 @@ export const Icon = styled.input`
 //   background-image: url(${(props) => props.src});
 // }
 
-export const CheckBoxIcon = styled.img.attrs({
-  src: checkboxIcon,
-})`
-  width: 18px;
-  height: 18px;
+// export const CheckBoxIcon = styled.img.attrs({
+//   src: checkboxIcon,
+// })`
+//   width: 18px;
+//   height: 18px;
 
-  cursor: pointer;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
+//   cursor: pointer;
+//   flex: none;
+//   order: 0;
+//   flex-grow: 0;
+// `;
 
 export const Content = styled.label`
   line-height: 18px;
@@ -196,13 +222,10 @@ export const InsideFrame = styled(FlexContainerRow)`
   flex-grow: 0;
 `;
 
-export const Minus = styled.div<{
-  active?: boolean;
-}>`
+export const Minus = styled.div`
   width: 19px;
   height: 0;
   margin: auto;
-  opacity: ${(props) => (props.active ? "0.8" : "0.3")};
 
   border: 1px solid #000000;
   cursor: pointer;
@@ -222,13 +245,10 @@ export const Quantity = styled.div`
 
 export const Plus = styled.img.attrs({
   src: plusIcon,
-})<{
-  active?: boolean;
-}>`
+})`
   width: 19px;
   height: 20px;
   margin: auto;
-  opacity: ${(props) => (props.active ? "1" : "0.3")};
 
   cursor: pointer;
   flex: none;

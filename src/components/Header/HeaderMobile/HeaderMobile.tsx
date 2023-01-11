@@ -82,7 +82,7 @@ const HeaderMobile = () => {
             <CloseNavbar>
               <CloseIcon onClick={toggleUser} />
             </CloseNavbar>
-            <SignIn />
+            <SignIn toggleUser={toggleUser} />
           </>
         )}
 

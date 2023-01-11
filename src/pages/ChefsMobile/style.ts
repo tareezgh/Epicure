@@ -28,7 +28,6 @@ export const FiltersFrame = styled(FlexContainerRow)`
   gap: 20px;
 `;
 
-
 export const ChefsSection = styled(FlexContainerColumn)`
   padding: 0px;
   gap: 25px;

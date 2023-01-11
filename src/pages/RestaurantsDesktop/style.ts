@@ -38,22 +38,17 @@ export const Group = styled(FlexContainerRow)`
 export const InsiderFrame = styled(FlexContainerColumn)`
   justify-content: center;
   align-items: center;
-
   gap: 10px;
-
   width: 186px;
   height: 60px;
 `;
 
 export const ComponentFrame = styled(FlexContainerRow)`
   justify-content: center;
-
   padding: 0px;
   gap: 8px;
-
   width: 142px;
   height: 24px;
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -74,7 +69,6 @@ export const Arrow = styled.img.attrs({
 })`
   width: 24px;
   height: 24px;
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -84,7 +78,6 @@ export const RestaurantsSection = styled(FlexContainerColumn)`
   width: 1185px;
   padding: 0px;
   gap: 40px;
-
   margin: 40px auto 0 auto;
 `;
 
@@ -104,7 +97,6 @@ export const RestaurantInfo = styled.div`
 export const RestaurantImage = styled.img`
   width: 1186px;
   height: 425px;
-
   margin: 64px auto 32px auto;
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
@@ -123,9 +115,7 @@ export const RestaurantManager = styled.h4`
   width: max-content;
   font-size: 32px;
   line-height: 36px;
-
   letter-spacing: 1.97px;
-
   margin: 24px auto 33px auto;
 `;
 
@@ -134,9 +124,7 @@ export const Hours = styled(FlexContainerRow)`
   align-items: center;
   padding: 0px;
   gap: 8px;
-
   margin: 0 auto 0 auto;
-
   height: 20px;
 `;
 
@@ -145,7 +133,6 @@ export const ClockIcon = styled.img.attrs({
 })`
   width: 17px;
   height: 18px;
-
   flex: none;
   order: 0;
   flex-grow: 0;

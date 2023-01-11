@@ -14,6 +14,6 @@ export default configureStore({
     dishes: dishSlice.reducer,
     chefs: chefSlice.reducer,
     orders: orderSlice.reducer,
-    users: userSlice.reducer,
+    currentUser: userSlice.reducer,
   },
 });

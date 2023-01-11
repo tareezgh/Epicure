@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { setUser } from "../../helpers/Slicers";
 import { loginUser } from "../../services/fetchData";
-
+import { onRegisterClicked } from "./Register";
+import { CloseNavbar } from "../Order/OrderDesktop/style";
 import {
   PrimaryBtnTitle,
   PrimaryGrayBtnFrame,
@@ -9,6 +12,7 @@ import {
   SecondaryFrame,
 } from "../buttons";
 import {
+  CloseIcon,
   ForgetQuestion,
   InfoFrame,
   InputEmail,
@@ -23,13 +27,15 @@ import {
   SubTitle,
   Title,
 } from "./style";
-import { onRegisterClicked } from "./Register";
 
 interface Params {
   page?: string;
+  toggleUser: () => void;
 }
 
 const SignIn = (signInProps: Params) => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state: any) => state.currentUser.email);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const buttonStyle = {
@@ -41,20 +47,46 @@ const SignIn = (signInProps: Params) => {
     password,
   };
 
-  // BUG
-  const onLoginClicked = async () => {
-    if (email && password) loginUser(args);
+  const validInputs = () => {
+    if (email && password && email.includes("@")) return true;
     else {
       toast.error("Fill all fields please!", {
         position: "bottom-center",
         hideProgressBar: true,
       });
+      return false;
+    }
+  };
+
+  const onLoginClicked = async () => {
+    if (validInputs()) {
+      if (currentUser !== email) {
+        loginUser(args).then((res) => {
+          dispatch(setUser(res?.email));
+          signInProps.toggleUser();
+        });
+      } else {
+        toast.error("User already logged in", {
+          position: "bottom-center",
+          hideProgressBar: true,
+        });
+      }
     }
   };
 
   return (
     <>
       <SignInContainer page={signInProps.page}>
+        {signInProps.page === "Desktop" ? (
+          <>
+            <CloseNavbar>
+              <CloseIcon onClick={signInProps.toggleUser} />
+            </CloseNavbar>
+          </>
+        ) : (
+          ""
+        )}
+
         <InfoFrame>
           <Title>Sign In</Title>
           <SubTitle>To continue the order, please sign in</SubTitle>

@@ -271,7 +271,7 @@ export const InsideFrame = styled(FlexContainerColumn)`
   width: 130px;
   height: 38px;
   align-items: center;
-  
+
   flex: none;
   order: 1;
   flex-grow: 0;

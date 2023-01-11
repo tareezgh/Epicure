@@ -4,7 +4,8 @@ import epicureLogo from "../../../assets/Epicure-logo.png";
 import searchIcon from "../../../assets/search-icon.svg";
 import userIcon from "../../../assets/user-icon.svg";
 import cartIcon from "../../../assets/cart-icon.svg";
-import blackCloseIcon from "../../../assets/black-close-icon.svg";import whiteCloseIcon from "../../../assets/white-close-icon.svg";
+import blackCloseIcon from "../../../assets/black-close-icon.svg";
+import whiteCloseIcon from "../../../assets/white-close-icon.svg";
 
 const FlexContainerColumn = styled.div`
   display: flex;

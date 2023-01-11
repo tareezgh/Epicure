@@ -9,7 +9,6 @@ import Cart from "../../Cart/Cart";
 import {
   Badge,
   CartIcon,
-  CloseIcon,
   EpicureLogo,
   EpicureLogoContainer,
   EpicureTitle,
@@ -29,6 +28,12 @@ const HeaderDesktop = () => {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const filters = ["Restaurants", "Chefs"];
 
+  const toggleAll = () => {
+    if (searchOpen) toggleSearch();
+    if (cartOpen) toggleCart();
+    if (userOpen) toggleUser();
+  };
+
   const toggleSearch = () => {
     if (cartOpen) toggleCart();
     if (userOpen) toggleUser();
@@ -42,16 +47,20 @@ const HeaderDesktop = () => {
   };
 
   const toggleCart = () => {
+    if (userOpen) toggleUser();
+    if (searchOpen) toggleSearch();
     setCartOpen(!cartOpen);
   };
 
   const handleData = (filter: string) => {
     switch (filter) {
       case "Restaurants":
+        toggleAll();
         navigate(`/AllRestaurants`);
         break;
 
       case "Chefs":
+        toggleAll();
         navigate(`/Chefs`);
         break;
 
@@ -67,7 +76,7 @@ const HeaderDesktop = () => {
           <EpicureLogoContainer
             onClick={() => {
               navigate(`/`);
-              window.location.reload(); // reload the page
+              window.location.reload(); // need to FIX
             }}
           >
             <EpicureLogo />
@@ -96,14 +105,10 @@ const HeaderDesktop = () => {
             <CartIcon onClick={toggleCart} />
           </IconsContainer>
 
-          {/* Pop Ups */}
-
           {cartOpen && <Cart page="Desktop" />}
-
           {userOpen && (
             <>
-              <CloseIcon onClick={toggleUser} />
-              <SignIn page="Desktop" />
+              <SignIn page="Desktop" toggleUser={toggleUser} />
             </>
           )}
         </NavbarContent>

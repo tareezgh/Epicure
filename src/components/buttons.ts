@@ -10,7 +10,7 @@ const FlexContainerRow = styled.div`
 `;
 
 export const PrimaryBtnFrame = styled(FlexContainerRow)`
-  padding: 5px 24px;
+  // padding: 5px 24px;
   gap: 10px;
   width: 206px;
   height: 48px;
@@ -54,7 +54,7 @@ export const PrimaryBtnTitle = styled.h3<{
 `;
 
 export const PrimaryGrayBtnFrame = styled(FlexContainerRow)`
-  padding: 5px 24px;
+  // padding: 5px 24px;
   gap: 10px;
 
   width: 206px;
@@ -66,7 +66,7 @@ export const PrimaryGrayBtnFrame = styled(FlexContainerRow)`
 `;
 
 export const SecondaryFrame = styled(FlexContainerRow)`
-  padding: 5px 15px;
+  // padding: 5px 15px;
   gap: 10px;
 
   width: 206px;
