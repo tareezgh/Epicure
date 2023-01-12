@@ -11,7 +11,7 @@ import {
   setOrdersNumber,
   setOrders,
   setChefOfTheWeek,
-} from "./helpers/Slicers";
+} from "./redux/Slicers";
 
 import HeaderMobile from "./components/Header/HeaderMobile/HeaderMobile";
 import HeaderDesktop from "./components/Header/HeaderDesktop/HeaderDesktop";

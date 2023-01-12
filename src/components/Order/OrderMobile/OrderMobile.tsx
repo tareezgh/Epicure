@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setOrdersNumber } from "../../../helpers/Slicers";
+import { setOrders, setOrdersNumber } from "../../../redux/Slicers";
 
 import { IDish } from "../../../Interfaces/IDish";
 import { createOrder } from "../../../services/fetchData";
@@ -35,6 +35,7 @@ const Order = (orderProps: Params) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state: any) => state.currentUser.email);
   const dishesData = useSelector((state: any) => state.dishes.allDishes);
+  const ordersData = useSelector((state: any) => state.orders.allOrders);
   const ordersNumber = useSelector((state: any) => state.orders.counter);
 
   const [selectRadioBtn, setSelectRadioBtn] = useState("");
@@ -73,9 +74,11 @@ const Order = (orderProps: Params) => {
         selectCheckBoxBtn,
         quantity,
         currentUser
-      ).then(() => {
+      ).then((res) => {
+        // console.log(res);
         orderProps.toggleOrder(" ");
         dispatch(setOrdersNumber(ordersNumber + 1));
+        // dispatch(setOrders(ordersData.push(res)));
       });
     } else {
       toast.error("Should choose a side first!", {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setUser } from "../../helpers/Slicers";
+import { setUser } from "../../redux/Slicers";
 import { loginUser } from "../../services/fetchData";
 import { onRegisterClicked } from "./Register";
 import { CloseNavbar } from "../Order/OrderDesktop/style";

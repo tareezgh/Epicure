@@ -5,7 +5,7 @@ import {
   fetchRestaurantData,
   fetchRestaurantDishesData,
 } from "../../services/fetchData";
-import { setRestaurant, setRestaurantDishes } from "../../helpers/Slicers";
+import { setRestaurant, setRestaurantDishes } from "../../redux/Slicers";
 import FilterFunction from "../../components/Filters/FilterFunction";
 import DishesCards from "../../components/Cards/CardsDesktop/DishCard/DishCard";
 

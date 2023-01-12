@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import cartIcon from "../../assets/cart-icon.svg";
 import currencyIcon from "../../assets/currency-icon.svg";
+import deleteIcon from "../../assets/delete-icon.svg";
 
 const FlexContainerColumn = styled.div`
   display: flex;
@@ -21,10 +22,9 @@ export const CartContainer = styled(FlexContainerColumn)<{
 }>`
   width: ${(props) => (props.page === "Desktop" ? "497px" : "100%")};
   top: ${(props) => (props.page === "Desktop" ? "64px" : "46px")};
-
   right: ${(props) => (props.page === "Desktop" ? "0" : "")};
-
-  height: ${(props) => (props.type === "Empty" && props.page !== "Desktop" ? "218px" : "514px")};
+  height: ${(props) =>
+    props.type === "Empty" && props.page !== "Desktop" ? "218px" : "514px"};
   gap: 20px;
   position: absolute;
   z-index: 1;
@@ -58,24 +58,6 @@ export const CartStatus = styled.h3`
   color: #000000;
 `;
 
-export const Frame = styled(FlexContainerColumn)`
-  padding: 0px;
-  gap: 4px;
-  margin-top: 16px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
-export const SummaryFrame = styled(FlexContainerRow)`
-  padding: 0px;
-  gap: 4px;
-  margin-top: 16px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
 export const Title = styled.h3<{
   page?: string;
 }>`
@@ -90,6 +72,28 @@ export const Title = styled.h3<{
     props.page === "Desktop" ? "1.25px" : "2.67px"};
   text-transform: uppercase;
   margin: 0;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+export const SummaryFrame = styled(FlexContainerRow)`
+  padding: 0px;
+  gap: 4px;
+  margin-top: 16px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+// ********************//
+// ********************//
+
+
+export const MainFrame = styled(FlexContainerColumn)`
+  padding: 0px;
+  gap: 4px;
+  margin-top: 16px;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -129,7 +133,6 @@ export const CardImage = styled.img<{
 
 export const CardFrame = styled(FlexContainerColumn)`
   padding: 12px 12px 12px 24px;
-  gap: 8px;
   width: 208px;
   height: 72px;
   align-items: flex-start;
@@ -140,7 +143,7 @@ export const CardFrame = styled(FlexContainerColumn)`
   flex-grow: 0;
 `;
 
-export const QuantityAndNameFrame = styled(FlexContainerRow)`
+export const InfoFrame = styled(FlexContainerRow)`
   gap: 10px;
   text-align: flex-start;
   letter-spacing: 2.67px;
@@ -165,7 +168,6 @@ export const DishName = styled.h3`
   font-size: 14px;
   line-height: 26px;
   margin: 0;
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -177,28 +179,75 @@ export const ChangesFrame = styled(FlexContainerRow)`
   text-align: flex-start;
   font-size: 12px;
   line-height: 16px;
-
+  margin-top: 8px;
   letter-spacing: 1.23px;
-
   flex: none;
   order: 1;
   flex-grow: 0;
 `;
 
-export const PriceFrame = styled(FlexContainerRow)<{
-  changeOrder?: Boolean;
-}>`
-  justify-content: flex-end;
 
+// ********************//
+// ********************//
+
+export const InfoFrameDesktop = styled(InfoFrame)`
+  gap: 12px;
+  height: 37px;
+`;
+
+
+export const QuantityDesktop = styled(FlexContainerColumn)`
+  box-sizing: border-box;
+  justify-content: center;
+  margin: auto 0;
+  gap: 10px;
+
+  width: 31px;
+  height: 31px;
+
+  border: 0.571429px solid #979797;
+  border-radius: 3.42857px;
+
+  font-weight: 400;
+  font-size: 18.1191px;
+  line-height: 18px;
+
+  color: #de9200;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+export const NameFrame = styled(FlexContainerColumn)`
+  gap: 6px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+`;
+
+export const DishNameDesktop = styled.h3`
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  margin: 0;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+
+// ********************//
+// ********************//
+
+export const PriceFrame = styled(FlexContainerRow)`
+  justify-content: flex-end;
   padding: 0px;
   gap: 2px;
-
-  // width: 208px;
   height: 14px;
   margin-right: 12px;
   flex: none;
-
-  order: ${(props) => (props.changeOrder ? "0" : "2")};
   order: 2;
   align-self: stretch;
   flex-grow: 1;
@@ -209,7 +258,6 @@ export const CurrencyIcon = styled.img.attrs({
 })`
   width: 8px;
   height: 22px;
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -218,41 +266,69 @@ export const CurrencyIcon = styled.img.attrs({
 export const Price = styled.div`
   width: 20px;
   height: 18px;
-
   font-weight: 400;
   font-size: 16px;
   line-height: 18px;
-
   letter-spacing: 1.97px;
-
   flex: none;
   order: 1;
   flex-grow: 0;
 `;
 
-////
+export const PriceDesktop = styled(Price)`
+  height: 13px;
+  font-size: 13px;
+  line-height: 13px;
+  letter-spacing: 1.42278px;
+  color: #de9200;
+`;
 
-export const DishDescription = styled.p<{
-  size?: string;
-}>`
-  ${(props) =>
-    props.size === "Big"
-      ? `width: 295px;
-      height: 176px;
-      font-size: 24px;
-      line-height: 30px;
-  `
-      : `width: 222px;
-      font-size: 20px;
-      line-height: 24px;
-      `};
 
-  // height: 136.27px;
-  text-align: center;
-  letter-spacing: 1.97px;
+// ********************//
+// ********************//
 
-  margin: 8px 0 0 0;
+export const QuantityFrame = styled(FlexContainerRow)`
+  justify-content: center;
+  align-items: center;
+  padding: 5px 8px;
+  gap: 15px;
+  width: 129.84px;
+  height: 31px;
+  background: #ffffff;
+  border-radius: 3.42857px;
   flex: none;
-  order: 1;
+  order: 0;
+  flex-grow: 0;
+`;
+
+export const OperationFrame = styled.div`
+  width: 21px;
+  height: 21px;
+  background: #f9f4ea;
+  border-radius: 50%;
+  justify-content: center;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+export const Minus = styled.div`
+  width: 13px;
+  height: 0;
+
+  margin: auto;
+  transform: translateY(10px);
+  border: 0.5px solid #000000;
+  cursor: pointer;
+`;
+
+export const DeleteIcon = styled.img.attrs({
+  src: deleteIcon,
+})`
+  width: 15.84px;
+  height: 19px;
+
+  flex: none;
+  order: 3;
   flex-grow: 0;
 `;

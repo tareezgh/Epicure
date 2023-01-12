@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { setRestaurant, setRestaurantDishes } from "../../helpers/Slicers";
+import { setRestaurant,setRestaurantDishes } from "../../redux/Slicers";
 import {
   fetchRestaurantData,
   fetchRestaurantDishesData,
@@ -27,6 +27,7 @@ import {
   FiltersFrame,
   DishesSection,
 } from "./style";
+
 
 const RestaurantPageMobile = () => {
   const dispatch = useDispatch();

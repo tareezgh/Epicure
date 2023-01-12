@@ -1,5 +1,3 @@
-import { IChef } from "./IChef";
-
 export interface IRestaurant {
   name: string;
   chefName: string;

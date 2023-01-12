@@ -1,5 +1,9 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SetWindowSize from "../../helpers/SetWindowSize";
+import DishCard from "./DishCard";
+import { setOrders } from "../../redux/Slicers";
+import { fetchAllOrdersData } from "../../services/fetchData";
 import {
   PrimaryBtnFrame,
   PrimaryBtnTitle,
@@ -8,24 +12,21 @@ import {
 } from "../buttons";
 
 import {
-  CardContent,
-  CardFrame,
-  CardImage,
   CartContainer,
   CartIcon,
   CartStatus,
-  ChangesFrame,
-  CurrencyIcon,
-  DishName,
-  Frame,
-  Price,
-  PriceFrame,
-  Quantity,
-  QuantityAndNameFrame,
-  RestaurantName,
+  MainFrame,
   SummaryFrame,
   Title,
 } from "./style";
+
+import {
+  PriceAndIcon,
+  PriceFrame,
+  CurrencyIcon,
+  Price,
+  Line,
+} from "../Cards/CardsDesktop/DishCard/style";
 
 interface Params {
   page?: string;
@@ -33,11 +34,16 @@ interface Params {
 
 const Cart = (cartProps: Params) => {
   const windowSize = SetWindowSize();
+  const dispatch = useDispatch();
   const ordersData = useSelector((state: any) => state.orders.allOrders);
   const ordersCounter = useSelector((state: any) => state.orders.counter);
   let restaurantsSet = new Set<string>();
   let restaurantsArray = new Array<string>();
   let totalPrice = 0;
+
+  useEffect(() => {
+    fetchAllOrdersData().then((res) => dispatch(setOrders(res)));
+  }, []);
 
   const calculateTotalPrice = () => {
     ordersData.map(
@@ -68,50 +74,16 @@ const Cart = (cartProps: Params) => {
     </>
   );
 
-  const renderOrderDishes = (restaurant: any) => {
-    return (
-      <>
-        <Frame style={{ marginTop: "-8px" }}>
-          <RestaurantName>{restaurant}</RestaurantName>
-        </Frame>
-
-        {ordersData
-          .filter((order: any) => order.restaurant === restaurant)
-          .map((order: any, key: number) => (
-            <CardContent key={key}>
-              <CardImage src={order.image} />
-
-              <CardFrame>
-                <QuantityAndNameFrame>
-                  <Quantity>{order.quantity}x</Quantity>
-                  <DishName>{order.name}</DishName>
-                </QuantityAndNameFrame>
-
-                <ChangesFrame>
-                  {order.side} | {order.changes}
-                </ChangesFrame>
-
-                <PriceFrame>
-                  <CurrencyIcon />
-                  <Price>{order.price * order.quantity}</Price>
-                </PriceFrame>
-              </CardFrame>
-            </CardContent>
-          ))}
-      </>
-    );
-  };
-
   const renderMobileCart = (
     <>
-      <Frame>
+      <MainFrame>
         <Title>My Order</Title>
-      </Frame>
+      </MainFrame>
 
       {prepareSetAndArray()}
-      {restaurantsArray
-        .reverse()
-        .map((restaurant) => renderOrderDishes(restaurant))}
+      {restaurantsArray.map((restaurant) => (
+        <>{<DishCard restaurant={restaurant} type={"Mobile"} />}</>
+      ))}
       {calculateTotalPrice()}
       <SummaryFrame>
         <Title>total - ₪{totalPrice}</Title>
@@ -125,15 +97,30 @@ const Cart = (cartProps: Params) => {
 
   const renderDesktopCart = (
     <>
-      <Frame>
+      <MainFrame>
         <Title page={cartProps.page}>My Order</Title>
-      </Frame>
+      </MainFrame>
+
+      {prepareSetAndArray()}
+      {restaurantsArray.map((restaurant) => (
+        <>{<DishCard restaurant={restaurant} type={"Desktop"} />}</>
+      ))}
+      {calculateTotalPrice()}
+
+      <PriceFrame style={{ order: "0" }}>
+        <Line />
+        <PriceAndIcon>
+          <CurrencyIcon />
+          <Price style={{ width: "auto" }}>{totalPrice}</Price>
+        </PriceAndIcon>
+        <Line second={true} />
+      </PriceFrame>
 
       <PrimaryBtnFrame style={{ marginLeft: 0 }}>
         <PrimaryBtnTitle>Checkout</PrimaryBtnTitle>
       </PrimaryBtnFrame>
 
-      <SecondaryFrame>
+      <SecondaryFrame style={{ marginBottom: "24px" }}>
         <SecondaryBtnTitle>Order history</SecondaryBtnTitle>
       </SecondaryFrame>
     </>

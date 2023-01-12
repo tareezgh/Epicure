@@ -6,7 +6,7 @@ import {
   chefSlice,
   orderSlice,
   userSlice,
-} from "./helpers/Slicers";
+} from "./Slicers";
 
 export default configureStore({
   reducer: {

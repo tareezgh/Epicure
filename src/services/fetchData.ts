@@ -120,11 +120,12 @@ export const createOrder = async (
     quantity: quantity,
   };
   try {
-    await axios.post(createOrderUrl, args);
+    const response = await axios.post(createOrderUrl, args);
     toast.success("Added successfully!", {
       position: "bottom-center",
       hideProgressBar: true,
     });
+    return response.data;
   } catch {
     toast.error("Error!", {
       position: "bottom-center",
