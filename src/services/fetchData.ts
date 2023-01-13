@@ -93,7 +93,7 @@ export const getChefOfTheWeekData = async () => {
     const response = await axios.get(getChefOfTheWeekUrl);
     return response.data;
   } catch {
-    toast.error("Chef of hte week doesn't exist", {
+    toast.error("Chef of the week doesn't exist", {
       position: "bottom-center",
       hideProgressBar: true,
     });
@@ -169,10 +169,10 @@ export const registerUser = async (user: any) => {
     password: user.password,
   };
 
-  const respond = await axios.post(registerUrl, args);
+  const response = await axios.post(registerUrl, args);
 
-  if (respond.data.status === "failure") {
-    toast.error(respond.data.message, {
+  if (response.data.status === "failure") {
+    toast.error(response.data.message, {
       position: "bottom-center",
       hideProgressBar: true,
     });
@@ -190,10 +190,10 @@ export const loginUser = async (user: any) => {
     password: user.password,
   };
 
-  const respond = await axios.post(loginUrl, args);
+  const response = await axios.post(loginUrl, args);
 
-  if (respond.data.status === "failure") {
-    toast.error(respond.data.message, {
+  if (response.data.status === "failure") {
+    toast.error(response.data.message, {
       position: "bottom-center",
       hideProgressBar: true,
     });

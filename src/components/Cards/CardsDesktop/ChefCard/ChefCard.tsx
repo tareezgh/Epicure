@@ -56,26 +56,28 @@ const ChefCard = (chefProps: Params) => {
 
   const renderChefOfTheWeek = (
     <>
-      <Container>
-        <CardsContainer>
-          <CardContent>
-            <CardImage src={chefOfTheWeek.image} />
-            <CardInfo>
-              <ChefName>{chefOfTheWeek.chefName}</ChefName>
-            </CardInfo>
-          </CardContent>
-          <ChefsDescription> {chefOfTheWeek.description}</ChefsDescription>
-        </CardsContainer>
-        <RestaurantsContainer>
-          <SubTitle>
-            {chefOfTheWeek.chefName?.split(" ")[0]}`s Restaurants
-          </SubTitle>
-          <CardsFrame>
-            <RestaurantsCards size="Small" />
-            {/* need to FIX */}
-          </CardsFrame>
-        </RestaurantsContainer>
-      </Container>
+      {chefOfTheWeek.map((chef: any, key: number) => (
+        <Container key={key}>
+          <CardsContainer>
+            <CardContent>
+              <CardImage src={chef.image} />
+              <CardInfo>
+                <ChefName>{chef.chefName}</ChefName>
+              </CardInfo>
+            </CardContent>
+            <ChefsDescription> {chef.description}</ChefsDescription>
+          </CardsContainer>
+          <RestaurantsContainer>
+            <SubTitle>{chef.chefName?.split(" ")[0]}`s Restaurants</SubTitle>
+            <CardsFrame>
+              <RestaurantsCards
+                size="Small"
+                chefsRestaurants={chef.restaurants}
+              />
+            </CardsFrame>
+          </RestaurantsContainer>
+        </Container>
+      ))}
     </>
   );
 

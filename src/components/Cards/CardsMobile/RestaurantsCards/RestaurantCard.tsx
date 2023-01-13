@@ -17,14 +17,16 @@ interface Params {
   size: string;
   page?: string;
   filter?: string;
+  chefsRestaurants?: [];
+  isChefOfTheWeek?: boolean;
 }
 
 const RestaurantsCards = (restaurantProps: Params) => {
+  const navigate = useNavigate();
   const restaurantsData = useSelector(
     (state: any) => state.restaurants.allRestaurants
   );
   let filteredData: IRestaurant[] = restaurantsData;
-  const navigate = useNavigate();
 
   const renderSwitch = () => {
     switch (restaurantProps.filter) {
@@ -46,9 +48,12 @@ const RestaurantsCards = (restaurantProps: Params) => {
       default:
         break;
     }
-    if (restaurantProps.page === "HomePageMobile")
+    if (restaurantProps.page === "HomePageMobile") {
       // in home page display 3 cards only
-      filteredData = restaurantsData.slice(0, 3);
+      filteredData = restaurantProps.isChefOfTheWeek
+        ? restaurantProps.chefsRestaurants?.slice(0, 3)
+        : restaurantsData.slice(0, 3);
+    }
   };
 
   const renderData = (

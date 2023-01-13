@@ -7,8 +7,27 @@ interface Params {
   password: string;
 }
 
+export const validInputs = (email: string, password: string) => {
+  if (email && password && email.includes("@")) return true;
+  else if (!email || !password) {
+    toast.error("Fill all fields please!", {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+  } else if (!email.includes("@")) {
+    toast.error("Email should include @", {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+  }
+
+  return false;
+};
+
 export const onRegisterClicked = async (registerProps: Params) => {
-  const { password } = registerProps;
+  const { email, password } = registerProps;
+
+  if (!validInputs(email, password)) return false;
 
   const schema = new PasswordValidator();
   schema

@@ -17,14 +17,16 @@ interface Params {
   size: string;
   page?: string;
   filter?: string;
+  chefsRestaurants?: [];
 }
 
 const RestaurantsCards = (restaurantProps: Params) => {
+  const navigate = useNavigate();
   const restaurantsData = useSelector(
     (state: any) => state.restaurants.allRestaurants
   );
+
   let filteredData: IRestaurant[] = restaurantsData;
-  const navigate = useNavigate();
 
   const renderSwitch = () => {
     switch (restaurantProps.filter) {
@@ -87,20 +89,22 @@ const RestaurantsCards = (restaurantProps: Params) => {
 
   const renderSmallCard = (
     <>
-      {filteredData.slice(0, 3).map((restaurant: IRestaurant, key: number) => (
-        <CardContent
-          key={key}
-          size={restaurantProps.size}
-          onClick={() => navigate(`/Restaurant${restaurant.name}`)}
-        >
-          <CardImage size={restaurantProps.size} src={restaurant.image} />
-          <CardFrame size={restaurantProps.size}>
-            <RestaurantName size={restaurantProps.size}>
-              {restaurant.name}
-            </RestaurantName>
-          </CardFrame>
-        </CardContent>
-      ))}
+      {restaurantProps.chefsRestaurants
+        ?.slice(0, 3)
+        .map((restaurant: any, key: number) => (
+          <CardContent
+            key={key}
+            size={restaurantProps.size}
+            onClick={() => navigate(`/Restaurant${restaurant.name}`)}
+          >
+            <CardImage size={restaurantProps.size} src={restaurant.image} />
+            <CardFrame size={restaurantProps.size}>
+              <RestaurantName size={restaurantProps.size}>
+                {restaurant.name}
+              </RestaurantName>
+            </CardFrame>
+          </CardContent>
+        ))}
     </>
   );
 

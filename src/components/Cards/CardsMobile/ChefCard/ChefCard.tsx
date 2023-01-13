@@ -51,17 +51,23 @@ const ChefCard = (chefProps: Params) => {
 
   const renderChefOfTheWeek = (
     <>
-      <CardsContainer>
-        <CardContent imgUrl={chefOfTheWeek.image}>
-          <CardInfo>
-            <ChefName>{chefOfTheWeek.chefName}</ChefName>
-          </CardInfo>
-        </CardContent>
-        <ChefsDescription> {chefOfTheWeek.description}</ChefsDescription>
-        <ChefsTitle>Chef of the week:</ChefsTitle>
-        <RestaurantsCards size="Small" page="HomePageMobile" />
-        {/* need to FIX */}
-      </CardsContainer>
+      {chefOfTheWeek.map((chef: any, key: number) => (
+        <CardsContainer>
+          <CardContent imgUrl={chef.image}>
+            <CardInfo>
+              <ChefName>{chef.chefName}</ChefName>
+            </CardInfo>
+          </CardContent>
+          <ChefsDescription> {chef.description}</ChefsDescription>
+          <ChefsTitle>Chef of the week:</ChefsTitle>
+          <RestaurantsCards
+            size="Small"
+            page="HomePageMobile"
+            chefsRestaurants={chef.restaurants}
+            isChefOfTheWeek={true}
+          />
+        </CardsContainer>
+      ))}
     </>
   );
 

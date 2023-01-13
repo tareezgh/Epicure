@@ -49,6 +49,7 @@ function App() {
     fetchAllChefsData().then((res) => dispatch(setChefs(res)));
     fetchAllOrdersData().then((res) => dispatch(setOrders(res)));
     getChefOfTheWeekData().then((res) => dispatch(setChefOfTheWeek(res)));
+
   }, []);
 
   return (

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { setUser } from "../../redux/Slicers";
 import { loginUser } from "../../services/fetchData";
-import { onRegisterClicked } from "./Register";
+import { onRegisterClicked, validInputs } from "./Register";
 import { CloseNavbar } from "../Order/OrderDesktop/style";
 import {
   PrimaryBtnTitle,
@@ -47,23 +47,12 @@ const SignIn = (signInProps: Params) => {
     password,
   };
 
-  const validInputs = () => {
-    if (email && password && email.includes("@")) return true;
-    else {
-      toast.error("Fill all fields please!", {
-        position: "bottom-center",
-        hideProgressBar: true,
-      });
-      return false;
-    }
-  };
-
   const onLoginClicked = async () => {
-    if (validInputs()) {
+    if (validInputs(email, password)) {
       if (currentUser !== email) {
         loginUser(args).then((res) => {
           dispatch(setUser(res?.email));
-          signInProps.toggleUser();
+          if (res?.email) signInProps.toggleUser();
         });
       } else {
         toast.error("User already logged in", {

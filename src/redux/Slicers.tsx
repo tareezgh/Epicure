@@ -36,7 +36,7 @@ export const chefSlice = createSlice({
   name: "chefs",
   initialState: {
     allChefs: [],
-    chefOfTheWeek: {},
+    chefOfTheWeek: [],
   },
   reducers: {
     setChefs: (state, action) => {
