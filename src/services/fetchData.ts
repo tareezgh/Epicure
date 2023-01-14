@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   createOrderUrl,
+  deleteOrderByIDUrl,
   getChefOfTheWeekUrl,
   getChefsUrl,
   getDishesOfRestaurantUrl,
@@ -105,7 +106,7 @@ export const getChefOfTheWeekData = async () => {
 export const createOrder = async (
   dish: IDish,
   selectRadioBtn: string,
-  selectCheckBoxBtn: string[],
+  selectCheckBoxBtn: Array<string>,
   quantity: number,
   currentUser: string
 ) => {
@@ -158,6 +159,24 @@ export const fetchOrdersDataForUser = async (email: string) => {
       position: "bottom-center",
       hideProgressBar: true,
     });
+  }
+};
+export const deleteOrderByID = async (orderID: any, dishName: string) => {
+  const response = await axios.delete(deleteOrderByIDUrl, {
+    data: { id: orderID },
+  });
+
+  if (response.data.status === "failure") {
+    toast.error(response.data.message, {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+  } else {
+    toast.success("Deleted successfully!", {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+    return dishName;
   }
 };
 

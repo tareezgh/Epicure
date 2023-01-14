@@ -1,4 +1,5 @@
 export const url = "http://localhost:3001/api";
+// export const url = "https://us-central1-epicureserver-84e42.cloudfunctions.net/app/api";
 
 // Restaurant
 export const getRestaurantsUrl = `${url}/restaurants/getRestaurants`;
@@ -16,7 +17,8 @@ export const getDishesOfRestaurantUrl = `${url}/dishes/getDishesOfRestaurant`;
 export const createOrderUrl = `${url}/orders/createOrder`;
 export const getOrdersUrl = `${url}/orders/getOrders`;
 export const getOrdersOfUserUrl = `${url}/orders/getOrdersOfUser`;
+export const deleteOrderByIDUrl = `${url}/orders/deleteOrderById`;
 
 // User
 export const loginUrl = `${url}/auth/login`;
-export const registerUrl = `${url}/auth/register`;
+export const registerUrl = `${url}/auth/register`; 

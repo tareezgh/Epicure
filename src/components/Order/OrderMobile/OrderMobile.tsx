@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setOrders, setOrdersNumber } from "../../../redux/Slicers";
+import { setOrdersNumber } from "../../../redux/Slicers";
 
 import { IDish } from "../../../Interfaces/IDish";
 import { createOrder } from "../../../services/fetchData";
@@ -35,28 +35,13 @@ const Order = (orderProps: Params) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state: any) => state.currentUser.email);
   const dishesData = useSelector((state: any) => state.dishes.allDishes);
-  const ordersData = useSelector((state: any) => state.orders.allOrders);
   const ordersNumber = useSelector((state: any) => state.orders.counter);
 
   const [selectRadioBtn, setSelectRadioBtn] = useState("");
+  const [checkedCheckbox, setCheckedCheckbox] = useState(false);
+  const [checkedState, setCheckedState] = useState(new Array(2).fill(""));
   const selectCheckBoxBtn: string[] = [];
   let [quantity, setQuantity] = useState<number>(1);
-
-  const handleRadioOptionChange = (event: any) => {
-    const value = event.target.value;
-    setSelectRadioBtn(value);
-  };
-
-  const handleCheckBoxOptionChange = (event: any) => {
-    const value = event.target.value;
-    if (selectCheckBoxBtn.includes(value)) {
-      let index = selectCheckBoxBtn.indexOf(value);
-      selectCheckBoxBtn.splice(index, 1);
-    } else {
-      selectCheckBoxBtn.push(value);
-    }
-    console.log(selectCheckBoxBtn);
-  };
 
   const clickPlus = () => {
     setQuantity(quantity++);
@@ -66,19 +51,18 @@ const Order = (orderProps: Params) => {
     if (quantity > 0) setQuantity(quantity--);
   };
 
+  // ------------ //
   const clickAddToBag = (dish: IDish) => {
     if (selectRadioBtn !== "") {
       createOrder(
         dish,
         selectRadioBtn,
-        selectCheckBoxBtn,
+        checkedState,
         quantity,
         currentUser
       ).then((res) => {
-        // console.log(res);
         orderProps.toggleOrder(" ");
         dispatch(setOrdersNumber(ordersNumber + 1));
-        // dispatch(setOrders(ordersData.push(res)));
       });
     } else {
       toast.error("Should choose a side first!", {
@@ -87,6 +71,8 @@ const Order = (orderProps: Params) => {
       });
     }
   };
+
+  // -----Radio button------- //
 
   const renderRadioBtn = (str: string) => (
     <>
@@ -102,6 +88,13 @@ const Order = (orderProps: Params) => {
     </>
   );
 
+  const handleRadioOptionChange = (event: any) => {
+    const value = event.target.value;
+    setSelectRadioBtn(value);
+  };
+
+  // ------Checkbox button------ //
+
   const renderCheckBoxBtn = (str: string) => (
     <>
       <RowFrame>
@@ -109,12 +102,24 @@ const Order = (orderProps: Params) => {
           type="checkbox"
           value={str}
           onChange={handleCheckBoxOptionChange}
-          checked={selectCheckBoxBtn.includes(str)}
         />
         <Content>{str}</Content>
       </RowFrame>
     </>
   );
+
+  const handleCheckBoxOptionChange = (event: any) => {
+    const value = event.target.value;
+    setCheckedCheckbox(!checkedCheckbox);
+    if (selectCheckBoxBtn.includes(value)) {
+      let index = selectCheckBoxBtn.indexOf(value);
+      selectCheckBoxBtn.splice(index, 1);
+    } else {
+      selectCheckBoxBtn.push(value);
+    }
+    setCheckedState(selectCheckBoxBtn);
+  };
+  // ------------ //
 
   const renderData = (
     <>

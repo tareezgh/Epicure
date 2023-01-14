@@ -25,11 +25,20 @@ export const CartContainer = styled(FlexContainerColumn)<{
   right: ${(props) => (props.page === "Desktop" ? "0" : "")};
   height: ${(props) =>
     props.type === "Empty" && props.page !== "Desktop" ? "218px" : "514px"};
+
+  height: ${(props) => (props.page === "Desktop" ? "779px" : "")};
   gap: 20px;
   position: absolute;
   z-index: 1;
   background: #ffffff;
   box-shadow: 2px 4px 10px rgba(175, 175, 175, 0.25);
+  overflow-y: scroll;
+`;
+
+export const DishesContainer = styled(FlexContainerColumn)`
+  width: 100%;
+  height: 250px;
+  gap: 12px;
   overflow-y: scroll;
 `;
 
@@ -88,7 +97,6 @@ export const SummaryFrame = styled(FlexContainerRow)`
 
 // ********************//
 // ********************//
-
 
 export const MainFrame = styled(FlexContainerColumn)`
   padding: 0px;
@@ -186,15 +194,13 @@ export const ChangesFrame = styled(FlexContainerRow)`
   flex-grow: 0;
 `;
 
-
-// ********************//
+// -----Desktop-----//
 // ********************//
 
 export const InfoFrameDesktop = styled(InfoFrame)`
   gap: 12px;
   height: 37px;
 `;
-
 
 export const QuantityDesktop = styled(FlexContainerColumn)`
   box-sizing: border-box;
@@ -236,7 +242,30 @@ export const DishNameDesktop = styled.h3`
   order: 0;
   flex-grow: 0;
 `;
+export const CommentInput = styled.textarea`
+  box-sizing: border-box;
+  width: 358px;
+  height: 122px;
 
+  font-size: 12px;
+  line-height: 15px;
+
+  letter-spacing: 1.29px;
+
+  color: #979797;
+
+  border: 0.6px solid #979797;
+  border-radius: 3.42857px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  &:active,
+  focus {
+    color: #000000;
+  }
+`;
 
 // ********************//
 // ********************//
@@ -282,7 +311,6 @@ export const PriceDesktop = styled(Price)`
   letter-spacing: 1.42278px;
   color: #de9200;
 `;
-
 
 // ********************//
 // ********************//

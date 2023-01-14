@@ -47,14 +47,91 @@ const Order = (orderProps: Params) => {
   const currentUser = useSelector((state: any) => state.currentUser.email);
   const dishesData = useSelector((state: any) => state.dishes.allDishes);
   const ordersNumber = useSelector((state: any) => state.orders.counter);
+
   const [selectRadioBtn, setSelectRadioBtn] = useState("");
-  const selectCheckBoxBtn: string[] = [];
+  const [checkedState, setCheckedState] = useState(new Array(2).fill(""));
+
+  const selectCheckBoxBtn: Array<string> = [];
   let [quantity, setQuantity] = useState<number>(1);
+
+  // ------------ //
+
+  const clickPlus = () => {
+    setQuantity(quantity++);
+  };
+
+  const clickMinus = () => {
+    if (quantity > 0) setQuantity(quantity--);
+  };
+
+  // ------------ //
+
+  const clickAddToBag = (dish: IDish) => {
+    if (selectRadioBtn !== "") {
+      createOrder(
+        dish,
+        selectRadioBtn,
+        checkedState,
+        quantity,
+        currentUser
+      ).then((res) => {
+        orderProps.toggleOrder(" ");
+        dispatch(setOrdersNumber(ordersNumber + 1));
+      });
+    } else {
+      toast.error("Should choose a side first!", {
+        hideProgressBar: true,
+        position: "bottom-center",
+      });
+    }
+  };
+
+  // -----Radio button------- //
+
+  const renderRadioBtn = (str: string) => (
+    <>
+      <RowFrame>
+        <Icon
+          type="radio"
+          value={str}
+          checked={selectRadioBtn === str}
+          onChange={handleRadioOptionChange}
+        />
+        <Content>{str}</Content>
+      </RowFrame>
+    </>
+  );
 
   const handleRadioOptionChange = (event: any) => {
     const value = event.target.value;
     setSelectRadioBtn(value);
   };
+
+  // ------Checkbox button------ //
+
+  const renderCheckBoxBtn = (str: string, key: number) => (
+    <>
+      <RowFrame>
+        <Icon type="checkbox" value={str} onChange={handleOnChange} />
+        <Content>{str}</Content>
+      </RowFrame>
+    </>
+  );
+
+  //BUG
+  const handleOnChange = (event: any) => {
+    const value = event.target.value;
+
+    if (selectCheckBoxBtn.includes(value)) {
+      let index = selectCheckBoxBtn.indexOf(value);
+      selectCheckBoxBtn.splice(index, 1);
+    } else {
+      selectCheckBoxBtn.push(value);
+    }
+    setCheckedState(selectCheckBoxBtn);
+  };
+
+  // ------------ //
 
   const renderIconCardData = (signature: string) => (
     <>
@@ -79,72 +156,7 @@ const Order = (orderProps: Params) => {
     );
   };
 
-  const handleCheckBoxOptionChange = (event: any) => {
-    const value = event.target.value;
-    if (selectCheckBoxBtn.includes(value)) {
-      let index = selectCheckBoxBtn.indexOf(value);
-      selectCheckBoxBtn.splice(index, 1);
-    } else {
-      selectCheckBoxBtn.push(value);
-    }
-    console.log(selectCheckBoxBtn);
-  };
-
-  const clickPlus = () => {
-    setQuantity(quantity++);
-  };
-
-  const clickMinus = () => {
-    if (quantity > 0) setQuantity(quantity--);
-  };
-
-  const clickAddToBag = (dish: IDish) => {
-    if (selectRadioBtn !== "") {
-      createOrder(
-        dish,
-        selectRadioBtn,
-        selectCheckBoxBtn,
-        quantity,
-        currentUser
-      ).then(() => {
-        orderProps.toggleOrder(" ");
-        dispatch(setOrdersNumber(ordersNumber + 1));
-      });
-    } else {
-      toast.error("Should choose a side first!", {
-        hideProgressBar: true,
-        position: "bottom-center",
-      });
-    }
-  };
-
-  const renderRadioBtn = (str: string) => (
-    <>
-      <RowFrame>
-        <Icon
-          type="radio"
-          value={str}
-          checked={selectRadioBtn === str}
-          onChange={handleRadioOptionChange}
-        />
-        <Content>{str}</Content>
-      </RowFrame>
-    </>
-  );
-
-  const renderCheckBoxBtn = (str: string) => (
-    <>
-      <RowFrame>
-        <Icon
-          type="checkbox"
-          value={str}
-          onChange={handleCheckBoxOptionChange}
-          checked={selectCheckBoxBtn.includes(str)}
-        />
-        <Content>{str}</Content>
-      </RowFrame>
-    </>
-  );
+  // ------------ //
 
   const renderData = (
     <>
@@ -173,8 +185,8 @@ const Order = (orderProps: Params) => {
 
               <CheckFrame>
                 <SubTitle>Changes</SubTitle>
-                {renderCheckBoxBtn("Without peanuts")}
-                {renderCheckBoxBtn("Sticky Less spicy")}
+                {renderCheckBoxBtn("Without peanuts", 0)}
+                {renderCheckBoxBtn("Sticky Less spicy", 1)}
               </CheckFrame>
 
               <QuantityFrame>

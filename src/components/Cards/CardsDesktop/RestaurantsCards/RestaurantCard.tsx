@@ -43,7 +43,7 @@ const RestaurantsCards = (restaurantProps: Params) => {
       case "Open Now":
         filteredData = restaurantsData.filter(
           (restaurant: IRestaurant) => restaurant.isOpen === true
-        ); // need to check by date exactly to FIX
+        ); // need to check by date exactly // to FIX
         break;
       case "Map View":
         filteredData = []; // need to view map

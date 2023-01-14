@@ -1,10 +1,12 @@
+// Do not check please
+import { ClearBtnFrame, ClearBtnTitle } from "../../buttons";
 import { RatingContainer, RowFrame, Rows, Title } from "./style";
 import {
   StarIcon,
   StarsFrame,
 } from "../../Cards/CardsDesktop/RestaurantsCards/style";
 import { CheckBoxIcon } from "../../Order/OrderMobile/style";
-import { ClearBtnFrame, ClearBtnTitle } from "../../buttons";
+import { toast } from "react-toastify";
 
 const Rating = () => {
   const renderRow = (starNum: number) => (
@@ -35,7 +37,14 @@ const Rating = () => {
         </Rows>
 
         {/* if clicked */}
-        <ClearBtnFrame>
+        <ClearBtnFrame
+          onClick={() =>
+            toast.warn("Not Implemented yet!", {
+              hideProgressBar: true,
+              position: "bottom-center",
+            })
+          }
+        >
           <ClearBtnTitle>clear</ClearBtnTitle>
         </ClearBtnFrame>
       </RatingContainer>

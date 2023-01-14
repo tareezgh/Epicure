@@ -19,12 +19,19 @@ interface Params {
 }
 
 const Search = (searchProps: Params) => {
+  const navigate = useNavigate();
   const restaurantsData = useSelector(
     (state: any) => state.restaurants.allRestaurants
   );
   const dishesData = useSelector((state: any) => state.dishes.allDishes);
   const [searchResult, setSearchResult] = useState("");
-  const navigate = useNavigate();
+  const searchResultBoxStyle = {
+    transform: `${
+      searchResult && searchProps.page === "HeaderDesktop"
+        ? " translateY(86px)"
+        : ""
+    }`,
+  };
 
   const renderRestaurantsData = (
     <>
@@ -61,53 +68,63 @@ const Search = (searchProps: Params) => {
     </>
   );
 
+  const renderSearchResultBox = (
+    <>
+      <SearchResultBox page={searchProps.page}>
+        <Results type="Title" page={searchProps.page}>
+          Restaurants:
+        </Results>
+        {renderRestaurantsData}
+        <Results type="Title" page={searchProps.page}>
+          Cuisine:
+        </Results>
+        {renderDishesData}
+      </SearchResultBox>
+    </>
+  );
+
+  const renderSearchFieldHeaderDesktop = (
+    <>
+      <SearchField>
+        <InputLine />
+        <SearchInput onChange={(text) => setSearchResult(text.target.value)} />
+        <SearchIcon
+          onClick={() => {
+            searchProps.toggleSearch && searchProps.toggleSearch(); // close search bar
+          }}
+        />
+      </SearchField>
+    </>
+  );
+
+  const renderSearchFieldHomePage = (
+    <>
+      <SearchField page={searchProps.page}>
+        <SearchIcon page={searchProps.page} />
+        <>
+          {searchProps.page === "HomePageMobile" ||
+          searchProps.page === "HomePageDesktop" ? (
+            ""
+          ) : (
+            <InputLine />
+          )}
+        </>
+        <SearchInput
+          page={searchProps.page}
+          onChange={(text) => setSearchResult(text.target.value)}
+        />
+      </SearchField>
+    </>
+  );
+
   return (
     <>
-      <SearchContent page={searchProps.page} searchResult={searchResult}>
-        {searchProps.page === "HeaderDesktop" ? (
-          <SearchField>
-            <InputLine />
-            <SearchInput
-              onChange={(text) => setSearchResult(text.target.value)}
-            />
-            <SearchIcon
-              onClick={() => {
-                searchProps.toggleSearch && searchProps.toggleSearch(); // close search bar
-              }}
-            />
-          </SearchField>
-        ) : (
-          <SearchField page={searchProps.page}>
-            <SearchIcon page={searchProps.page} />
-            <>
-              {searchProps.page === "HomePageMobile" ||
-              searchProps.page === "HomePageDesktop" ? (
-                ""
-              ) : (
-                <InputLine />
-              )}
-            </>
-            <SearchInput
-              page={searchProps.page}
-              onChange={(text) => setSearchResult(text.target.value)}
-            />
-          </SearchField>
-        )}
+      <SearchContent style={searchResultBoxStyle}>
+        {searchProps.page === "HeaderDesktop"
+          ? renderSearchFieldHeaderDesktop
+          : renderSearchFieldHomePage}
 
-        {searchResult ? (
-          <SearchResultBox page={searchProps.page}>
-            <Results type="Title" page={searchProps.page}>
-              Restaurants:
-            </Results>
-            {renderRestaurantsData}
-            <Results type="Title" page={searchProps.page}>
-              Cuisine:
-            </Results>
-            {renderDishesData}
-          </SearchResultBox>
-        ) : (
-          ""
-        )}
+        {searchResult ? renderSearchResultBox : ""}
       </SearchContent>
     </>
   );

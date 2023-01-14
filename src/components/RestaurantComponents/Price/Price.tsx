@@ -1,3 +1,5 @@
+// Do not check please
+import { toast } from "react-toastify";
 import { ClearBtnFrame, ClearBtnTitle } from "../../buttons";
 import { PriceContainer, Title } from "./style";
 
@@ -12,7 +14,14 @@ const Price = (priceProps: Params) => {
         <Title>Price Range Selected</Title>
 
         {/* if clicked */}
-        <ClearBtnFrame>
+        <ClearBtnFrame
+          onClick={() =>
+            toast.warn("Not Implemented yet!", {
+              hideProgressBar: true,
+              position: "bottom-center",
+            })
+          }
+        >
           <ClearBtnTitle>clear</ClearBtnTitle>
         </ClearBtnFrame>
       </PriceContainer>

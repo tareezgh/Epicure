@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setOrdersNumber } from "../../redux/Slicers";
+import { deleteOrderByID } from "../../services/fetchData";
 import { Plus } from "../Order/OrderDesktop/style";
 import {
   CardContent,
@@ -31,7 +33,9 @@ interface Params {
 }
 
 const DishCard = (cardProps: Params) => {
+  const dispatch = useDispatch();
   const ordersData = useSelector((state: any) => state.orders.allOrders);
+  const ordersNumber = useSelector((state: any) => state.orders.counter);
   const [quantityOpen, setQuantityOpen] = useState<boolean>(false);
   const cardContentStyle = {
     width: `${quantityOpen ? "386px" : "342px"}`,
@@ -42,6 +46,12 @@ const DishCard = (cardProps: Params) => {
 
   const toggleQuantity = () => {
     setQuantityOpen(!quantityOpen);
+  };
+
+  const clickedDelete = (orderId: string, dishName: string) => {
+    deleteOrderByID(orderId, dishName).then((res) =>
+      dispatch(setOrdersNumber(ordersNumber - 1))
+    );
   };
 
   const renderQuantityFrame = (order: any) => (
@@ -65,7 +75,7 @@ const DishCard = (cardProps: Params) => {
             }}
           />
         </OperationFrame>
-        <DeleteIcon />
+        <DeleteIcon onClick={() => clickedDelete(order._id, order.name)} />
       </QuantityFrame>
     </>
   );
@@ -104,7 +114,7 @@ const DishCard = (cardProps: Params) => {
 
   const renderDesktopCart = (
     <>
-      <MainFrame style={{ marginTop: "-8px" }}>
+      <MainFrame style={{ marginTop: "-3px" }}>
         <RestaurantName>{cardProps.restaurant}</RestaurantName>
       </MainFrame>
 

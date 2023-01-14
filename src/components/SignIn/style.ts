@@ -98,7 +98,6 @@ export const InputTitle = styled.h5`
   height: 18px;
   font-size: 12px;
   line-height: 18px;
-  /* identical to box height, or 150% */
   text-align: center;
   letter-spacing: 1.97px;
 

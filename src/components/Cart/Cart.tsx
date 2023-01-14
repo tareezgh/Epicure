@@ -15,6 +15,8 @@ import {
   CartContainer,
   CartIcon,
   CartStatus,
+  CommentInput,
+  DishesContainer,
   MainFrame,
   SummaryFrame,
   Title,
@@ -27,6 +29,7 @@ import {
   Price,
   Line,
 } from "../Cards/CardsDesktop/DishCard/style";
+import { toast } from "react-toastify";
 
 interface Params {
   page?: string;
@@ -43,9 +46,17 @@ const Cart = (cartProps: Params) => {
 
   useEffect(() => {
     fetchAllOrdersData().then((res) => dispatch(setOrders(res)));
-  }, []);
+  }, [ordersCounter]);
+
+  const renderWarningToast = () => {
+    toast.warn("Not Implemented yet!", {
+      hideProgressBar: true,
+      position: "bottom-center",
+    });
+  };
 
   const calculateTotalPrice = () => {
+    totalPrice = 0;
     ordersData.map(
       (order: any) => (totalPrice += order.price * order.quantity)
     );
@@ -63,7 +74,10 @@ const Cart = (cartProps: Params) => {
         <CartStatus>YOUR BAG IS EMPTY</CartStatus>
         {cartProps.page === "Desktop" ? (
           <>
-            <SecondaryFrame style={{ marginTop: "150px" }}>
+            <SecondaryFrame
+              style={{ marginTop: "150px" }}
+              onClick={renderWarningToast}
+            >
               <SecondaryBtnTitle>Order history</SecondaryBtnTitle>
             </SecondaryFrame>
           </>
@@ -81,15 +95,20 @@ const Cart = (cartProps: Params) => {
       </MainFrame>
 
       {prepareSetAndArray()}
-      {restaurantsArray.map((restaurant) => (
-        <>{<DishCard restaurant={restaurant} type={"Mobile"} />}</>
+
+      {restaurantsArray.map((restaurant: any, key: number) => (
+        <>{<DishCard restaurant={restaurant} type={"Mobile"} key={key} />}</>
       ))}
+
       {calculateTotalPrice()}
       <SummaryFrame>
         <Title>total - ₪{totalPrice}</Title>
       </SummaryFrame>
 
-      <PrimaryBtnFrame style={{ marginTop: 0, marginBottom: "24px" }}>
+      <PrimaryBtnFrame
+        style={{ marginTop: 0, marginBottom: "24px" }}
+        onClick={renderWarningToast}
+      >
         <PrimaryBtnTitle>Checkout</PrimaryBtnTitle>
       </PrimaryBtnFrame>
     </>
@@ -102,9 +121,11 @@ const Cart = (cartProps: Params) => {
       </MainFrame>
 
       {prepareSetAndArray()}
-      {restaurantsArray.map((restaurant) => (
-        <>{<DishCard restaurant={restaurant} type={"Desktop"} />}</>
-      ))}
+      <DishesContainer>
+        {restaurantsArray.map((restaurant, key: number) => (
+          <>{<DishCard restaurant={restaurant} type={"Desktop"} key={key} />}</>
+        ))}
+      </DishesContainer>
       {calculateTotalPrice()}
 
       <PriceFrame style={{ order: "0" }}>
@@ -116,11 +137,20 @@ const Cart = (cartProps: Params) => {
         <Line second={true} />
       </PriceFrame>
 
-      <PrimaryBtnFrame style={{ marginLeft: 0 }}>
-        <PrimaryBtnTitle>Checkout</PrimaryBtnTitle>
+      <Title style={{ fontSize: "18px" }}>Add A Comment</Title>
+
+      <CommentInput placeholder="Special requests, allergies, dietary restrictions, etc." />
+
+      <PrimaryBtnFrame style={{ marginLeft: 0 }} onClick={renderWarningToast}>
+        <PrimaryBtnTitle>
+          Checkout {totalPrice > 0 ? "- " + totalPrice : ""}
+        </PrimaryBtnTitle>
       </PrimaryBtnFrame>
 
-      <SecondaryFrame style={{ marginBottom: "24px" }}>
+      <SecondaryFrame
+        style={{ marginBottom: "24px" }}
+        onClick={renderWarningToast}
+      >
         <SecondaryBtnTitle>Order history</SecondaryBtnTitle>
       </SecondaryFrame>
     </>

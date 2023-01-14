@@ -53,7 +53,7 @@ const RestaurantPageDesktop = () => {
     fetchRestaurantDishesData(restaurantName).then((res) =>
       dispatch(setRestaurantDishes(res))
     );
-  }, []);
+  }, [restaurantNameByParams]);
 
   const handleData = (filter: string) => {
     setDishesFilter(filter);

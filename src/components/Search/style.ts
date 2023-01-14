@@ -13,15 +13,7 @@ const FlexContainerRow = styled.div`
   align-items: center;
 `;
 
-export const SearchContent = styled(FlexContainerColumn)<{
-  page?: string;
-  searchResult: string;
-}>`
-  ${(props) =>
-    props.searchResult && props.page === "HeaderDesktop"
-      ? ` transform: translateY(55px);`
-      : ``}
-`;
+export const SearchContent = styled(FlexContainerColumn)``;
 
 //HomePageDesktop
 export const SearchField = styled(FlexContainerRow)<{
@@ -101,6 +93,7 @@ export const SearchInput = styled.input.attrs({
 export const SearchResultBox = styled(FlexContainerColumn)<{
   page?: string;
 }>`
+  height: 138px;
   font-size: ${(props) =>
     props.page === "HomePageDesktop" ? "419px" : "230px"};
 
@@ -114,6 +107,7 @@ export const SearchResultBox = styled(FlexContainerColumn)<{
   flex: none;
   order: 1;
   flex-grow: 0;
+  overflow-y: scroll;
 `;
 
 export const Results = styled.h5<{

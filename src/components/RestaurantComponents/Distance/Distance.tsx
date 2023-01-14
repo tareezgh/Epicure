@@ -1,3 +1,5 @@
+// Do not check please
+import { toast } from "react-toastify";
 import { ClearBtnFrame, ClearBtnTitle } from "../../buttons";
 import { DistanceContainer, Title } from "./style";
 
@@ -12,7 +14,14 @@ const Distance = (distanceProps: Params) => {
         <Title>Distance</Title>
 
         {/* if clicked */}
-        <ClearBtnFrame>
+        <ClearBtnFrame
+          onClick={() =>
+            toast.warn("Not Implemented yet!", {
+              hideProgressBar: true,
+              position: "bottom-center",
+            })
+          }
+        >
           <ClearBtnTitle>clear</ClearBtnTitle>
         </ClearBtnFrame>
       </DistanceContainer>

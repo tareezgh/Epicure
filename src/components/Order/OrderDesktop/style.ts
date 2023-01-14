@@ -161,38 +161,8 @@ export const Icon = styled.input`
   flex: none;
   order: 0;
   flex-grow: 0;
-  &:active {
-    background: #000;
-  }
 `;
 
-// export const RadioIcon = styled.img.attrs({
-//   src: radioIcon,
-// })`
-//   width: 18px;
-//   height: 18px;
-
-//   // background-repeat: no-repeat;
-//   cursor: pointer;
-//   flex: none;
-//   order: 0;
-//   flex-grow: 0;
-// `;
-// &:active{
-//   background-image: url(${(props) => props.src});
-// }
-
-// export const CheckBoxIcon = styled.img.attrs({
-//   src: checkboxIcon,
-// })`
-//   width: 18px;
-//   height: 18px;
-
-//   cursor: pointer;
-//   flex: none;
-//   order: 0;
-//   flex-grow: 0;
-// `;
 
 export const Content = styled.label`
   line-height: 18px;
