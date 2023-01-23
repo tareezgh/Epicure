@@ -36,9 +36,9 @@ const DishesCards = (dishesProps: Params) => {
           (dish: IDish) => dish.type === "Breakfast"
         );
         break;
-      case "Launch":
+      case "Lunch":
         filteredData = dishesData.filter(
-          (dish: IDish) => dish.type === "Launch"
+          (dish: IDish) => dish.type === "Lunch"
         );
         break;
       case "Dinner":

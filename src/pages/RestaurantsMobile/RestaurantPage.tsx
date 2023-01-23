@@ -37,7 +37,7 @@ const RestaurantPageMobile = () => {
   const [dish, setDish] = useState<string>(" ");
 
   const [dishesFilter, setDishesFilter] = useState<string>("Breakfast");
-  const filters = ["Breakfast", "Launch", "Dinner"];
+  const filters = ["Breakfast", "Lunch", "Dinner"];
 
   const toggleOrder = (name: string) => {
     setDish(name);

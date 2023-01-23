@@ -141,7 +141,7 @@ const DishCard = (cardProps: Params) => {
                   <PriceFrame
                     style={{ justifyContent: "flex-start", order: "1" }}
                   >
-                    <PriceDesktop>₪{order.price * order.quantity}</PriceDesktop>
+                    <PriceDesktop>₪{order.price}</PriceDesktop>
                   </PriceFrame>
                 </NameFrame>
               </InfoFrameDesktop>

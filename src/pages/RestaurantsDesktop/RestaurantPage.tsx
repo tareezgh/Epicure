@@ -33,7 +33,7 @@ const RestaurantPageDesktop = () => {
   const [dish, setDish] = useState<string>(" ");
 
   const [dishesFilter, setDishesFilter] = useState<string>("Breakfast");
-  const filters = ["Breakfast", "Launch", "Dinner"];
+  const filters = ["Breakfast", "Lunch", "Dinner"];
 
   const backgroundStyle = {
     opacity: `${orderOpen ? "0.5" : ""}`,
