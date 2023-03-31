@@ -2,6 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
+  checkoutUrl,
   createOrderUrl,
   deleteOrderByIDUrl,
   getChefOfTheWeekUrl,
@@ -177,6 +178,24 @@ export const deleteOrderByID = async (orderID: any, dishName: string) => {
       hideProgressBar: true,
     });
     return dishName;
+  }
+};
+
+// Checkout
+
+export const onCheckoutClick = async (args: { fullName: string; address: string; phone: string; cardNumber: string; nameOnCard: string; cvv: string; expiryDate: string; }) => {
+  try {
+    const response = await axios.post(checkoutUrl, args);
+    toast.success("Order Complete 💥", {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+    return response.data;
+  } catch {
+    toast.error("Error!", {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
   }
 };
 

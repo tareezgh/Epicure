@@ -26,6 +26,7 @@ const HeaderDesktop = () => {
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [userOpen, setUserOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
+  const [checkoutOpen, setCheckoutOpen] = useState<boolean>(false);
   const filters = ["Restaurants", "Chefs"];
 
   const toggleAll = () => {
@@ -50,6 +51,10 @@ const HeaderDesktop = () => {
     if (userOpen) toggleUser();
     if (searchOpen) toggleSearch();
     setCartOpen(!cartOpen);
+  };
+
+  const toggleCheckout = () => {
+    setCheckoutOpen(!checkoutOpen);
   };
 
   const handleData = (filter: string) => {
@@ -105,7 +110,13 @@ const HeaderDesktop = () => {
             <CartIcon onClick={toggleCart} />
           </IconsContainer>
 
-          {cartOpen && <Cart page="Desktop" />}
+          {cartOpen && (
+            <Cart
+              page="Desktop"
+              toggleCart={toggleCart}
+              toggleCheckout={toggleCheckout}
+            />
+          )}
           {userOpen && (
             <>
               <SignIn page="Desktop" toggleUser={toggleUser} />

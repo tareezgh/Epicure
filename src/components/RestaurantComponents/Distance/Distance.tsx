@@ -1,7 +1,18 @@
 // Do not check please
 import { toast } from "react-toastify";
 import { ClearBtnFrame, ClearBtnTitle } from "../../buttons";
-import { DistanceContainer, Title } from "./style";
+import {
+  Circles,
+  DistanceContainer,
+  Frame,
+  Title,
+  SubTitles,
+  Sub1,
+  Sub2,
+  SmallCircle,
+  Line,
+  BigCircle,
+} from "./style";
 
 interface Params {
   page?: string;
@@ -13,15 +24,20 @@ const Distance = (distanceProps: Params) => {
       <DistanceContainer>
         <Title>Distance</Title>
 
+        <Frame>
+          <SubTitles>
+            <Sub1>My location</Sub1>
+            <Sub2>4km</Sub2>
+          </SubTitles>
+          <Circles>
+            <SmallCircle />
+            <Line />
+            <BigCircle />
+          </Circles>
+        </Frame>
+
         {/* if clicked */}
-        <ClearBtnFrame
-          onClick={() =>
-            toast.warn("Not Implemented yet!", {
-              hideProgressBar: true,
-              position: "bottom-center",
-            })
-          }
-        >
+        <ClearBtnFrame onClick={() => {}}>
           <ClearBtnTitle>clear</ClearBtnTitle>
         </ClearBtnFrame>
       </DistanceContainer>

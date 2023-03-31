@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SetWindowSize from "../../helpers/SetWindowSize";
 import DishCard from "./DishCard";
-import { setOrders } from "../../redux/Slicers";
+import { setCheckoutOrders, setOrders } from "../../redux/Slicers";
 import { fetchAllOrdersData } from "../../services/fetchData";
 import {
   PrimaryBtnFrame,
@@ -29,15 +29,18 @@ import {
   Price,
   Line,
 } from "../Cards/CardsDesktop/DishCard/style";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 interface Params {
   page?: string;
+  toggleCart: () => void;
+  toggleCheckout: () => void;
 }
 
 const Cart = (cartProps: Params) => {
   const windowSize = SetWindowSize();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const ordersData = useSelector((state: any) => state.orders.allOrders);
   const ordersCounter = useSelector((state: any) => state.orders.counter);
   let restaurantsSet = new Set<string>();
@@ -48,11 +51,14 @@ const Cart = (cartProps: Params) => {
     fetchAllOrdersData().then((res) => dispatch(setOrders(res)));
   }, [ordersCounter]);
 
-  const renderWarningToast = () => {
-    toast.warn("Not Implemented yet!", {
-      hideProgressBar: true,
-      position: "bottom-center",
-    });
+  const onClickCheckout = () => {
+    cartProps.toggleCart();
+    cartProps.toggleCheckout();
+  };
+
+  const navigateToHistory = () => {
+    cartProps.toggleCart();
+    navigate(`/OrderHistory`);
   };
 
   const calculateTotalPrice = () => {
@@ -65,6 +71,7 @@ const Cart = (cartProps: Params) => {
   const prepareSetAndArray = () => {
     ordersData.map((order: any) => restaurantsSet.add(order.restaurant));
     restaurantsArray = Array.from(restaurantsSet);
+    dispatch(setCheckoutOrders(restaurantsArray));
   };
 
   const renderEmptyCart = (
@@ -76,7 +83,7 @@ const Cart = (cartProps: Params) => {
           <>
             <SecondaryFrame
               style={{ marginTop: "150px" }}
-              onClick={renderWarningToast}
+              onClick={navigateToHistory}
             >
               <SecondaryBtnTitle>Order history</SecondaryBtnTitle>
             </SecondaryFrame>
@@ -107,7 +114,7 @@ const Cart = (cartProps: Params) => {
 
       <PrimaryBtnFrame
         style={{ marginTop: 0, marginBottom: "24px" }}
-        onClick={renderWarningToast}
+        onClick={onClickCheckout}
       >
         <PrimaryBtnTitle>Checkout</PrimaryBtnTitle>
       </PrimaryBtnFrame>
@@ -141,7 +148,7 @@ const Cart = (cartProps: Params) => {
 
       <CommentInput placeholder="Special requests, allergies, dietary restrictions, etc." />
 
-      <PrimaryBtnFrame style={{ marginLeft: 0 }} onClick={renderWarningToast}>
+      <PrimaryBtnFrame style={{ marginLeft: 0 }}>
         <PrimaryBtnTitle>
           Checkout {totalPrice > 0 ? "- " + totalPrice : ""}
         </PrimaryBtnTitle>
@@ -149,7 +156,7 @@ const Cart = (cartProps: Params) => {
 
       <SecondaryFrame
         style={{ marginBottom: "24px" }}
-        onClick={renderWarningToast}
+        onClick={navigateToHistory}
       >
         <SecondaryBtnTitle>Order history</SecondaryBtnTitle>
       </SecondaryFrame>

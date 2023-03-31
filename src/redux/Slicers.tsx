@@ -64,6 +64,18 @@ export const orderSlice = createSlice({
   },
 });
 
+export const checkoutSlice = createSlice({
+  name: "checkout",
+  initialState: {
+    orders: [],
+  },
+  reducers: {
+    setCheckoutOrders: (state, action) => {
+      state.orders = action.payload;
+    },
+  },
+});
+
 export const userSlice = createSlice({
   name: "currentUser",
   initialState: {
@@ -82,4 +94,5 @@ export const { setAllRestaurants, setRestaurant, setRestaurantDishes } =
 export const { setDishes } = dishSlice.actions;
 export const { setChefs, setChefOfTheWeek } = chefSlice.actions;
 export const { setOrders, setOrdersNumber } = orderSlice.actions;
+export const { setCheckoutOrders } = checkoutSlice.actions;
 export const { setUser } = userSlice.actions;

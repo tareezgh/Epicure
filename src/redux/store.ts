@@ -6,6 +6,7 @@ import {
   chefSlice,
   orderSlice,
   userSlice,
+  checkoutSlice,
 } from "./Slicers";
 
 export default configureStore({
@@ -14,6 +15,7 @@ export default configureStore({
     dishes: dishSlice.reducer,
     chefs: chefSlice.reducer,
     orders: orderSlice.reducer,
+    checkout: checkoutSlice.reducer,
     currentUser: userSlice.reducer,
   },
 });

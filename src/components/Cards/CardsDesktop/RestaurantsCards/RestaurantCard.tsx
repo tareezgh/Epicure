@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { IRestaurant } from "../../../../Interfaces/IRestaurant";
+import MapContainer from "../../../Map/Map";
 
 import {
   CardContent,
@@ -47,6 +48,7 @@ const RestaurantsCards = (restaurantProps: Params) => {
         break;
       case "Map View":
         filteredData = []; // need to view map
+        // <MapContainer/>
         break;
       default:
         break;

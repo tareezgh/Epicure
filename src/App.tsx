@@ -34,6 +34,7 @@ import {
   getChefOfTheWeekData,
 } from "./services/fetchData";
 import "./App.css";
+import OrderHistoryPageDesktop from "./pages/RestaurantsDesktop/OrderHistoryPage";
 
 function App() {
   const windowSize = SetWindowSize();
@@ -79,6 +80,9 @@ function App() {
               )
             }
           />
+
+          <Route path="/OrderHistory" element={<OrderHistoryPageDesktop />} />
+
           <Route
             path="/Chefs"
             element={

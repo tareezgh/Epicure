@@ -22,6 +22,7 @@ import Hamburger from "../../Hamburger/Hamburger";
 import Search from "../../Search/Search";
 import Cart from "../../Cart/Cart";
 import SignIn from "../../SignIn/SignIn";
+import Details from "../../Details/Details";
 
 const HeaderMobile = () => {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ const HeaderMobile = () => {
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [userOpen, setUserOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
+
+  const [checkoutOpen, setCheckoutOpen] = useState<boolean>(false);
 
   const toggleHamburger = () => {
     if (cartOpen) toggleCart();
@@ -51,6 +54,10 @@ const HeaderMobile = () => {
 
   const toggleCart = () => {
     setCartOpen(!cartOpen);
+  };
+
+  const toggleCheckout = () => {
+    setCheckoutOpen(!checkoutOpen);
   };
 
   return (
@@ -75,7 +82,9 @@ const HeaderMobile = () => {
         {/* Pop Ups */}
 
         {hamburgerOpen && <Hamburger toggleHamburger={toggleHamburger} />}
-        {cartOpen && <Cart />}
+        {cartOpen && (
+          <Cart toggleCart={toggleCart} toggleCheckout={toggleCheckout} />
+        )}
 
         {userOpen && (
           <>
@@ -95,6 +104,15 @@ const HeaderMobile = () => {
             <SearchContainer>
               <Search toggleSearch={toggleSearch} />
             </SearchContainer>
+          </>
+        )}
+
+        {checkoutOpen && (
+          <>
+            <CloseNavbar>
+              <CloseIcon onClick={toggleCheckout} />
+            </CloseNavbar>
+            <Details />
           </>
         )}
       </NavbarContainer>

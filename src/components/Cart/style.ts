@@ -35,6 +35,15 @@ export const CartContainer = styled(FlexContainerColumn)<{
   overflow-y: scroll;
 `;
 
+export const OrderSummaryContainer = styled(CartContainer)`
+  width: 497px;
+  height: 779px;
+  margin: 500px 50% 0 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 48px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
 export const DishesContainer = styled(FlexContainerColumn)`
   width: 100%;
   height: 250px;

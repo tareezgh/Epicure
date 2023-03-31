@@ -30,7 +30,7 @@ export const LockIcon = styled.img.attrs({
 })`
   width: 21px;
   height: 24px;
-  margin: 0;
+  margin: 0 0 0 40px;
   flex: none;
   order: 0;
   flex-grow: 0;
