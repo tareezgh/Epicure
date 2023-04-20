@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import DishCard from "./DishCard";
-import { setOrders } from "../../redux/Slicers";
-import { fetchAllOrdersData } from "../../services/fetchData";
+
 
 import {
   PrimaryBtnFrame,
@@ -36,15 +35,15 @@ interface Params {
 
 const OrderSummary = (orderProps: Params) => {
   const dispatch = useDispatch();
-  const ordersData = useSelector((state: any) => state.orders.allOrders);
+  const ordersData = useSelector((state: any) => state.orders.userOrders);
   const ordersCounter = useSelector((state: any) => state.orders.counter);
   let restaurantsSet = new Set<string>();
   let restaurantsArray = new Array<string>();
   let totalPrice = 0;
 
   useEffect(() => {
-    fetchAllOrdersData().then((res) => dispatch(setOrders(res)));
-  }, [ordersCounter]);
+
+  }, []);
 
   const calculateTotalPrice = () => {
     totalPrice = 0;

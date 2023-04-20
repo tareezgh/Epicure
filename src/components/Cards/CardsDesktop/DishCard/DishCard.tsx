@@ -27,14 +27,6 @@ const DishesCards = (dishesProps: Params) => {
   const dishesData = useSelector((state: any) => state.restaurants.dishes);
   let filteredData: IDish[] = dishesData;
 
-  const renderIconCardData = (signature: string) => (
-    <>
-      <SignatureIcon
-        src={require(`../../../../assets/${signature}-icon-big.svg`)}
-      />
-    </>
-  );
-
   const renderSwitch = () => {
     switch (dishesProps.filter) {
       case "Breakfast":
@@ -59,6 +51,14 @@ const DishesCards = (dishesProps: Params) => {
       // in home page display 3 cards only
       filteredData = allDishesData.slice(0, 3);
   };
+
+  const renderIconCardData = (signature: string) => (
+    <>
+      <SignatureIcon
+        src={require(`../../../../assets/${signature}-icon-big.svg`)}
+      />
+    </>
+  );
 
   const renderPrice = (dish: IDish) => {
     return (

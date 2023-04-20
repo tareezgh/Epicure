@@ -52,11 +52,15 @@ export const orderSlice = createSlice({
   name: "orders",
   initialState: {
     allOrders: [],
+    userOrders: [],
     counter: 0,
   },
   reducers: {
     setOrders: (state, action) => {
       state.allOrders = action.payload;
+    },
+    setUserOrders: (state, action) => {
+      state.userOrders = action.payload;
     },
     setOrdersNumber: (state, action) => {
       state.counter = action.payload;
@@ -93,6 +97,6 @@ export const { setAllRestaurants, setRestaurant, setRestaurantDishes } =
   restaurantSlice.actions;
 export const { setDishes } = dishSlice.actions;
 export const { setChefs, setChefOfTheWeek } = chefSlice.actions;
-export const { setOrders, setOrdersNumber } = orderSlice.actions;
+export const { setOrders, setUserOrders, setOrdersNumber } = orderSlice.actions;
 export const { setCheckoutOrders } = checkoutSlice.actions;
 export const { setUser } = userSlice.actions;

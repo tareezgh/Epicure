@@ -9,8 +9,8 @@ import {
   setDishes,
   setAllRestaurants,
   setOrdersNumber,
-  setOrders,
   setChefOfTheWeek,
+  setUserOrders,
 } from "./redux/Slicers";
 
 import HeaderMobile from "./components/Header/HeaderMobile/HeaderMobile";
@@ -28,28 +28,33 @@ import ChefsPageDesktop from "./pages/ChefsDesktop/ChefsPage";
 import {
   fetchAllChefsData,
   fetchAllDishesData,
-  fetchAllOrdersData,
   fetchAllRestaurantsData,
   fetchOrdersDataForUser,
   getChefOfTheWeekData,
 } from "./services/fetchData";
 import "./App.css";
 import OrderHistoryPageDesktop from "./pages/RestaurantsDesktop/OrderHistoryPage";
+import CheckoutPageDesktop from "./pages/RestaurantsDesktop/CheckoutPageDesktop";
 
 function App() {
   const windowSize = SetWindowSize();
   const dispatch = useDispatch();
-  const ordersData = useSelector((state: any) => state.orders.allOrders);
-  const currentUser = useSelector((state: any) => state.currentUser.email);
+  const ordersData = useSelector((state: any) => state.orders.userOrders);
+  const currentUser = localStorage.getItem("username");
   dispatch(setOrdersNumber(ordersData.length));
 
-  // PromiseAll need to FIX
   useEffect(() => {
     fetchAllRestaurantsData().then((res) => dispatch(setAllRestaurants(res)));
     fetchAllDishesData().then((res) => dispatch(setDishes(res)));
     fetchAllChefsData().then((res) => dispatch(setChefs(res)));
-    fetchAllOrdersData().then((res) => dispatch(setOrders(res)));
     getChefOfTheWeekData().then((res) => dispatch(setChefOfTheWeek(res)));
+    currentUser ? (
+      fetchOrdersDataForUser(currentUser).then((res) =>
+        dispatch(setUserOrders(res))
+      )
+    ) : (
+      <></>
+    );
   }, []);
 
   return (
@@ -80,9 +85,8 @@ function App() {
               )
             }
           />
-
           <Route path="/OrderHistory" element={<OrderHistoryPageDesktop />} />
-
+          <Route path="/Checkout" element={<CheckoutPageDesktop />} />
           <Route
             path="/Chefs"
             element={

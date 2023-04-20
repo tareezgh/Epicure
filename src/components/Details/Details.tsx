@@ -16,7 +16,7 @@ interface Params {
 
 const Details = (detailsProps: Params) => {
   const restaurantsArray = useSelector((state: any) => state.checkout.orders);
-  const ordersData = useSelector((state: any) => state.orders.allOrders);
+  const ordersData = useSelector((state: any) => state.orders.userOrders);
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
@@ -53,7 +53,6 @@ const Details = (detailsProps: Params) => {
         hideProgressBar: true,
       });
     }
-
   };
 
   const buttonStyle = {
@@ -130,10 +129,6 @@ const Details = (detailsProps: Params) => {
             myPlaceholder="Expiry Date"
             myFunc={setExpiryDate}
           ></MyInput>
-
-          {/* 
-          <InputFiled style={{ marginBottom: "0" }}>
-            */}
         </InfoFrame>
 
         <Title style={{ margin: "0" }}>My Order</Title>

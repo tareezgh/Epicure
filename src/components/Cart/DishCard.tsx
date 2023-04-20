@@ -34,7 +34,7 @@ interface Params {
 
 const DishCard = (cardProps: Params) => {
   const dispatch = useDispatch();
-  const ordersData = useSelector((state: any) => state.orders.allOrders);
+  const ordersData = useSelector((state: any) => state.orders.userOrders);
   const ordersNumber = useSelector((state: any) => state.orders.counter);
   const [quantityOpen, setQuantityOpen] = useState<boolean>(false);
   const cardContentStyle = {

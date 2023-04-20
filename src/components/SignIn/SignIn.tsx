@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { setUser } from "../../redux/Slicers";
-import { loginUser } from "../../services/fetchData";
+import { setUser, setUserOrders } from "../../redux/Slicers";
+import { fetchOrdersDataForUser, loginUser } from "../../services/fetchData";
 import { onRegisterClicked, validInputs } from "./Register";
 import { CloseNavbar } from "../Order/OrderDesktop/style";
 import {
+  PrimaryBtnFrame,
   PrimaryBtnTitle,
   PrimaryGrayBtnFrame,
   SecondaryBtnTitle,
@@ -35,11 +36,15 @@ interface Params {
 
 const SignIn = (signInProps: Params) => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state: any) => state.currentUser.email);
+  let currentUser = localStorage.getItem("username");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const buttonStyle = {
     background: `${email || password ? "#000000" : "#979797"}`,
+  };
+  const containerStyle = {
+    height: `${currentUser ? "200px" : "590px"}`,
+    gap: `${currentUser ? "15px" : "40px"}`,
   };
 
   const args = {
@@ -52,6 +57,10 @@ const SignIn = (signInProps: Params) => {
       if (currentUser !== email) {
         loginUser(args).then((res) => {
           dispatch(setUser(res?.email));
+          localStorage.setItem("username", res?.email);
+          fetchOrdersDataForUser(localStorage.getItem("username")!).then(
+            (res) => dispatch(setUserOrders(res))
+          );
           if (res?.email) signInProps.toggleUser();
         });
       } else {
@@ -63,9 +72,68 @@ const SignIn = (signInProps: Params) => {
     }
   };
 
+  const onLogoutClicked = () => {
+    localStorage.removeItem("username");
+    signInProps.toggleUser();
+    currentUser = "";
+    dispatch(setUserOrders([]));
+  };
+
+  const signedIn = (
+    <>
+      <InfoFrame>
+        <Title>Sign In</Title>
+        <SubTitle>To continue the order, please sign in</SubTitle>
+        <InputFiled>
+          {email && <InputTitle>Email address</InputTitle>}
+          <InputEmail onChange={(text) => setEmail(text.target.value)} />
+        </InputFiled>
+        <InputFiled>
+          {password && <InputTitle>Password</InputTitle>}
+          <InputPassword onChange={(text) => setPassword(text.target.value)} />
+        </InputFiled>
+      </InfoFrame>
+
+      <PrimaryFrame>
+        <PrimaryGrayBtnFrame style={buttonStyle} onClick={onLoginClicked}>
+          <PrimaryBtnTitle>login</PrimaryBtnTitle>
+        </PrimaryGrayBtnFrame>
+        <ForgetQuestion>Forget password?</ForgetQuestion>
+      </PrimaryFrame>
+
+      <RowSpace>
+        <Line />
+        <Or>or</Or>
+        <Line />
+      </RowSpace>
+
+      <SecondaryFrame onClick={() => onRegisterClicked(args)}>
+        <SecondaryBtnTitle>sign up</SecondaryBtnTitle>
+      </SecondaryFrame>
+    </>
+  );
+
+  const alreadySignedIn = (
+    <>
+      <Title style={{ marginTop: "15px" }}>You are already signed in</Title>
+      <SubTitle style={{ margin: "0" }}>
+        Are you sure you want to logout?
+      </SubTitle>
+
+      <PrimaryFrame>
+        <PrimaryBtnFrame
+          onClick={onLogoutClicked}
+          style={{ marginTop: "20px" }}
+        >
+          <PrimaryBtnTitle>logout</PrimaryBtnTitle>
+        </PrimaryBtnFrame>
+      </PrimaryFrame>
+    </>
+  );
+
   return (
     <>
-      <SignInContainer page={signInProps.page}>
+      <SignInContainer style={containerStyle} page={signInProps.page}>
         {signInProps.page === "Desktop" ? (
           <>
             <CloseNavbar>
@@ -76,37 +144,7 @@ const SignIn = (signInProps: Params) => {
           ""
         )}
 
-        <InfoFrame>
-          <Title>Sign In</Title>
-          <SubTitle>To continue the order, please sign in</SubTitle>
-          <InputFiled>
-            {email && <InputTitle>Email address</InputTitle>}
-            <InputEmail onChange={(text) => setEmail(text.target.value)} />
-          </InputFiled>
-          <InputFiled>
-            {password && <InputTitle>Password</InputTitle>}
-            <InputPassword
-              onChange={(text) => setPassword(text.target.value)}
-            />
-          </InputFiled>
-        </InfoFrame>
-
-        <PrimaryFrame>
-          <PrimaryGrayBtnFrame style={buttonStyle} onClick={onLoginClicked}>
-            <PrimaryBtnTitle>login</PrimaryBtnTitle>
-          </PrimaryGrayBtnFrame>
-          <ForgetQuestion>Forget password?</ForgetQuestion>
-        </PrimaryFrame>
-
-        <RowSpace>
-          <Line />
-          <Or>or</Or>
-          <Line />
-        </RowSpace>
-
-        <SecondaryFrame onClick={() => onRegisterClicked(args)}>
-          <SecondaryBtnTitle>sign up</SecondaryBtnTitle>
-        </SecondaryFrame>
+        {currentUser ? <>{alreadySignedIn}</> : <>{signedIn}</>}
       </SignInContainer>
     </>
   );

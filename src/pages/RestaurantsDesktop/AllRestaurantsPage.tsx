@@ -40,31 +40,19 @@ const AllRestaurantsPageDesktop = () => {
     setRestaurantsFilter(filter);
   };
 
-  const togglePrice = () => {
-    setPriceOpen(!priceOpen);
-  };
-
-  const toggleDistance = () => {
-    setDistanceOpen(!distanceOpen);
-  };
-
-  const toggleRating = () => {
-    setRatingOpen(!ratingOpen);
-  };
-
   const toggle = (str: String) => {
     setPriceOpen(false);
     setDistanceOpen(false);
     setRatingOpen(false);
     switch (str) {
-      case "Price Range":
-        togglePrice();
+      case buttons[0]:
+        setPriceOpen(!priceOpen);
         break;
-      case "Distance":
-        toggleDistance();
+      case buttons[1]:
+        setDistanceOpen(!distanceOpen);
         break;
-      case "Rating":
-        toggleRating();
+      case buttons[2]:
+        setRatingOpen(!ratingOpen);
         break;
 
       default:
@@ -72,11 +60,11 @@ const AllRestaurantsPageDesktop = () => {
     }
   };
 
-  const renderComponent = (str: string, key: number) => (
+  const renderComponent = (comp: string, key: number) => (
     <>
       <InsiderFrame key={key} style={frameStyle[key]}>
-        <ComponentFrame onClick={() => toggle(str)}>
-          <Title>{str}</Title>
+        <ComponentFrame onClick={() => toggle(comp)}>
+          <Title>{comp}</Title>
           <Arrow />
         </ComponentFrame>
       </InsiderFrame>

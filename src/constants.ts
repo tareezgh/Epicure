@@ -19,8 +19,7 @@ export const getOrdersUrl = `${url}/orders/getOrders`;
 export const getOrdersOfUserUrl = `${url}/orders/getOrdersOfUser`;
 export const deleteOrderByIDUrl = `${url}/orders/deleteOrderById`;
 
-//Checkout
-export const checkoutUrl = `${url}/checkout/completeOrder`;
+export const checkoutOrderUrl = `${url}/orders/completeOrder`;
 
 // User
 export const loginUrl = `${url}/auth/login`;

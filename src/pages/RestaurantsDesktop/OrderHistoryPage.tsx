@@ -15,9 +15,13 @@ import {
   Title,
 } from "./OrderHistoryStyle";
 import OrderSummary from "../../components/Cart/OrderSummary";
+import { fetchOrdersDataForUser } from "../../services/fetchData";
+import { setUserOrders } from "../../redux/Slicers";
 
 const OrderHistoryPageDesktop = () => {
   const dispatch = useDispatch();
+  const currentUser = useSelector((state: any) => state.currentUser.email);
+  const userOrders = useSelector((state: any) => state.orders.userOrders);
   const [summaryOpen, setSummaryOpen] = useState<boolean>(false);
 
   const backgroundStyle = {
@@ -25,43 +29,47 @@ const OrderHistoryPageDesktop = () => {
   };
 
   useEffect(() => {
-    // fetchRestaurantData(restaurantName).then((res) =>
-    //   dispatch(setRestaurant(res))
-    // );
-    // fetchRestaurantDishesData(restaurantName).then((res) =>
-    //   dispatch(setRestaurantDishes(res))
-    // );
+    userOrders ? (
+      <> </>
+    ) : (
+      fetchOrdersDataForUser(currentUser).then((res) =>
+        dispatch(setUserOrders(res))
+      )
+    );
   }, []);
 
   const toggleSummary = () => {
     setSummaryOpen(!summaryOpen);
   };
 
-  const renderFrame = (
-    <>
-      <Frame onClick={toggleSummary}>
-        <RestaurantName>Messa</RestaurantName>
-        <DateAndTime>29-03-2022, 11:54</DateAndTime>
-        <PriceFrame>
-          <CurrencyIcon />
-          <Price>122</Price>
-          <ArrowIcon />
-        </PriceFrame>
-      </Frame>
-    </>
-  );
+  const splitDate = (dateAndTime: string) => {
+    const text = dateAndTime.split("T");
+    let date = text[0].split("-");
+    const finalDate = date[2] + "-" + date[1] + "-" + date[0];
+    let time = text[1].split(":");
+    const finalTime = time[0] + ":" + time[1];
 
-  const renderData = (
-    <>
-      <HistoryInfo style={backgroundStyle}>
-        <Title>Your order history</Title>
+    return (
+      <>
+        <DateAndTime>{finalDate + " " + finalTime}</DateAndTime>
+      </>
+    );
+  };
 
-        <HistoryFrame>
-          {renderFrame}
-          {renderFrame}
-          {renderFrame}
-        </HistoryFrame>
-      </HistoryInfo>
+  const renderFrames = (
+    <>
+      {userOrders.map((order: any, key: number) => (
+        <Frame onClick={toggleSummary} key={key}>
+          <RestaurantName>{order.restaurant}</RestaurantName>
+          <>{splitDate(order.createdAt)}</>
+
+          <PriceFrame>
+            <CurrencyIcon />
+            <Price>{order.price}</Price>
+            <ArrowIcon />
+          </PriceFrame>
+        </Frame>
+      ))}
     </>
   );
 
@@ -72,7 +80,11 @@ const OrderHistoryPageDesktop = () => {
           <OrderSummary toggleOrder={toggleSummary} />
         </>
       )}
-      {renderData}
+
+      <HistoryInfo style={backgroundStyle}>
+        <Title>Your order history</Title>
+        <HistoryFrame>{renderFrames}</HistoryFrame>
+      </HistoryInfo>
     </>
   );
 };

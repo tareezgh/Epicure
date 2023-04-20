@@ -42,7 +42,6 @@ export const HistoryFrame = styled(FlexContainerColumn)`
 
 export const Frame = styled(FlexContainerRow)`
   padding: 0px;
-  gap: 220px;
   height: 35px;
   flex: none;
   order: 0;
@@ -50,6 +49,7 @@ export const Frame = styled(FlexContainerRow)`
 `;
 
 export const RestaurantName = styled.h4`
+  width: 300px;
   font-weight: 400;
   font-size: 24px;
   line-height: 35px;
@@ -67,6 +67,7 @@ export const DateAndTime = styled.h4`
   text-align: justify;
   letter-spacing: 1.25px;
   margin: 0;
+  margin-right: 220px;
   flex: none;
   order: 1;
   flex-grow: 0;
