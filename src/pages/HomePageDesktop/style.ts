@@ -23,7 +23,7 @@ export const HeroContainer = styled.section`
   width: 100%;
   height: 696px;
   background-image: url(${heroImage});
-  background-repeat: no-repeat;
+  background-repeat: round;
   margin: 64px auto 80px auto;
 `;
 
