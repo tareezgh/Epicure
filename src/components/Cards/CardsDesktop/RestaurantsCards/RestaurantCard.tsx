@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { IRestaurant } from "../../../../Interfaces/IRestaurant";
-import MapContainer from "../../../Map/Map";
 
 import {
   CardContent,

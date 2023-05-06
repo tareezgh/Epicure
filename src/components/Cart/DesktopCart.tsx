@@ -5,6 +5,8 @@ import {
   SecondaryBtnTitle,
   PrimaryBtnFrame,
   PrimaryBtnTitle,
+  PrimaryGrayBtnFrame,
+  LockIcon,
 } from "../buttons";
 import { CommentInput, DishesContainer, MainFrame, Title } from "./style";
 
@@ -16,16 +18,20 @@ import {
   Line,
 } from "../Cards/CardsDesktop/DishCard/style";
 import DishCard from "./DishCard";
+import { PrimaryFrame } from "../SignIn/style";
 
 interface Params {
-  totalPrice: number;
+  checkout?: boolean;
   toggleCart: () => void;
   toggleCheckout: () => void;
 }
 
 const DesktopCart = (cartProps: Params) => {
   const navigate = useNavigate();
-  const restaurantsArray = useSelector((state: any) => state.checkout.orders);
+  const totalPrice = useSelector((state: any) => state.checkout.totalPrice);
+  const restaurantsArray = useSelector(
+    (state: any) => state.checkout.restaurants
+  );
 
   const navigateToHistory = () => {
     cartProps.toggleCart();
@@ -37,10 +43,50 @@ const DesktopCart = (cartProps: Params) => {
     navigate(`/Checkout`);
   };
 
+  const buttonStyle = {
+    width: "215px",
+    background: "#979797",
+    marginTop: "35px",
+  };
+
+  const renderButtons = (
+    <>
+      <PrimaryBtnFrame style={{ marginLeft: 0 }} onClick={navigateToCheckout}>
+        <PrimaryBtnTitle>
+          Checkout {totalPrice > 0 ? "- " + totalPrice : ""}
+        </PrimaryBtnTitle>
+      </PrimaryBtnFrame>
+
+      <SecondaryFrame
+        style={{ marginBottom: "24px" }}
+        onClick={navigateToHistory}
+      >
+        <SecondaryBtnTitle>Order history</SecondaryBtnTitle>
+      </SecondaryFrame>
+    </>
+  );
+
+  const renderPayButton = (
+    <>
+      <PrimaryFrame>
+        <PrimaryGrayBtnFrame style={buttonStyle}>
+          <LockIcon />
+          <PrimaryBtnTitle style={{ marginLeft: "0" }}>
+            Pay {totalPrice > 0 ? "- " + totalPrice : ""}
+          </PrimaryBtnTitle>
+        </PrimaryGrayBtnFrame>
+      </PrimaryFrame>
+    </>
+  );
+
   const renderData = (
     <>
       <MainFrame>
-        <Title page={"Desktop"}>My Order</Title>
+        {cartProps.checkout ? (
+          <Title page={"Desktop"}>Your Order</Title>
+        ) : (
+          <Title page={"Desktop"}>My Order</Title>
+        )}
       </MainFrame>
 
       <DishesContainer>
@@ -53,7 +99,7 @@ const DesktopCart = (cartProps: Params) => {
         <Line />
         <PriceAndIcon>
           <CurrencyIcon />
-          <Price style={{ width: "auto" }}>{cartProps.totalPrice}</Price>
+          <Price style={{ width: "auto" }}>{totalPrice}</Price>
         </PriceAndIcon>
         <Line second={true} />
       </PriceFrame>
@@ -62,18 +108,7 @@ const DesktopCart = (cartProps: Params) => {
 
       <CommentInput placeholder="Special requests, allergies, dietary restrictions, etc." />
 
-      <PrimaryBtnFrame style={{ marginLeft: 0 }} onClick={navigateToCheckout}>
-        <PrimaryBtnTitle>
-          Checkout {cartProps.totalPrice > 0 ? "- " + cartProps.totalPrice : ""}
-        </PrimaryBtnTitle>
-      </PrimaryBtnFrame>
-
-      <SecondaryFrame
-        style={{ marginBottom: "24px" }}
-        onClick={navigateToHistory}
-      >
-        <SecondaryBtnTitle>Order history</SecondaryBtnTitle>
-      </SecondaryFrame>
+      {cartProps.checkout ? <>{renderPayButton}</> : <>{renderButtons}</>}
     </>
   );
 

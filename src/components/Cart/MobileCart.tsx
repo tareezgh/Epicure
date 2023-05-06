@@ -5,14 +5,16 @@ import { MainFrame, SummaryFrame, Title } from "./style";
 import DishCard from "./DishCard";
 
 interface Params {
-  totalPrice: number;
   toggleCart: () => void;
   toggleCheckout: () => void;
 }
 
 const MobileCart = (cartProps: Params) => {
   const navigate = useNavigate();
-  const restaurantsArray = useSelector((state: any) => state.checkout.orders);
+  const totalPrice = useSelector((state: any) => state.checkout.totalPrice);
+  const restaurantsArray = useSelector(
+    (state: any) => state.checkout.restaurants
+  );
 
   const navigateToCheckout = () => {
     cartProps.toggleCart();
@@ -31,7 +33,7 @@ const MobileCart = (cartProps: Params) => {
       ))}
 
       <SummaryFrame>
-        <Title>total - ₪{cartProps.totalPrice}</Title>
+        <Title>total - ₪{totalPrice}</Title>
       </SummaryFrame>
 
       <PrimaryBtnFrame

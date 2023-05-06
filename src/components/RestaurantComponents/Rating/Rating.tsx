@@ -1,4 +1,3 @@
-// Do not check please
 import { ClearBtnFrame, ClearBtnTitle } from "../../buttons";
 import { RatingContainer, RowFrame, Rows, Title } from "./style";
 import {

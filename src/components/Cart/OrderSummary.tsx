@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 
 import DishCard from "./DishCard";
-
 
 import {
   PrimaryBtnFrame,
@@ -41,9 +39,7 @@ const OrderSummary = (orderProps: Params) => {
   let restaurantsArray = new Array<string>();
   let totalPrice = 0;
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   const calculateTotalPrice = () => {
     totalPrice = 0;

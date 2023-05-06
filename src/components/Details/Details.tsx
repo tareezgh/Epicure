@@ -11,12 +11,15 @@ import MyInput from "./Input";
 import { DetailsContainer, InfoFrame, Title } from "./style";
 
 interface Params {
-  page?: string;
+  page: string;
 }
 
 const Details = (detailsProps: Params) => {
-  const restaurantsArray = useSelector((state: any) => state.checkout.orders);
-  const ordersData = useSelector((state: any) => state.orders.userOrders);
+  const restaurantsArray = useSelector(
+    (state: any) => state.checkout.restaurants
+  );
+  const totalPrice = useSelector((state: any) => state.checkout.totalPrice);
+
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
@@ -24,7 +27,6 @@ const Details = (detailsProps: Params) => {
   const [nameOnCard, setNameOnCard] = useState("");
   const [cvv, setCVV] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
-  let totalPrice = 0;
 
   const args = {
     fullName,
@@ -70,18 +72,34 @@ const Details = (detailsProps: Params) => {
     }`,
   };
 
-  const calculateTotalPrice = () => {
-    totalPrice = 0;
-    ordersData.map(
-      (order: any) => (totalPrice += order.price * order.quantity)
-    );
-  };
+  const renderOrderSummary = (
+    <>
+      <Title style={{ margin: "0" }}>My Order</Title>
+
+      {restaurantsArray.map((restaurant: any, key: number) => (
+        <>{<DishCard restaurant={restaurant} type={"Mobile"} key={key} />}</>
+      ))}
+
+      <SummaryFrame style={{ margin: "0" }}>
+        <Title style={{ margin: "0", fontWeight: "400" }}>
+          total - ₪{totalPrice}
+        </Title>
+      </SummaryFrame>
+
+      <PrimaryFrame>
+        <PrimaryGrayBtnFrame style={buttonStyle} onClick={validInputs}>
+          <LockIcon />
+          <PrimaryBtnTitle style={{ marginLeft: "0" }}>
+            Complete payment
+          </PrimaryBtnTitle>
+        </PrimaryGrayBtnFrame>
+      </PrimaryFrame>
+    </>
+  );
 
   return (
     <>
       <DetailsContainer page={detailsProps.page}>
-        {detailsProps.page === "Desktop" ? <></> : ""}
-
         <InfoFrame>
           <>
             <Title>delivery details</Title>
@@ -105,7 +123,7 @@ const Details = (detailsProps: Params) => {
             ></MyInput>
           </>
         </InfoFrame>
-        <Title style={{ textAlign: "start", margin: "0 0 0 20px" }}>
+        <Title style={{ textAlign: "center", margin: "0 0 0 20px" }}>
           payment details
         </Title>
 
@@ -131,26 +149,7 @@ const Details = (detailsProps: Params) => {
           ></MyInput>
         </InfoFrame>
 
-        <Title style={{ margin: "0" }}>My Order</Title>
-
-        {restaurantsArray.map((restaurant: any, key: number) => (
-          <>{<DishCard restaurant={restaurant} type={"Mobile"} key={key} />}</>
-        ))}
-        {calculateTotalPrice()}
-        <SummaryFrame style={{ margin: "0" }}>
-          <Title style={{ margin: "0", fontWeight: "400" }}>
-            total - ₪{totalPrice}
-          </Title>
-        </SummaryFrame>
-
-        <PrimaryFrame>
-          <PrimaryGrayBtnFrame style={buttonStyle} onClick={validInputs}>
-            <LockIcon />
-            <PrimaryBtnTitle style={{ marginLeft: "0" }}>
-              Complete payment
-            </PrimaryBtnTitle>
-          </PrimaryGrayBtnFrame>
-        </PrimaryFrame>
+        {detailsProps.page === "Mobile" ? <>{renderOrderSummary}</> : ""}
       </DetailsContainer>
     </>
   );

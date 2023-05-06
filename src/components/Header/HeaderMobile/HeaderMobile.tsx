@@ -112,7 +112,7 @@ const HeaderMobile = () => {
             <CloseNavbar>
               <CloseIcon onClick={toggleCheckout} />
             </CloseNavbar>
-            <Details />
+            <Details page="Mobile" />
           </>
         )}
       </NavbarContainer>

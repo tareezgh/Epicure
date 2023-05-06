@@ -86,7 +86,12 @@ function App() {
             }
           />
           <Route path="/OrderHistory" element={<OrderHistoryPageDesktop />} />
-          <Route path="/Checkout" element={<CheckoutPageDesktop />} />
+          {windowSize < 600 ? (
+            ""
+          ) : (
+            <Route path="/Checkout" element={<CheckoutPageDesktop />} />
+          )}
+
           <Route
             path="/Chefs"
             element={

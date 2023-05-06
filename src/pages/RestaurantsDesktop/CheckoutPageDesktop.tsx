@@ -1,26 +1,22 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 import { CheckoutInfo } from "./CheckoutStyle";
 import Details from "../../components/Details/Details";
-import DesktopCart from "../../components/Cart/DesktopCart";
+import Cart from "../../components/Cart/Cart";
 
 const CheckoutPageDesktop = () => {
-  const dispatch = useDispatch();
-
   useEffect(() => {}, []);
-
-  const renderFrame = <></>;
 
   const renderData = (
     <>
       <CheckoutInfo>
-        {/* <Details />
-        <DesktopCart
-          totalPrice={0}
+        <Details page="Desktop" />
+        <Cart
+          page="Desktop"
+          checkout={true}
           toggleCart={() => {}}
           toggleCheckout={() => {}}
-        /> */}
+        />
       </CheckoutInfo>
     </>
   );

@@ -19,16 +19,20 @@ const FlexContainerRow = styled.div`
 export const CartContainer = styled(FlexContainerColumn)<{
   page?: string;
   type?: string;
+  checkout?: boolean;
 }>`
   width: ${(props) => (props.page === "Desktop" ? "497px" : "100%")};
   top: ${(props) => (props.page === "Desktop" ? "64px" : "46px")};
+  top: ${(props) => (props.checkout ? "111px" : "")};
   right: ${(props) => (props.page === "Desktop" ? "0" : "")};
+
   height: ${(props) =>
     props.type === "Empty" && props.page !== "Desktop" ? "218px" : "514px"};
 
   height: ${(props) => (props.page === "Desktop" ? "779px" : "")};
+  height: ${(props) => (props.checkout ? "708px" : "")};
   gap: 20px;
-  position: absolute;
+  position: ${(props) => (props.checkout ? "" : "absolute")};
   z-index: 1;
   background: #ffffff;
   box-shadow: 2px 4px 10px rgba(175, 175, 175, 0.25);

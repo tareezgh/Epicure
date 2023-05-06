@@ -71,11 +71,15 @@ export const orderSlice = createSlice({
 export const checkoutSlice = createSlice({
   name: "checkout",
   initialState: {
-    orders: [],
+    restaurants: [],
+    totalPrice: 0,
   },
   reducers: {
-    setCheckoutOrders: (state, action) => {
-      state.orders = action.payload;
+    setCheckoutRestaurants: (state, action) => {
+      state.restaurants = action.payload;
+    },
+    setCheckoutTotalPrice: (state, action) => {
+      state.totalPrice = action.payload;
     },
   },
 });
@@ -98,5 +102,6 @@ export const { setAllRestaurants, setRestaurant, setRestaurantDishes } =
 export const { setDishes } = dishSlice.actions;
 export const { setChefs, setChefOfTheWeek } = chefSlice.actions;
 export const { setOrders, setUserOrders, setOrdersNumber } = orderSlice.actions;
-export const { setCheckoutOrders } = checkoutSlice.actions;
+export const { setCheckoutRestaurants, setCheckoutTotalPrice } =
+  checkoutSlice.actions;
 export const { setUser } = userSlice.actions;

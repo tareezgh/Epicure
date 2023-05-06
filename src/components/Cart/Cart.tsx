@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SetWindowSize from "../../helpers/SetWindowSize";
-import { setCheckoutOrders, setUserOrders } from "../../redux/Slicers";
+import {
+  setCheckoutRestaurants,
+  setCheckoutTotalPrice,
+  setUserOrders,
+} from "../../redux/Slicers";
 import { fetchOrdersDataForUser } from "../../services/fetchData";
 import { CartContainer } from "./style";
 
@@ -11,6 +15,7 @@ import DesktopCart from "./DesktopCart";
 
 interface Params {
   page?: string;
+  checkout?: boolean;
   toggleCart: () => void;
   toggleCheckout: () => void;
 }
@@ -29,35 +34,35 @@ const Cart = (cartProps: Params) => {
     fetchOrdersDataForUser(currentUser!).then((res) =>
       dispatch(setUserOrders(res))
     );
-  }, [ordersCounter]);
+  }, [currentUser, dispatch, ordersCounter]);
 
   const calculateTotalPrice = () => {
     totalPrice = 0;
     ordersData.map(
       (order: any) => (totalPrice += order.price * order.quantity)
     );
+    dispatch(setCheckoutTotalPrice(totalPrice));
   };
 
   const prepareSetAndArray = () => {
     ordersData.map((order: any) => restaurantsSet.add(order.restaurant));
     restaurantsArray = Array.from(restaurantsSet);
-    dispatch(setCheckoutOrders(restaurantsArray));
+    dispatch(setCheckoutRestaurants(restaurantsArray));
   };
 
   const chooseCartType = (
     <>
       {prepareSetAndArray()}
       {calculateTotalPrice()}
-      <CartContainer page={cartProps.page}>
+      <CartContainer page={cartProps.page} checkout={cartProps.checkout}>
         {windowSize < 600 ? (
           <MobileCart
-            totalPrice={totalPrice}
             toggleCart={cartProps.toggleCart}
             toggleCheckout={cartProps.toggleCheckout}
           />
         ) : (
           <DesktopCart
-            totalPrice={totalPrice}
+            checkout={cartProps.checkout}
             toggleCart={cartProps.toggleCart}
             toggleCheckout={cartProps.toggleCheckout}
           />

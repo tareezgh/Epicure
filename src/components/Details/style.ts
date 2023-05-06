@@ -11,23 +11,21 @@ export const DetailsContainer = styled(FlexContainerColumn)<{
 }>`
   ${(props) =>
     props.page === "Desktop"
-      ? `
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      ? `width: 408px;
+      height: 708px;
+      margin-right: 32px;
+      box-shadow: 2px 4px 10px rgba(175, 175, 175, 0.25);
       `
-      : `
-      top: 46px;
-  `};
+      : `width: 100%;
   position: fixed;
+  height: 700px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  `};
   gap: 40px;
-
-  width: ${(props) => (props.page === "Desktop" ? "573px" : "100%")};
-  height: 600px;
+  top: 46px;
   z-index: 1;
   overflow-y: scroll;
   background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const InfoFrame = styled(FlexContainerColumn)`

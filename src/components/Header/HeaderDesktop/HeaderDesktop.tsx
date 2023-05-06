@@ -113,6 +113,7 @@ const HeaderDesktop = () => {
           {cartOpen && (
             <Cart
               page="Desktop"
+              checkout={false}
               toggleCart={toggleCart}
               toggleCheckout={toggleCheckout}
             />
