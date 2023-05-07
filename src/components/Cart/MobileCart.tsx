@@ -10,7 +10,6 @@ interface Params {
 }
 
 const MobileCart = (cartProps: Params) => {
-  const navigate = useNavigate();
   const totalPrice = useSelector((state: any) => state.checkout.totalPrice);
   const restaurantsArray = useSelector(
     (state: any) => state.checkout.restaurants
@@ -19,7 +18,6 @@ const MobileCart = (cartProps: Params) => {
   const navigateToCheckout = () => {
     cartProps.toggleCart();
     cartProps.toggleCheckout();
-    navigate(`/Checkout`);
   };
 
   const renderData = (

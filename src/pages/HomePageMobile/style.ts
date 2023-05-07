@@ -25,7 +25,7 @@ export const HeroContainer = styled.section`
   width: 100%;
   height: 273px;
   background-image: url(${heroImage});
-  background-repeat: no-repeat;
+  background-repeat: round;
 `;
 
 export const HeroContent = styled(FlexContainerColumn)`
