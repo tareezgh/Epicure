@@ -248,6 +248,7 @@ export const loginUser = async (user: any) => {
       position: "bottom-center",
       hideProgressBar: true,
     });
+    localStorage.setItem("authentication", response.data.authentication);
     return args;
   }
 };

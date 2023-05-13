@@ -74,6 +74,7 @@ const SignIn = (signInProps: Params) => {
 
   const onLogoutClicked = () => {
     localStorage.removeItem("username");
+    localStorage.removeItem("authentication");
     signInProps.toggleUser();
     currentUser = "";
     dispatch(setUserOrders([]));

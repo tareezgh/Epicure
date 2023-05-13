@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { PrimaryBtnFrame, PrimaryBtnTitle } from "../buttons";
 import { MainFrame, SummaryFrame, Title } from "./style";

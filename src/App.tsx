@@ -19,12 +19,16 @@ import Footer from "./components/Footer/Footer";
 
 import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePageMobile/HomePage";
+import AdminPageDesktop from "./pages/Admin/AdminPage";
 import AllRestaurantsPageMobile from "./pages/RestaurantsMobile/AllRestaurantsPage";
 import AllRestaurantsPageDesktop from "./pages/RestaurantsDesktop/AllRestaurantsPage";
 import RestaurantPageMobile from "./pages/RestaurantsMobile/RestaurantPage";
 import RestaurantPageDesktop from "./pages/RestaurantsDesktop/RestaurantPage";
 import ChefsPageMobile from "./pages/ChefsMobile/ChefsPage";
 import ChefsPageDesktop from "./pages/ChefsDesktop/ChefsPage";
+import OrderHistoryPageDesktop from "./pages/RestaurantsDesktop/OrderHistoryPage";
+import CheckoutPageDesktop from "./pages/RestaurantsDesktop/CheckoutPageDesktop";
+
 import {
   fetchAllChefsData,
   fetchAllDishesData,
@@ -33,8 +37,6 @@ import {
   getChefOfTheWeekData,
 } from "./services/fetchData";
 import "./App.css";
-import OrderHistoryPageDesktop from "./pages/RestaurantsDesktop/OrderHistoryPage";
-import CheckoutPageDesktop from "./pages/RestaurantsDesktop/CheckoutPageDesktop";
 
 function App() {
   const windowSize = SetWindowSize();
@@ -65,6 +67,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />} />
           <Route path="/HomePage" element={<HomePage />} />
+          <Route path="/Admin" element={<AdminPageDesktop />} />
           <Route
             path="/AllRestaurants"
             element={

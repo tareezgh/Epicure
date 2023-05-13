@@ -8,7 +8,7 @@ const FlexContainerColumn = styled.div`
 
 export const HamburgerContainer = styled(FlexContainerColumn)`
   width: 100%;
-  height: 327px;
+  height: auto;
 
   top: 46px;
   z-index: 1;
@@ -35,6 +35,13 @@ export const RestaurantsLink = styled(HamburgerLink).attrs({
 export const ChefsLink = styled(HamburgerLink).attrs({
   href: "/Chefs",
 })`
+  margin-bottom: 40px;
+`;
+
+export const AdminLink = styled(HamburgerLink).attrs({
+  href: "/Admin",
+})`
+  margin-top: -16px;
   margin-bottom: 40px;
 `;
 

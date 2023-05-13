@@ -33,7 +33,7 @@ export const HeroContent = styled(FlexContainerColumn)`
   height: 144px;
   align-items: center;
   gap: 18px;
-  margin: 46px 0 0 20px;
+  margin: 46px auto 0 auto;
   transform: translateY(65px);
   background: rgba(255, 255, 255, 0.88);
 `;
@@ -51,7 +51,7 @@ export const HeroTitle = styled(GeneralTitle)`
   height: 64px;
   margin: 0;
   padding-top: 16px;
-  font-size: 24px;
+  font-size: 23px;
   line-height: 133%;
   letter-spacing: 1.9px;
   text-transform: none;

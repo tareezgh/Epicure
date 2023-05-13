@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Footer from "../Footer/Footer";
 
 import { CloseNavbar, CloseIcon } from "../Header/HeaderMobile/style";
@@ -6,6 +7,7 @@ import {
   RestaurantsLink,
   ChefsLink,
   SpaceLine,
+  AdminLink,
 } from "./style";
 
 interface Params {
@@ -13,6 +15,7 @@ interface Params {
 }
 
 const Hamburger = (hamburgerProps: Params) => {
+  const userAuth = localStorage.getItem("authentication");
   return (
     <>
       <CloseNavbar>
@@ -22,6 +25,7 @@ const Hamburger = (hamburgerProps: Params) => {
       <HamburgerContainer>
         <RestaurantsLink>Restaurants</RestaurantsLink>
         <ChefsLink>Chefs</ChefsLink>
+        {userAuth === "Admin" ? <AdminLink>Admin</AdminLink> : <></>}
         <SpaceLine />
         <Footer windowType={"Mobile"} />
       </HamburgerContainer>
