@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Table = styled.table`
-  margin-top: 100px;
-  width: 100%;
+  width: auto;
   border-collapse: collapse;
+  margin: 100px auto;
 `;
 
 export const TableHeader = styled.thead`

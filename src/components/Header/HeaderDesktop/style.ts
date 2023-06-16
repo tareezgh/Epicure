@@ -58,7 +58,6 @@ export const EpicureTitle = styled.h2`
 `;
 
 export const FiltersFrame = styled(FlexContainerRow)`
-  width: 193px;
   height: 22px;
   margin: 0 0 0 32px;
   padding: 0px;

@@ -5,6 +5,9 @@ import { setUser, setUserOrders } from "../../redux/Slicers";
 import { fetchOrdersDataForUser, loginUser } from "../../services/fetchData";
 import { onRegisterClicked, validInputs } from "./Register";
 import { CloseNavbar } from "../Order/OrderDesktop/style";
+import GoogleSignIn from "./GoogleSignIn";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 import {
   PrimaryBtnFrame,
   PrimaryBtnTitle,
@@ -43,7 +46,7 @@ const SignIn = (signInProps: Params) => {
     background: `${email || password ? "#000000" : "#979797"}`,
   };
   const containerStyle = {
-    height: `${currentUser ? "200px" : "590px"}`,
+    height: `${currentUser ? "200px" : "auto"}`,
     gap: `${currentUser ? "15px" : "40px"}`,
   };
 
@@ -56,12 +59,14 @@ const SignIn = (signInProps: Params) => {
     if (validInputs(email, password)) {
       if (currentUser !== email) {
         loginUser(args).then((res) => {
-          dispatch(setUser(res?.email));
-          localStorage.setItem("username", res?.email);
-          fetchOrdersDataForUser(localStorage.getItem("username")!).then(
-            (res) => dispatch(setUserOrders(res))
-          );
-          if (res?.email) signInProps.toggleUser();
+          if (res) {
+            dispatch(setUser(res?.email));
+            localStorage.setItem("username", res?.email);
+            fetchOrdersDataForUser(localStorage.getItem("username")!).then(
+              (res) => dispatch(setUserOrders(res))
+            );
+            if (res?.email) signInProps.toggleUser();
+          }
         });
       } else {
         toast.error("User already logged in", {
@@ -72,12 +77,33 @@ const SignIn = (signInProps: Params) => {
     }
   };
 
-  const onLogoutClicked = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("authentication");
+  const handleGoogleSignInSuccess = (result: any) => {
+    const { user } = result;
+    const email = user.email;
+    dispatch(setUser(email));
+    localStorage.setItem("username", email);
+    toast.success("Signed in successfully", {
+      position: "bottom-center",
+      hideProgressBar: true,
+    });
+
     signInProps.toggleUser();
-    currentUser = "";
-    dispatch(setUserOrders([]));
+  };
+
+  const onLogoutClicked = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        localStorage.removeItem("username");
+        localStorage.removeItem("authentication");
+        signInProps.toggleUser();
+        currentUser = "";
+        dispatch(setUserOrders([]));
+      })
+      .catch((error) => {
+        console.error("Logout failed:", error);
+      });
   };
 
   const signedIn = (
@@ -111,6 +137,7 @@ const SignIn = (signInProps: Params) => {
       <SecondaryFrame onClick={() => onRegisterClicked(args)}>
         <SecondaryBtnTitle>sign up</SecondaryBtnTitle>
       </SecondaryFrame>
+      <GoogleSignIn handleGoogleSignInSuccess={handleGoogleSignInSuccess} />
     </>
   );
 

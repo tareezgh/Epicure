@@ -1,5 +1,6 @@
-export const url = "http://localhost:3001/api";
-// export const url = "https://us-central1-epicureserver-84e42.cloudfunctions.net/app/api";
+// export const url = "http://localhost:3001/api";
+export const url =
+  "https://us-central1-epicureserver-84e42.cloudfunctions.net/app/api";
 
 // Restaurant
 export const getRestaurantsUrl = `${url}/restaurants/getRestaurants`;

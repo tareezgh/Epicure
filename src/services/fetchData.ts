@@ -243,6 +243,7 @@ export const loginUser = async (user: any) => {
       position: "bottom-center",
       hideProgressBar: true,
     });
+    return;
   } else {
     toast.success("Logged in!", {
       position: "bottom-center",

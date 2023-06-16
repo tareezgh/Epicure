@@ -27,7 +27,13 @@ const HeaderDesktop = () => {
   const [userOpen, setUserOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [checkoutOpen, setCheckoutOpen] = useState<boolean>(false);
-  const filters = ["Restaurants", "Chefs"];
+
+  const renderFilters = () => {
+    const filters = ["Restaurants", "Chefs"];
+    const userAuth = localStorage.getItem("authentication");
+    userAuth === "Admin" ? filters.push("Admin") : <></>;
+    return filters;
+  };
 
   const toggleAll = () => {
     if (searchOpen) toggleSearch();
@@ -69,6 +75,11 @@ const HeaderDesktop = () => {
         navigate(`/Chefs`);
         break;
 
+      case "Admin":
+        toggleAll();
+        navigate(`/Admin`);
+        break;
+
       default:
         break;
     }
@@ -90,7 +101,7 @@ const HeaderDesktop = () => {
 
           <FiltersFrame>
             <FilterFunction
-              myFilters={filters}
+              myFilters={renderFilters()}
               handleData={handleData}
               page={"Header"}
             />

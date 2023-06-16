@@ -32,7 +32,8 @@ export const SignInContainer = styled(FlexContainerColumn)<{
   gap: 40px;
 
   width: ${(props) => (props.page === "Desktop" ? "573px" : "100%")};
-  height: 590px;
+  height: auto;
+  padding-bottom: 30px;
   z-index: 1;
 
   background: #ffffff;

@@ -47,11 +47,12 @@ const GeneralTitle = styled.h2`
 `;
 
 export const HeroTitle = styled(GeneralTitle)`
-  width: 315px;
+  width: 324px;
   height: 64px;
   margin: 0;
+  margin-left: 5px;
   padding-top: 16px;
-  font-size: 23px;
+  font-size: 22px;
   line-height: 133%;
   letter-spacing: 1.9px;
   text-transform: none;
