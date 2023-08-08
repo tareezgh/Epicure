@@ -8,6 +8,7 @@ import store from "./redux/store";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDrcQldLMxqBj38O990KS4uyMF7daMKtYo",
@@ -20,6 +21,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
